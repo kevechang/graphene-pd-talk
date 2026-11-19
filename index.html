@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<title>芯片集成的高响应度超快石墨烯光电探测器 · 15 分钟自然顺口版（PPT 与讲稿全面改写为完整通顺句子 · 约 13 分钟纯讲 + 2 分钟余量）</title>
+<style>
+  :root {
+    --bg: #f3f5f9;
+    --surface: #ffffff;
+    --surface-2: #f8fafc;
+    --ink: #0f172a;
+    --ink-2: #334155;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --brand: #0b4f9c;
+    --purple: #6741d9;
+    --purple-soft: #f3f0ff;
+    --blue-stroke: #1864ab;
+    --blue-fill: #edf6ff;
+    --orange-stroke: #b35b00;
+    --orange-fill: #fffbeb;
+    --green: #2b8a3e;
+    --green-fill: #ebfbee;
+    --shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+    --radius: 16px;
+    --script-size: 18px;
+    --slide-aspect: 2001 / 1125;
+  }
+  html.dark {
+    --bg: #0b1120;
+    --surface: #131c31;
+    --surface-2: #1c2742;
+    --ink: #f1f5f9;
+    --ink-2: #cbd5e1;
+    --muted: #94a3b8;
+    --line: #26334d;
+    --brand: #60a5fa;
+    --purple: #a78bfa;
+    --purple-soft: rgba(139, 92, 246, 0.16);
+    --blue-stroke: #60a5fa;
+    --blue-fill: rgba(30, 64, 175, 0.22);
+    --orange-stroke: #fbbf24;
+    --orange-fill: rgba(180, 83, 9, 0.2);
+    --green: #4ade80;
+    --green-fill: rgba(22, 101, 52, 0.25);
+    --shadow: 0 12px 34px rgba(0, 0, 0, 0.4);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== Top Header ===== */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .brand-wrap { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .act-badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    color: #fff;
+    background: var(--brand);
+    white-space: nowrap;
+  }
+  .deck-title {
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mode-tabs {
+    display: flex;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 3px;
+  }
+  .mode-btn {
+    border: none;
+    background: transparent;
+    color: var(--ink-2);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .mode-btn.active {
+    background: var(--purple);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(103, 65, 217, 0.3);
+  }
+  .tools-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .timer-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+  .timer-btn, .icon-btn {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .timer-btn:hover, .icon-btn:hover { border-color: var(--purple); color: var(--purple); }
+  .icon-btn.on { background: var(--purple-soft); border-color: var(--purple); color: var(--purple); }
+  .pace-tag { font-size: 11px; padding: 2px 7px; border-radius: 999px; font-weight: 600; }
+
+  /* ===== Main Studio Layout ===== */
+  .studio {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.38fr) minmax(360px, 1fr);
+    gap: 18px;
+    max-width: 1720px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 16px 18px 24px;
+    align-items: start;
+  }
+
+  /* ===== Left: PPT Stage ===== */
+  .stage-col {
+    position: sticky;
+    top: 66px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .slide-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 2px;
+  }
+  .slide-title-label { font-size: 16px; font-weight: 700; color: var(--ink); }
+  .slide-step-pills { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .beat-pill {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .beat-pill.done { border-color: var(--purple); color: var(--purple); opacity: 0.72; }
+  .beat-pill.active {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: #fff;
+    transform: scale(1.05);
+  }
+
+  .slide-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: var(--slide-aspect);
+    background: #ffffff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+    cursor: pointer;
+    user-select: none;
+  }
+  .slide-frame img { width: 100%; height: 100%; display: block; object-fit: contain; }
+  .slide-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .active-box-rect {
+    fill: rgba(103, 65, 217, 0.04);
+    stroke: #6741d9;
+    stroke-dasharray: 14 8;
+    filter: drop-shadow(0 0 10px rgba(103, 65, 217, 0.45));
+    animation: dashMarch 1.2s linear infinite;
+  }
+  @keyframes dashMarch { to { stroke-dashoffset: -22; } }
+  .ghost-box-rect {
+    fill: rgba(103, 65, 217, 0.01);
+    stroke: rgba(103, 65, 217, 0.42);
+    stroke-dasharray: 9 7;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ghost-box-rect:hover { fill: rgba(103, 65, 217, 0.09); stroke: #6741d9; }
+  .svg-badge-group { cursor: pointer; }
+  .stage-hint-toast {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    background: rgba(15, 23, 42, 0.72);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+  }
+
+  .nav-bar {
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    gap: 8px;
+    align-items: center;
+  }
+  .nav-btn {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 11px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .nav-btn:hover:not(:disabled) { border-color: var(--purple); color: var(--purple); }
+  .nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .nav-btn-primary {
+    background: linear-gradient(135deg, #6741d9, #4c28b8);
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(103, 65, 217, 0.32);
+    transition: transform 0.12s, box-shadow 0.12s;
+    text-align: center;
+  }
+  .nav-btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(103, 65, 217, 0.42); }
+
+  .filmstrip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(34px, 1fr));
+    gap: 4px;
+    background: var(--surface);
+    padding: 8px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+  }
+  .film-cell {
+    border: none;
+    background: var(--surface-2);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s;
+  }
+  .film-cell::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 6px 6px 0 0;
+    background: var(--act-col, #94a3b8);
+    opacity: 0.55;
+  }
+  .film-cell.visited { color: var(--ink-2); }
+  .film-cell.current { background: var(--purple); color: #fff; transform: translateY(-1px); }
+  .film-cell.current::before { opacity: 1; background: #fde047; }
+
+  /* ===== Right: Coach Cards ===== */
+  .coach-col { display: flex; flex-direction: column; gap: 11px; }
+  .logic-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4.5px solid var(--brand);
+    border-radius: 13px;
+    padding: 10px 14px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    font-size: 13.5px;
+    line-height: 1.56;
+    color: var(--ink-2);
+  }
+  .logic-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 5px;
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--brand);
+  }
+  .logic-row { margin: 3px 0; }
+  .logic-row strong { color: var(--ink); }
+  .step-card-anim { animation: popIn 0.22s cubic-bezier(0.16, 1, 0.3, 1); }
+  @keyframes popIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .step-top-card {
+    background: var(--surface);
+    border: 1.5px solid var(--purple);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+  .step-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .step-num-title { display: flex; align-items: center; gap: 9px; min-width: 0; }
+  .purple-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: var(--purple);
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .block-name { font-size: 17px; font-weight: 800; color: var(--ink); }
+  .dur-pill {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--purple);
+    background: var(--purple-soft);
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pointer-cue {
+    font-size: 13.5px;
+    color: var(--ink-2);
+    background: var(--surface-2);
+    border-left: 3.5px solid var(--purple);
+    padding: 7px 11px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .blue-box {
+    background: var(--blue-fill);
+    border: 1.5px solid var(--blue-stroke);
+    border-radius: 13px;
+    padding: 13px 15px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .box-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .blue-head { color: var(--blue-stroke); }
+  .orange-head { color: var(--orange-stroke); }
+  .mini-ctrl { display: flex; align-items: center; gap: 5px; }
+  .tiny-btn {
+    border: 1px solid rgba(24, 100, 171, 0.3);
+    background: rgba(255, 255, 255, 0.65);
+    color: var(--blue-stroke);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  html.dark .tiny-btn { background: rgba(15, 23, 42, 0.5); }
+  .script-body {
+    font-size: var(--script-size);
+    line-height: 1.72;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+    transition: filter 0.2s;
+  }
+  .script-body .cite-ref {
+    font-size: 0.72em;
+    color: var(--muted);
+    opacity: 0.65;
+    margin: 0 1px;
+    font-weight: 500;
+  }
+  body.hide-cites .script-body .cite-ref { display: none; }
+
+  .blue-box.masked .script-body { filter: blur(8px); user-select: none; }
+  .recite-overlay {
+    display: none;
+    position: absolute;
+    inset: 38px 10px 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(237, 246, 255, 0.55);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--blue-stroke);
+  }
+  html.dark .recite-overlay { background: rgba(19, 28, 49, 0.6); }
+  .blue-box.masked .recite-overlay { display: flex; }
+
+  .orange-box {
+    background: var(--orange-fill);
+    border: 1.5px solid var(--orange-stroke);
+    border-radius: 13px;
+    padding: 13px 15px;
+  }
+  .illus-wrap {
+    background: #fffdf4;
+    border: 1px solid rgba(179, 91, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    cursor: zoom-in;
+  }
+  .illus-wrap img { width: 100%; height: auto; display: block; }
+  .explain-body { font-size: 15px; line-height: 1.62; color: var(--ink); }
+  .explain-body strong { color: var(--orange-stroke); }
+
+  .bridge-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px 15px;
+    font-size: 13.5px;
+    line-height: 1.58;
+    color: var(--ink-2);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  }
+  .bridge-card .bridge-tag {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--green-fill);
+    color: var(--green);
+    margin-bottom: 5px;
+  }
+
+  /* ===== Storyline & Q&A Full View ===== */
+  .overview-pane {
+    display: none;
+    max-width: 1320px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 18px 48px;
+  }
+  body.view-story .studio { display: none; }
+  body.view-story .overview-pane { display: block; }
+
+  .act-section {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow);
+  }
+  .act-sec-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .act-sec-title { font-size: 18px; font-weight: 800; }
+  .act-sec-desc { font-size: 14px; color: var(--ink-2); margin: 0 0 14px; line-height: 1.6; }
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .story-card {
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    border-radius: 12px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .story-card:hover { border-color: var(--purple); transform: translateY(-2px); }
+  .story-card-top { display: flex; align-items: center; gap: 10px; }
+  .story-thumb {
+    width: 84px;
+    aspect-ratio: var(--slide-aspect);
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    flex-shrink: 0;
+    background: #fff;
+  }
+  .story-core { font-size: 13px; color: var(--ink); line-height: 1.5; }
+  .story-bridge { font-size: 12px; color: var(--purple); line-height: 1.45; border-top: 1px dashed var(--line); padding-top: 6px; }
+
+  .qa-list { display: grid; gap: 10px; margin-top: 12px; }
+  .qa-item {
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    border-radius: 12px;
+    padding: 13px 16px;
+    cursor: pointer;
+  }
+  .qa-q { font-weight: 700; font-size: 15px; display: flex; justify-content: space-between; gap: 10px; }
+  .qa-a {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    font-size: 14.5px;
+    line-height: 1.68;
+    color: var(--ink-2);
+  }
+  .qa-item.open .qa-a { display: block; }
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: rgba(15, 23, 42, 0.85);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 95vw; max-height: 92vh; border-radius: 12px; background: #fff; }
+
+  /* ===== Mobile Responsive ===== */
+  @media (max-width: 1024px) {
+    html, body { overflow-x: hidden; max-width: 100vw; }
+    .studio {
+      grid-template-columns: minmax(0, 1fr);
+      padding: 8px 10px 76px;
+      gap: 10px;
+    }
+    .stage-col, .coach-col { min-width: 0; width: 100%; }
+    .stage-col {
+      position: sticky;
+      top: 0;
+      z-index: 25;
+      background: var(--bg);
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+    .topbar { position: static; padding: 8px 10px; gap: 6px; }
+    .deck-title, .filmstrip, .stage-hint-toast { display: none; }
+    .slide-header-bar { flex-wrap: wrap; gap: 4px; }
+    .slide-title-label { font-size: 13px; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .beat-pill { font-size: 11px; padding: 2px 8px; }
+    .mode-btn { padding: 5px 8px; font-size: 12px; }
+    .block-name { font-size: 15px; }
+    .box-head { flex-wrap: wrap; }
+    .nav-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 45;
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+      box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.08);
+      grid-template-columns: auto auto minmax(0, 1fr) auto;
+      gap: 6px;
+    }
+    .nav-btn { padding: 9px 9px; font-size: 12.5px; white-space: nowrap; }
+    .nav-btn-primary {
+      padding: 9px 10px;
+      font-size: 13.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+</style>
+</head>
+<body class="hide-cites">
+
+<header class="topbar">
+  <div class="brand-wrap">
+    <span id="actBadge" class="act-badge">P1</span>
+    <span id="deckTitleTop" class="deck-title"></span>
+  </div>
+
+  <div class="mode-tabs" role="tablist">
+    <button class="mode-btn active" data-mode="guide" onclick="setMode('guide')">🎤 顺稿精讲</button>
+    <button class="mode-btn" data-mode="recite" onclick="setMode('recite')">🧠 脱稿背诵</button>
+    <button id="storyTabBtn" class="mode-btn" data-mode="story" onclick="setMode('story')">🗺️ 全篇疏通</button>
+  </div>
+
+  <div class="tools-right">
+    <div class="timer-box">
+      <span id="timerReadout">00:00</span>
+      <span style="color:var(--muted)">/ 目标 <span id="targetReadout">00:10</span></span>
+      <span id="paceTag" class="pace-tag" style="display:none"></span>
+      <button id="timerToggleBtn" class="timer-btn" onclick="toggleTimer()">▶ 计时</button>
+      <button class="timer-btn" onclick="resetTimer()" title="重置计时">↺</button>
+    </div>
+    <button id="spotBtn" class="icon-btn on" onclick="toggleSpotlight()" title="快捷键 L">🔦 聚光灯</button>
+    <button id="themeBtn" class="icon-btn" onclick="toggleTheme()" title="深浅色切换">🌙</button>
+  </div>
+</header>
+
+<main class="studio">
+  <section class="stage-col">
+    <div class="slide-header-bar">
+      <div id="slideTitleLabel" class="slide-title-label">第 1 页</div>
+      <div id="beatPills" class="slide-step-pills"></div>
+    </div>
+
+    <div id="slideFrame" class="slide-frame" onclick="onStageClick(event)">
+      <img id="slideImg" src="" alt="PPT Slide" />
+      <svg id="slideSvg" class="slide-overlay" viewBox="0 0 2001 1125" preserveAspectRatio="none"></svg>
+      <div class="stage-hint-toast">点 PPT 画面或按 Space → 跳出下一拍</div>
+    </div>
+
+    <div class="nav-bar">
+      <button id="prevSlideBtn" class="nav-btn" onclick="jumpSlide(-1)" title="上一页 PPT ([)">⏮ 上页</button>
+      <button id="prevStepBtn" class="nav-btn" onclick="stepBy(-1)" title="上一拍 (←)">← 上拍</button>
+      <button id="nextStepBtn" class="nav-btn-primary" onclick="stepBy(1)" title="下一拍 (Space / →)">下一拍 →</button>
+      <button id="nextSlideBtn" class="nav-btn" onclick="jumpSlide(1)" title="下一页 PPT (])">下页 ⏭</button>
+    </div>
+
+    <div id="filmstrip" class="filmstrip"></div>
+  </section>
+
+  <aside id="coachCol" class="coach-col">
+    <div id="logicCard" class="logic-card" style="display:none">
+      <div class="logic-card-head">
+        <span id="logicTitle">🧭 为什么讲到这页？（本页逻辑定位）</span>
+        <span id="logicProgress" style="font-weight:700;opacity:0.8"></span>
+      </div>
+      <div id="logicWhy" class="logic-row"></div>
+      <div id="logicCore" class="logic-row"></div>
+    </div>
+
+    <div id="stepCard" class="step-top-card step-card-anim">
+      <div class="step-meta-row">
+        <div class="step-num-title">
+          <span id="stepBadge" class="purple-dot">1</span>
+          <span id="blockName" class="block-name"></span>
+        </div>
+        <span id="durPill" class="dur-pill"></span>
+      </div>
+
+      <div id="pointerCue" class="pointer-cue"></div>
+
+      <div id="blueBox" class="blue-box">
+        <div class="box-head blue-head">
+          <span>📘 讲稿｜照着念（逐字原稿）</span>
+          <div class="mini-ctrl">
+            <button id="citeBtn" class="tiny-btn" onclick="toggleCites(event)">显示 [文献号]</button>
+            <button class="tiny-btn" onclick="changeFont(-2, event)">A-</button>
+            <button class="tiny-btn" onclick="changeFont(2, event)">A+</button>
+          </div>
+        </div>
+        <div id="scriptBody" class="script-body"></div>
+        <div class="recite-overlay" onclick="revealRecite(event)">
+          👀 先看左图聚光灯 + 下方橙框试着自己讲一遍<br/>（点这里或按 V 键揭晓原稿核对）
+        </div>
+      </div>
+
+      <div id="orangeBox" class="orange-box">
+        <div class="box-head orange-head">
+          <span>📙 听懂这一拍｜原理配图 + 大白话解释</span>
+          <span id="zoomHint" style="font-size:11px;font-weight:600;opacity:0.75">点击配图可放大</span>
+        </div>
+        <div id="illusWrap" class="illus-wrap" onclick="openLightbox()">
+          <img id="illusImg" src="" alt="帮助理解配图" />
+        </div>
+        <div id="explainBody" class="explain-body"></div>
+      </div>
+    </div>
+
+    <div id="bridgeCard" class="bridge-card"></div>
+  </aside>
+</main>
+
+<section id="overviewPane" class="overview-pane">
+  <div class="act-section" style="border-left: 5px solid var(--purple)">
+    <div class="act-sec-head">
+      <div class="act-sec-title">🧭 全篇演讲脉络疏通（点击任意卡片直达该页练习）</div>
+      <button class="timer-btn" onclick="goStep(0); setMode('guide')">↺ 从第 1 页第 1 拍开始顺稿</button>
+    </div>
+    <p id="deckSummaryDesc" class="act-sec-desc"></p>
+  </div>
+  <div id="actsContainer"></div>
+
+  <div id="qaSection" class="act-section" style="display:none">
+    <div class="act-sec-head">
+      <div id="qaSecTitle" class="act-sec-title">💬 高频提问答辩锦囊（点击展开应答话术）</div>
+    </div>
+    <div id="qaContainer" class="qa-list"></div>
+  </div>
+</section>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="Zoomed" />
+</div>
+
+<script>
+const DECK = {"title": "芯片集成的高响应度超快石墨烯光电探测器", "subtitle": "15 分钟自然顺口版（PPT 与讲稿全面改写为完整通顺句子 · 约 13 分钟纯讲 + 2 分钟余量）", "storyline": "整场汇报只讲一条严密的因果链：为什么需要石墨烯、它怎么发电（P1–P4）→ 怎么改造波导解决 2.3% 弱吸收并突破带宽与波长限制（P5–P9）→ 怎么升级材料界面、能带、异质结并进芯片厂量产（P10–P13）→ 装进高速通信和 6G 系统能跑多快，最后冷静回答会不会取代商用锗（P14–P19）。", "storageKey": "talkweb-step-4fea67a7db", "slideSize": [2001, 1125], "totalSlides": 19, "totalSteps": 41, "totalSec": 753, "acts": [{"id": 1, "name": "第一部分 · 背景与机理", "range": [1, 4], "time": "00:00–03:10", "color": "#1864ab", "summary": "先把大前提讲清楚：为什么商用锗不够用、石墨烯缺什么（P2）→ 光子进石墨烯怎么变电（P3）→ 实验怎么认出光热电、读文献防哪两个坑（P4）。"}, {"id": 2, "name": "第二部分 · 波导聚光破局", "range": [5, 9], "time": "03:10–07:05", "color": "#0b7285", "summary": "围绕“单层只吸光 2.3%”一步步升级波导：硅波导躺平共线（P5）→ 太长电容大？切 70 nm 空气槽挤光隔热（P6）→ 慢光与微环绕圈冲 90 V/W（P7）→ 微环卡在 12 GHz？改金属纳米缝破 110 GHz（P8）→ 发挥长波优势，看 2 μm 与 5.2 μm 传感（P9）。"}, {"id": 3, "name": "第三部分 · 材料升级与量产", "range": [10, 13], "time": "07:05–10:25", "color": "#6741d9", "summary": "波导把光聚强后，转向器件材料与工艺：界面封装与双栅供电痛点用 PVA + 铁电锁结解决（P10）→ 拧 4.1° 转角改能带让石墨烯自己强吸光（P11）→ 叠异质结主打高速低暗流或高灵敏监测（P12）→ 低温去金 + CVD 良率超 99% 迈向量产（P13）。"}, {"id": 4, "name": "第四部分 · 高速应用与总结", "range": [14, 19], "time": "10:25–13:15（预留 ~2 分钟余量）", "color": "#2b8a3e", "summary": "器件和工艺都过关后看系统实测：单路 100G 眼图与 240G 相干（P14）→ 四路并行 WDM 与 6G 140 GHz 混频（P15）→ 首尾呼应回答“石墨烯会不会取代商用锗”（P16）→ 文献与致谢（P17–P19）。"}], "slides": [{"n": 1, "title": "第 1 页 · 封面：亮出题目与四大板块路线图", "actId": 1, "image": "assets/slides/slide-01.webp", "slideSec": 20, "whyHere": "开场定调：用 20 秒让老师和同学听清汇报题目，以及整场汇报按哪四个大板块依次展开。", "core": "顺着封面副标题预告四站：背景与机理 → 波导聚光 → 材料与量产 → 高速应用与总结。", "bridge": "👉 翻页串词：先进入第一部分，看看芯片里已经有商用锗探测器了，为什么还要研究石墨烯。", "blocks": [{"step": 1, "localIndex": 1, "localTotal": 2, "name": "问好与亮出题目", "side": "top", "boxes": [[140, 155, 1860, 505]], "cue": "【P1 上屏】微笑看大家，从容念出大标题", "timeLabel": "约 9 秒", "durationSec": 9, "cumTargetSec": 9, "script": "老师好，各位同学大家好！今天我汇报的题目是《芯片集成的高响应度超快石墨烯光电探测器》。", "explain": "把题目拆成三个词就很好懂：“芯片集成”是装在硅芯片波导上，“高响应度”是光变电信号强，“超快”是每秒能反应上百亿次。", "illus": "assets/illus/step-01.webp"}, {"step": 2, "localIndex": 2, "localTotal": 2, "name": "预告全篇四大板块", "side": "bottom", "boxes": [[140, 520, 1860, 588]], "cue": "（指副标题四部分）顺着屏幕预告整场汇报路线", "timeLabel": "约 11 秒", "durationSec": 11, "cumTargetSec": 20, "script": "下面我按屏幕上的四个部分展开：先讲背景与机理，再讲波导聚光、材料与量产，最后看高速应用与总结。", "explain": "这四个部分是一条完整因果链：先懂背景原理 → 再用波导解决吸光弱 → 再升级材料进厂量产 → 最后看系统实测与产业定位。", "illus": "assets/illus/step-02.webp"}]}, {"n": 2, "title": "第 2 页 · 一、背景｜为什么需要石墨烯？", "actId": 1, "image": "assets/slides/slide-02.webp", "slideSec": 52, "whyHere": "立住整场报告的总问题：芯片里已经有成熟的商用锗探测器了，为什么还要折腾石墨烯？并引出全文要攻克的核心矛盾（单层只吸光 2.3%）。", "core": "外延锗有两大瓶颈（超过 1.6 μm 无法吸光、难集成到氮化硅）；石墨烯能补齐短板，但单层只吸光 2.3%。", "bridge": "👉 翻页串词：知道了为什么要用石墨烯，那光子打进石墨烯后，到底是怎么变成电信号的？看第 3 页。", "blocks": [{"step": 3, "localIndex": 1, "localTotal": 3, "name": "左图演进与 >100 GHz 需求", "side": "left", "boxes": [[68, 165, 1120, 955], [1149, 177, 1931, 273]], "cue": "【翻页 → P2】指左图演进趋势 + 右上第 1 条", "timeLabel": "约 16 秒", "durationSec": 16, "cumTargetSec": 36, "script": "先看第一部分：为什么需要石墨烯？左图对比了石墨烯和商用锗的性能演进 [27]。随着算力增长，光互连要求探测器突破 100 GHz 且功耗更低 [13, 27]。", "explain": "左图横轴向右代表速度更快（带宽越高），纵轴向上代表信号更强（响应度更高）。AI 算力和高速光互连正把探测器推向右上角。", "illus": "assets/illus/step-03.webp"}, {"step": 4, "localIndex": 2, "localTotal": 3, "name": "商用锗瓶颈 vs 石墨烯优势", "side": "right", "boxes": [[1149, 297, 1920, 513]], "cue": "（指右上第 2、3 条）先讲锗的两道坎，再讲石墨烯三大优势", "timeLabel": "约 20 秒", "durationSec": 20, "cumTargetSec": 56, "script": "商用外延锗有两个瓶颈：波长超过 1.6 μm 就无法吸光，也很难集成到氮化硅波导上 [4, 20, 27]。而石墨烯全波段都能吸光、速度达皮秒级，还能低温贴合各类芯片 [1, 24]。", "explain": "可以把商用锗的痛点想成两堵墙：超过 1.6 μm 它就变“瞎子”，而且晶格对不上氮化硅长不上去。石墨烯像一层万能薄膜，啥波长都能吸、哪儿都能低温贴。", "illus": "assets/illus/step-04.webp"}, {"step": 5, "localIndex": 3, "localTotal": 3, "name": "右下蓝框：2.3% 弱吸收矛盾", "side": "bottom", "boxes": [[1158, 762, 1932, 986]], "cue": "（指右下蓝框）抛出贯穿全场的核心矛盾", "timeLabel": "约 16 秒", "durationSec": 16, "cumTargetSec": 72, "script": "但单层石墨烯太薄，垂直照光只吸收 2.3% [3, 14]。后面所有工作，都是为了同时做到高吸收、小电容和低暗电流。", "explain": "光垂直穿过单层石墨烯时，97.7% 都直接透过去了，只留下 2.3%！后面第二、三部分所有设计，全都是为了把这 2.3% 做大。", "illus": "assets/illus/step-05.webp"}]}, {"n": 3, "title": "第 3 页 · 一、机理｜光子进石墨烯怎么变电？有偏 vs 零偏", "actId": 1, "image": "assets/slides/slide-03.webp", "slideSec": 66, "whyHere": "承接上页：既然要用石墨烯，这页直接把最底层的物理原理讲透——光子打进石墨烯先干什么，四种机制各自怎么把光变成电流或电压。", "core": "光子进来只干两件事：激发更多电子，或把电子照热。有偏压 (a,b) 靠电阻/导电率变化测电流（有暗电流）；零偏压 (c,d) 靠内建电场或温差自己发电（零暗电流，PTE 还能省 TIA）。", "bridge": "👉 翻页串词：既然零偏光热电这么好，做实验时怎么确认测到的就是光热电呢？看第 4 页。", "blocks": [{"step": 6, "localIndex": 1, "localTotal": 3, "name": "光子进来干两件事 + 皮秒极速", "side": "top", "boxes": [[136, 11, 1394, 111], [930, 172, 1910, 258]], "cue": "【翻页 → P3】指标题与右上第 1 条，先把源头讲清楚", "timeLabel": "约 18 秒", "durationSec": 18, "cumTargetSec": 90, "script": "这页讲清核心原理：光子进石墨烯怎么变电？光子进来只干两件事，激发更多自由电子，或把电子照热；热电子 2 到 4 ps 就能冷却，所以速度潜力超 500 GHz [1, 13]。", "explain": "先抓源头就不懵了：光子进石墨烯只引起两种变化——电子变多（Δn）或电子变热（ΔT）。下面四种机制，全都是把这两种变化转成电信号的方法！", "illus": "assets/illus/step-06.webp"}, {"step": 7, "localIndex": 2, "localTotal": 3, "name": "上半 (a,b)：有偏压与暗电流", "side": "left", "boxes": [[177, 139, 786, 560], [931, 274, 1955, 460]], "cue": "（指左图上半 a、b + 右上第 2、3 条）讲清电阻变大与导电变强", "timeLabel": "约 24 秒", "durationSec": 24, "cumTargetSec": 114, "script": "先看左图上半有偏压模式：a 是光辐射热，电子照热后电阻变大、电流减小 [14]；b 是光导效应，自由电子变多、导电变强，电流增大 [17]。但只要加偏压，没光时就会有暗电流。", "explain": "有偏压就像提前给水管通了水：没光时也在流（暗电流）。照光后，a 相当于水管变堵、水流变小；b 相当于水变多、水流变大。", "illus": "assets/illus/step-07.webp"}, {"step": 8, "localIndex": 3, "localTotal": 3, "name": "下半 (c,d) 与蓝框：零偏发电", "side": "right", "boxes": [[939, 762, 1932, 986], [177, 565, 786, 989], [930, 476, 1930, 663]], "cue": "（指左图下半 c、d + 右上第 4、5 条与蓝框）突出零暗电流与免 TIA", "timeLabel": "约 24 秒", "durationSec": 24, "cumTargetSec": 138, "script": "再看下半零偏压模式，不加外电压也能发电，完全零暗电流：c 是光伏效应，靠 p-n 结内建电场自动分电荷 [6]；d 是光热电 PTE，靠光照温差和左右掺杂不同直接输出电压 [6, 10]，有望省去高功耗的 TIA 放大器 [13, 19]。", "explain": "零偏压不接外电源，没光时一滴电都不漏。特别是 (d) 光热电，像微型热电偶一样直接出电压，能省掉又费电又占面积的电流转电压放大器 TIA。", "illus": "assets/illus/step-08.webp"}]}, {"n": 4, "title": "第 4 页 · 一、判据｜怎么认出光热电？读数据防两坑", "actId": 1, "image": "assets/slides/slide-04.webp", "slideSec": 50, "whyHere": "承接 P3 四种机制：实验里几种机制常常混在一起，这页告诉你怎么验明光热电，以及读论文比数据时要避开哪两个常见坑。", "core": "左图六重变号认出 PTE（强光会饱和）；右图调栅压可切换三种机制；读文献要避开慢速高增益与功率口径差异两个坑。", "bridge": "👉 翻页串词：第一部分背景和原理讲完了，接下来进入第二部分——怎么改造波导，攻克 2.3% 的弱吸收难题？看第 5 页。", "blocks": [{"step": 9, "localIndex": 1, "localTotal": 3, "name": "左图：六重变号认出光热电", "side": "left", "boxes": [[68, 145, 892, 800], [59, 824, 1723, 871]], "cue": "【翻页 → P4】指左图六瓣图 + 底栏第 1 条", "timeLabel": "约 18 秒", "durationSec": 18, "cumTargetSec": 156, "script": "实验上怎么认出光热电呢？看左图，扫描双栅出现六重正负号反转，就是 PTE 的典型特征 [6]；不过入射光太强时热电子会饱和，响应度会缓降 [6, 19]。", "explain": "如果只是普通光伏效应，正负号只会翻转 2 次；只有光热电效应因为塞贝克系数随掺杂反复变号，才会画出标志性的六瓣交替图案。", "illus": "assets/illus/step-09.webp"}, {"step": 10, "localIndex": 2, "localTotal": 3, "name": "右图：调栅压切换三种模式", "side": "right", "boxes": [[934, 145, 1932, 800], [59, 882, 1673, 929]], "cue": "（指右图曲线 + 底栏第 2 条）说明一器多能", "timeLabel": "约 12 秒", "durationSec": 12, "cumTargetSec": 168, "script": "看右图，在同一个波导里，只需调节栅压就能在 PTE、光辐射热和光导之间切换 [17]。", "explain": "这说明三种机制不是“三种完全不同的材料”，而是同一个器件在不同栅压工作点下，谁占主导地位的问题。", "illus": "assets/illus/step-10.webp"}, {"step": 11, "localIndex": 3, "localTotal": 3, "name": "底栏第 3 条：读文献防两坑", "side": "bottom", "boxes": [[59, 940, 1891, 986]], "cue": "（指底栏第 3 条）提醒横向对比文献的两个避坑点", "timeLabel": "约 20 秒", "durationSec": 20, "cumTargetSec": 188, "script": "读文献比数据还要防两个坑：一是光门控虽高达 1.9 A/W 但速度很慢 [24, 25]；二是要分清光纤、波导和净吸收三种功率口径 [5, 15, 26]。", "explain": "就像比油耗要先问清是“算上堵车”还是“纯高速”：算响应度如果分母去掉了耦合损耗，数字能凭空好看好几倍，读文献一定要看清口径。", "illus": "assets/illus/step-11.webp"}]}, {"n": 5, "title": "第 5 页 · 二、波导(1)｜攻克 2.3% 弱吸收：硅波导共线", "actId": 2, "image": "assets/slides/slide-05.webp", "slideSec": 46, "whyHere": "正式进入第二部分「波导聚光」，正面回答 P2 留下的总难题：单层石墨烯垂直照光只吸收 2.3%，第 1 招就是让光放倒、贴着石墨烯边走边吸。", "core": "垂直照光只吸 2.3% → 改成硅波导贴面共线传输，53 μm 吸光超 60%、覆盖通信全波段，并跑出无金 50 Gbps。", "bridge": "👉 翻页串词：普通直波导虽然吸光够了，但长度要几十微米、电容偏大；怎么把它缩得更短？看第 6 页。", "blocks": [{"step": 12, "localIndex": 1, "localTotal": 3, "name": "左图：自由空间卡在 2.3%", "side": "left", "boxes": [[68, 145, 407, 599], [59, 623, 1607, 670]], "cue": "【翻页 → P5】指左图 + 底栏第 1 条", "timeLabel": "约 14 秒", "durationSec": 14, "cumTargetSec": 202, "script": "接下来进入第二部分：怎么攻克 2.3% 弱吸收？左图早期垂直照光器件虽超 40 GHz 并跑通 10 Gbps，但只吸收 2.3% 的光 [1, 2]。", "explain": "石墨烯只有一个原子厚，光从头顶垂直穿过去，就像子弹穿过一张纸，97.7% 的光瞬间漏走，只留得住 2.3%。", "illus": "assets/illus/step-12.webp"}, {"step": 13, "localIndex": 2, "localTotal": 3, "name": "中图：硅波导躺平边走边吸", "side": "top", "boxes": [[434, 145, 1082, 600], [59, 683, 1937, 769]], "cue": "（指中图 + 底栏第 2 条前半）讲清横向长跑思路", "timeLabel": "约 16 秒", "durationSec": 16, "cumTargetSec": 218, "script": "中图改用硅波导共线耦合，让光贴着石墨烯横向边走边吸，53 μm 就吸光超 60%，达到 0.108 A/W [3]。", "explain": "把“垂直穿纸”改成“贴着纸面横着跑 53 微米”，光和石墨烯接触距离拉长了十几万倍，吸收率立刻从 2.3% 跳到 60% 以上！", "illus": "assets/illus/step-13.webp"}, {"step": 14, "localIndex": 3, "localTotal": 3, "name": "右图 + 第 3 条：全波段与无金 50G", "side": "right", "boxes": [[1108, 145, 1932, 599], [59, 786, 1625, 832]], "cue": "（指右图 + 底栏第 2 条后半与第 3 条）顺带完成波段与工艺升级", "timeLabel": "约 16 秒", "durationSec": 16, "cumTargetSec": 234, "script": "右图进一步覆盖了 1310 到 1650 nm 通信全波段 [4]；随后改用大面积 CVD 石墨烯和无金镍铝电极，跑出了 50 Gbps [5]。", "explain": "这一步既证明了波导共线能覆盖全部通信波段，也迈出了去掉金电极、走向大面积晶圆制造的第一步。", "illus": "assets/illus/step-14.webp"}]}, {"n": 6, "title": "第 6 页 · 二、波导(2)｜怎么缩更短？空气槽聚光与隔热", "actId": 2, "image": "assets/slides/slide-06.webp", "slideSec": 44, "whyHere": "承接 P5 的不足：普通直波导需要 53 μm 才能吸够光，器件太长电容就大、会拖慢速度。所以第 2 招在硅波导中间切出 70 nm 空气狭缝，把光硬挤进去！", "core": "左图 70 nm 空气狭缝强力聚光并悬空隔热（温升 148 K）；右图直接拿两侧硅槽壁当双背栅，省去顶栅电容跑出 65 GHz。", "bridge": "👉 翻页串词：空气槽是从空间上把光挤窄，那能不能从时间上让光走慢一点、多待一会儿？看第 7 页。", "blocks": [{"step": 15, "localIndex": 1, "localTotal": 2, "name": "左图：70 nm 空气槽聚光与隔热", "side": "left", "boxes": [[263, 145, 842, 782], [59, 808, 1912, 894]], "cue": "【翻页 → P6】指左图狭缝 + 底栏第 1 条", "timeLabel": "约 24 秒", "durationSec": 24, "cumTargetSec": 258, "script": "普通直波导太长、电容偏大，怎么缩得更短？看左图，在硅波导中间切出 70 nm 空气槽，把光挤进狭缝，每微米吸光达 0.935 dB；同时石墨烯悬空隔热，电子温升达 148 K，热电信号更强 [9]。", "explain": "空气狭缝一箭双雕：一方面把分散的光能硬挤进 70 纳米窄缝里集中照石墨烯；另一方面中间挖空后不导热，电子被捂得更热，热电电压更强！", "illus": "assets/illus/step-15.webp"}, {"step": 16, "localIndex": 2, "localTotal": 2, "name": "右图：硅槽壁兼作双背栅 65 GHz", "side": "right", "boxes": [[913, 145, 1737, 782], [59, 914, 1864, 960]], "cue": "（指右图双侧硅壁 + 底栏第 2 条）点出省去顶栅电容的妙处", "timeLabel": "约 20 秒", "durationSec": 20, "cumTargetSec": 278, "script": "右图更进一步，直接用狭缝两侧的硅壁当作双背栅，精准对准最热区域，省去顶部栅极电容，实现 65 GHz 零偏探测 [10]。", "explain": "给两侧硅槽壁掺杂导电，就不用在石墨烯头顶再盖金属栅极了——少盖一层金属就少一大块寄生电容，速度直接飙到 65 GHz。", "illus": "assets/illus/step-16.webp"}]}, {"n": 7, "title": "第 7 页 · 二、波导(3)｜慢光与微环：90 V/W 与限速代价", "actId": 2, "image": "assets/slides/slide-07.webp", "slideSec": 44, "whyHere": "波导聚光第 3 招：P6 是从空间把光挤窄，这页换成从时间下手——让光走慢一点（光子晶体慢光）或者绕圈多跑几趟（微环），同时引出微环的限速代价！", "core": "慢光波导做到 4.7 V/W；硅微环 6 μm 吸光超 90% 创下 90 V/W 纪录，但光绕圈蓄能把带宽卡在 12 GHz。", "bridge": "👉 翻页串词：微环响应虽高，但速度卡死在 12 GHz，有没有既只有几微米、又能冲破 100 GHz 的办法？看第 8 页。", "blocks": [{"step": 17, "localIndex": 1, "localTotal": 2, "name": "左上图：光子晶体慢光 4.7 V/W", "side": "left", "boxes": [[68, 153, 1273, 501], [1302, 188, 1923, 317]], "cue": "【翻页 → P7】指左上图打孔波导 + 右上第 1 条", "timeLabel": "约 20 秒", "durationSec": 20, "cumTargetSec": 298, "script": "除了切槽挤光，还能从时间上让光多停留。左上图用光子晶体慢光结构减慢光速 [7, 11]，配合两侧连续硅栅控，把零偏响应提到 4.7 V/W [12]。", "explain": "在硅波导两侧打一排周期性圆孔，光走进去像踩进泥潭一样变慢，和石墨烯打交道的时间拉长，吸光自然变强。", "illus": "assets/illus/step-17.webp"}, {"step": 18, "localIndex": 2, "localTotal": 2, "name": "左下图 + 蓝框：微环 90 V/W 与限速", "side": "right", "boxes": [[1312, 685, 1932, 945], [68, 535, 1273, 980], [1302, 341, 1924, 471]], "cue": "（指左下图微环 + 右上第 2 条与右下蓝框）先亮纪录再讲代价", "timeLabel": "约 24 秒", "durationSec": 24, "cumTargetSec": 322, "script": "左下图让光在硅微环里绕圈叠加，只需 6 μm 就吸光超 90%，创下 90 V/W 零偏纪录；但如右下框所示，光绕圈需要时间，150 pm 窄线宽把带宽卡在了 12 GHz 左右 [19]。", "explain": "微环就像游乐场旋转轨道，光绕好多圈把能量全交给石墨烯，信号猛涨到 90 V/W；但“进来绕圈再排空”太费时间，速度上限就被锁死在 12 GHz。", "illus": "assets/illus/step-18.webp"}]}, {"n": 8, "title": "第 8 页 · 二、波导(4)｜突破微环限速：等离激元 >110 GHz", "actId": 2, "image": "assets/slides/slide-08.webp", "slideSec": 42, "whyHere": "直接解决 P7 的限速痛点：微环因为绕圈延迟卡在 12 GHz，第 4 招改用非谐振的金属等离激元纳米缝聚光，既小到几微米，又直接冲破 110 GHz！", "core": "金属纳米缝强力聚光、无谐振延迟且电容极小：6 μm 蝴蝶结达 0.50 A/W，2.7 μm 窄金属槽达 0.36 A/W，双双突破 110 GHz。", "bridge": "👉 翻页串词：前面几页都在常规 1.55 微米波段，别忘了石墨烯还能做商用锗做不到的长波长！看第 9 页。", "blocks": [{"step": 19, "localIndex": 1, "localTotal": 2, "name": "纳米缝原理与 6 μm 蝴蝶结", "side": "left", "boxes": [[146, 145, 574, 770], [59, 796, 1808, 840]], "cue": "【翻页 → P8】指底栏第 1 条 + 左图蝴蝶结", "timeLabel": "约 24 秒", "durationSec": 24, "cumTargetSec": 346, "script": "想突破微环 12 GHz 限速，科学家改用金属表面等离激元：把光强力聚进纳米缝隙，将器件缩到几微米、大幅降低电容，且没有谐振延迟 [8, 14, 15]。左图 6 μm 蝴蝶结天线拿到 0.50 A/W 并突破 110 GHz [14]。", "explain": "蝴蝶结金属尖端像两根避雷针相对，把光电场猛烈聚焦在中间极小的纳米缝里，不用绕圈蓄能，所以既小又快！", "illus": "assets/illus/step-19.webp"}, {"step": 20, "localIndex": 2, "localTotal": 2, "name": "右图：2.7 μm 窄金属槽破 110 GHz", "side": "right", "boxes": [[657, 145, 1854, 770], [59, 859, 1871, 944]], "cue": "（指右图 120 nm 窄槽 + 底栏第 2 条后半）", "timeLabel": "约 18 秒", "durationSec": 18, "cumTargetSec": 364, "script": "右图用 120 nm 窄金属槽，把器件进一步缩到 2.7 μm，拿到 0.36 A/W，同样突破了 110 GHz [15]。", "explain": "2.7 微米只有头发丝粗细的三十分之一！把整个探测器做到这么迷你，极低的电容让它能够轻松响应每秒上千亿次的光脉冲。", "illus": "assets/illus/step-20.webp"}]}, {"n": 9, "title": "第 9 页 · 二、波导(5)｜发挥长波优势：2 μm 与 5.2 μm 传感", "actId": 2, "image": "assets/slides/slide-09.webp", "slideSec": 44, "whyHere": "第二部分波导结构的收官，呼应 P2 埋下的伏笔：商用锗超过 1.6 μm 就失灵，这页展示石墨烯波导如何迈向 2 μm 新通信与 5.2 μm 中红外气体传感！", "core": "左图薄硅宽脊减少金属损耗，2 μm 达 70 mA/W、>20 GHz；右图硫系玻璃替代氧化层，5.2 μm 室温零偏测出 23 ppm 一氧化氮。", "bridge": "👉 翻页串词：第二部分波导聚光讲完了，光已经聚得很强；接下来进入第三部分，看看怎么升级材料界面并推向芯片厂量产！看第 10 页。", "blocks": [{"step": 21, "localIndex": 1, "localTotal": 2, "name": "左图：2 μm 薄硅宽脊突破锗带隙", "side": "left", "boxes": [[68, 145, 1237, 765], [59, 796, 1838, 843]], "cue": "【翻页 → P9】指左图 + 底栏第 1 条，扣回 P2 的 1.6 μm 瓶颈", "timeLabel": "约 22 秒", "durationSec": 22, "cumTargetSec": 386, "script": "前面都在 1.55 μm 波段，别忘了商用锗超过 1.6 μm 就会失灵。看左图，团队改用薄硅宽脊波导减少金属吸光损耗，在 2 μm 波段实现了 70 mA/W 和超 20 GHz 带宽 [17]。", "explain": "到了 2 微米波段，普通金属结构容易自己白白吃掉太多光；把硅波导做薄做宽，就能把光引导好、减少金属损耗，让石墨烯稳稳接住信号。", "illus": "assets/illus/step-21.webp"}, {"step": 22, "localIndex": 2, "localTotal": 2, "name": "右图：5.2 μm 硫系波导室温测气", "side": "right", "boxes": [[1317, 145, 1932, 765], [59, 858, 1828, 905]], "cue": "（指右图气体传感 + 底栏第 2 条）点出“换硫系玻璃”的原因", "timeLabel": "约 22 秒", "durationSec": 22, "cumTargetSec": 408, "script": "右图更走向 5.2 μm 中红外：因为普通氧化硅在这里会吸光，他们改用透明的硫系玻璃做波导，在室温零偏下测出一氧化氮气体低至 23 ppm [20]。", "explain": "中红外是很多气体分子的“指纹波段”，传统中红外探测器往往需要制冷降温；石墨烯配合透明的硫系玻璃波导，常温不加电就能做成微型片上气体传感器。", "illus": "assets/illus/step-22.webp"}]}, {"n": 10, "title": "第 10 页 · 三、材料(1)｜升级界面与供电：封装与铁电锁结", "actId": 3, "image": "assets/slides/slide-10.webp", "slideSec": 50, "whyHere": "大转场进入第三部分「材料与量产」！波导把光聚强后，先解决器件上两个最现实的工程痛点：界面封装难量产，以及零偏器件的双栅还要一直插电源。", "core": "左图用 PVA 聚合物替代手剥氮化硼，大面积 CVD 跑出零偏超 67 GHz；右图用铁电层脉冲锁结，断电保持超 28 小时、省去双路栅电源。", "bridge": "👉 翻页串词：解决了界面封装和供电，那能不能不靠外部波导，直接改造石墨烯自己的能带？看第 11 页。", "blocks": [{"step": 23, "localIndex": 1, "localTotal": 2, "name": "左图：PVA 封装取代手剥氮化硼", "side": "left", "boxes": [[68, 145, 500, 710], [59, 734, 1888, 820]], "cue": "【翻页 → P10】指左图 + 底栏第 1 条，先说清以前手剥的痛点", "timeLabel": "约 25 秒", "durationSec": 25, "cumTargetSec": 433, "script": "波导讲完后，第三部分看材料与工艺升级，先解决界面和供电两个痛点。左图在氮化硅波导上用 PVA 聚合物替代手剥氮化硼 [6]，让大面积 CVD 阵列实现零偏超 67 GHz [18]。", "explain": "石墨烯直接贴在粗糙衬底上，电子容易被杂质绊倒；以前靠实验室胶带手剥氮化硼垫着，现在换成能直接旋涂的 PVA 薄膜，既干净又能整片晶圆批量做。", "illus": "assets/illus/step-23.webp"}, {"step": 24, "localIndex": 2, "localTotal": 2, "name": "右图：铁电锁结省去双路栅电源", "side": "right", "boxes": [[542, 145, 1932, 707], [59, 840, 1910, 926]], "cue": "（指右图铁电夹层 + 底栏第 2 条）先说明为什么以前需要双路电源", "timeLabel": "约 25 秒", "durationSec": 25, "cumTargetSec": 458, "script": "再看供电痛点：以前零偏器件仍需两路电源一直给栅极供电维持 p-n 结。右图加入铁电层，只需通一次脉冲就能锁住结，断电后仍保持超 28 小时，省去了双路栅电源 [26]。", "explain": "以前就像必须一直用手按着开关灯才亮；加了铁电材料就像换成了带自锁的开关，按一下就卡死，拔掉电源还能稳稳工作一整天以上。", "illus": "assets/illus/step-24.webp"}]}, {"n": 11, "title": "第 11 页 · 三、材料(2)｜不靠波导改能带：4.1° 转角吸光", "actId": 3, "image": "assets/slides/slide-11.webp", "slideSec": 48, "whyHere": "材料升级第 2 招：前面全都在改外部波导或封装层，这页换个全新思路——直接把两层石墨烯拧一个精确角度，改变它自己的能带，不用复杂天线也能强吸光！", "core": "双层转角 4.1° 对齐 1550 nm 共振，普通硅波导吸光翻 3 倍、0.5 V 达 0.65 A/W 与 >65 GHz；30° 转角则支撑超 180 GHz 混频。", "bridge": "👉 翻页串词：除了两层石墨烯自己转角，把它和其他半导体叠成异质结又能带来什么优势？看第 12 页。", "blocks": [{"step": 25, "localIndex": 1, "localTotal": 3, "name": "左图：4.1° 转角对齐 1550 nm", "side": "left", "boxes": [[68, 279, 1238, 713], [1260, 176, 1922, 305]], "cue": "【翻页 → P11】指左图转角结构 + 右上第 1 条", "timeLabel": "约 16 秒", "durationSec": 16, "cumTargetSec": 474, "script": "除了改造外部波导，还能直接改石墨烯自己的能带。看左图，把两层石墨烯精确转开 4.1°，使层间共振峰刚好对齐 1550 nm [21]。", "explain": "就像把两层纱窗错开一个特定角度会出现莫尔条纹一样，两层石墨烯拧开 4.1° 后，电子能带会产生强烈的共振吸收峰，正好接住 1550 nm 的光。", "illus": "assets/illus/step-25.webp"}, {"step": 26, "localIndex": 2, "localTotal": 3, "name": "右上第 2、3 条：免天线翻 3 倍", "side": "right", "boxes": [[1261, 328, 1929, 565]], "cue": "（指右上第 2、3 条）点出不用微环天线的简洁优势", "timeLabel": "约 18 秒", "durationSec": 18, "cumTargetSec": 492, "script": "这样不靠微环或金属天线，在普通硅波导上短短 8 μm 吸光就翻了 3 倍，0.5 V 下拿到 0.65 A/W 和超 65 GHz [21]。", "explain": "省掉了挑剔的金属纳米缝和限速微环，靠材料自身能带就把吸收拉高 3 倍，工艺简单得多，速度和响应还都很能打。", "illus": "assets/illus/step-26.webp"}, {"step": 27, "localIndex": 3, "localTotal": 3, "name": "右下蓝框：30° 准晶铺垫 6G 混频", "side": "bottom", "boxes": [[1270, 762, 1932, 986]], "cue": "（指右下蓝框）自然埋下后面 P15 的伏笔", "timeLabel": "约 14 秒", "durationSec": 14, "cumTargetSec": 506, "script": "再看右下框，把转角拧到 30° 形成准晶，能保留单层高线性度，支撑超 180 GHz 亚太赫兹混频 [23]。", "explain": "4.1° 追求强吸光，30° 追求高线性度不失真——不同转角对应不同应用场景，后面讲 6G 混频还会见到它！", "illus": "assets/illus/step-27.webp"}]}, {"n": 12, "title": "第 12 页 · 三、材料(3)｜异质结提质：垂直高速与嵌芯高敏", "actId": 3, "image": "assets/slides/slide-12.webp", "slideSec": 44, "whyHere": "材料升级第 3 招：P11 是纯石墨烯自己叠双层，这页看石墨烯搭配其他半导体（二维 MoTe₂ 或硅芯）组成的异质结，分别服务高速低暗流和弱光高敏两个场景。", "core": "左图 MoTe₂ 垂直结主打高速低暗流（24–50 GHz）；右图硅波导嵌芯主打高灵敏增益（1.9 A/W，适于片上低速光功率监测）。", "bridge": "👉 翻页串词：讲完波导、封装、转角和异质结，大家最关心的问题来了——这些结构真能进芯片厂量产吗？看第 13 页。", "blocks": [{"step": 28, "localIndex": 1, "localTotal": 2, "name": "左图：MoTe₂ 垂直结主打高速", "side": "left", "boxes": [[68, 145, 1163, 699], [59, 724, 1919, 770]], "cue": "【翻页 → P12】指左图堆叠结构 + 底栏第 1 条", "timeLabel": "约 22 秒", "durationSec": 22, "cumTargetSec": 528, "script": "石墨烯还可以和其他半导体做成异质结。左图 MoTe₂ 垂直结让光横向吸收、电子垂直短距离穿过薄层，在 O 波段做到 24 到 50 GHz 和高信噪比 [16]。", "explain": "光横向慢慢吸够，电子却只需垂直跨过极薄的几十纳米就能被收走——吸光路程长、电子跑路短，兼顾了效率与速度！", "illus": "assets/illus/step-28.webp"}, {"step": 29, "localIndex": 2, "localTotal": 2, "name": "右图：波导嵌芯 1.9 A/W 测弱光", "side": "right", "boxes": [[1198, 145, 1932, 697], [59, 786, 1863, 871]], "cue": "（指右图嵌芯结构 + 底栏第 2 条）点明适用场景", "timeLabel": "约 22 秒", "durationSec": 22, "cumTargetSec": 550, "script": "右图把石墨烯夹在非晶硅和晶硅波导芯之间，靠界面电荷增益达到 1.9 A/W，虽然速度不快，但很适合片上低速光功率监测 [25]。", "explain": "并不是芯片里每个探测器都要跑上百 G：用来监测波导里光强稳不稳的“电表”，最看重的是能把微弱漏光看清，1.9 A/W 正好对口。", "illus": "assets/illus/step-29.webp"}]}, {"n": 13, "title": "第 13 页 · 三、量产(4)｜能进芯片厂吗？低温去金与 CVD", "actId": 3, "image": "assets/slides/slide-13.webp", "slideSec": 48, "whyHere": "第三部分收官之问：实验室里性能再好，进不了芯片代工厂也没用。这页交代工业界标准后端工艺规则，并用 >99% 中试良率证明量产可行性！", "core": "CMOS 后端两条铁律：≤300 °C 低温贴膜 + 铜/钨/铝全面去金；大面积 CVD 已反超手剥，欧洲中试线良率超 99%。", "bridge": "👉 翻页串词：器件和量产工艺都过关了，接下来进入第四部分，看看它装进真实高速通信系统能跑多快！看第 14 页。", "blocks": [{"step": 30, "localIndex": 1, "localTotal": 2, "name": "左图 + 要点：低温贴膜与去金", "side": "left", "boxes": [[71, 136, 733, 1046], [776, 177, 1921, 393]], "cue": "【翻页 → P13】指左图工艺流 + 右上第 1、2 条", "timeLabel": "约 24 秒", "durationSec": 24, "cumTargetSec": 574, "script": "这些结构能进芯片厂量产吗？左图是标准后端流程：先做好硅波导，再在 300 °C 以下低温贴膜防损伤 [13, 27]；因为金会污染硅产线，电极要改用铜、钨、铝边接触 [5, 13, 27]。", "explain": "芯片厂有两条铁律：一是怕高温毁掉石墨烯，所以放在最后低温贴膜；二是硅芯片最怕金原子扩散污染，所以必须全面换掉实验室爱用的金电极。", "illus": "assets/illus/step-30.webp"}, {"step": 31, "localIndex": 2, "localTotal": 2, "name": "第 3 条 + 蓝框：CVD 反超与良率", "side": "right", "boxes": [[786, 762, 1932, 986], [777, 417, 1859, 513]], "cue": "（指右上第 3 条 + 右下蓝框）有力收尾工艺部分", "timeLabel": "约 24 秒", "durationSec": 24, "cumTargetSec": 598, "script": "而且晶圆级 CVD 如今在响应度 [21]、带宽 [23] 和速率 [14] 上都已反超手工剥离薄片 [18, 24]；欧洲 6 到 8 英寸中试线良率超 99%，正加速迈向量产 [27]。", "explain": "当能整片晶圆生长的工业级 CVD 性能反超胶带手剥、中试良率站上 99%，这项技术就真正跨过了实验室玩具到芯片产线的门槛。", "illus": "assets/illus/step-31.webp"}]}, {"n": 14, "title": "第 14 页 · 四、应用(1)｜高速实测：100G 眼图与 240G 相干", "actId": 4, "image": "assets/slides/slide-14.webp", "slideSec": 38, "whyHere": "进入第四部分「高速应用」！前面把原理、波导、材料和量产全打通了，这页直接上真实高速通信链路的实测成绩单。", "core": "单路通信十年提速 10 倍，睁开清晰 100 Gbps 眼图；片上相干接收芯片以 <14 fJ/bit 超低能耗跑通 240 Gbps 16-QAM。", "bridge": "👉 翻页串词：单路已经跑到 100G 和 240G，那多路并行和未来的 6G 无线通信表现怎么样？看第 15 页。", "blocks": [{"step": 32, "localIndex": 1, "localTotal": 2, "name": "左图：单路十年提速至 100 Gbps", "side": "left", "boxes": [[68, 145, 978, 603], [59, 630, 1914, 716]], "cue": "【翻页 → P14】指左图眼图 + 底栏第 1 条", "timeLabel": "约 20 秒", "durationSec": 20, "cumTargetSec": 618, "script": "器件和工艺过关后，第四部分看高速系统实测。左图单路速率跨越了 10 倍：从早期 10 到 12 Gbps [2, 3, 4]、无金 50 Gbps [5]，一路跑到清晰的 100 Gbps 眼图 [14]。", "explain": "通信测试里“眼图睁得越开”，说明高速传输时 0 和 1 区分得越清楚、误码越少。左图睁开的 100G 眼图证明它已达到高速数据中心门槛。", "illus": "assets/illus/step-32.webp"}, {"step": 33, "localIndex": 2, "localTotal": 2, "name": "右图：片上相干接收 240 Gbps", "side": "right", "boxes": [[1008, 145, 1932, 603], [59, 736, 1854, 783]], "cue": "（指右图相干芯片 + 底栏第 2 条）突出 240G 与 <14 fJ/bit", "timeLabel": "约 18 秒", "durationSec": 18, "cumTargetSec": 636, "script": "右图片上平衡相干接收芯片，在低于 14 fJ/bit 的超低能耗下，成功跑通了 240 Gbps 的 16-QAM 传输 [24]。", "explain": "相干接收同时利用光的振幅和相位携带信息，单条链路就能塞进 240 Gbps 超大流量，同时每比特耗电低到几乎可以忽略。", "illus": "assets/illus/step-33.webp"}]}, {"n": 15, "title": "第 15 页 · 四、应用(2)｜多路并行 WDM 与 6G 亚太赫兹", "actId": 4, "image": "assets/slides/slide-15.webp", "slideSec": 40, "whyHere": "承接 P14 单路测试：实际芯片里要多通道并行（左图 4 路 WDM），而未来 6G 无线需要百 GHz 以上高频信号（右图 140 GHz 混频），正好呼应前面免 TIA 与 30° 转角的伏笔！", "core": "左图 0.006 mm² 四路芯片免 TIA 跑通 4×16 Gbps；右图直接光电混频超 180 GHz，140 GHz 频段跑通 10 Gbps QPSK。", "bridge": "👉 翻页串词：所有进展都看完了，最后一页我们回到开篇的问题——石墨烯到底会不会取代商用锗？看第 16 页。", "blocks": [{"step": 34, "localIndex": 1, "localTotal": 2, "name": "左图：四路并行 WDM 免 TIA 芯片", "side": "left", "boxes": [[68, 145, 983, 647], [59, 673, 1877, 720]], "cue": "【翻页 → P15】指左图芯片 + 底栏第 1 条", "timeLabel": "约 20 秒", "durationSec": 20, "cumTargetSec": 656, "script": "单路之外，多路并行和无线应用也很亮眼。左图四路波分复用芯片仅占 0.006 mm²，全通道超 67 GHz，免 TIA 直接跑通 4×16 Gbps 传输 [22]。", "explain": "四个不同波长的微环滤波器各挑一束光喂给四个石墨烯探测器，芯片极小且省掉了高功耗 TIA，正好验证了第 3 页说的系统红利！", "illus": "assets/illus/step-34.webp"}, {"step": 35, "localIndex": 2, "localTotal": 2, "name": "右图：6G 亚太赫兹 140 GHz 混频", "side": "right", "boxes": [[1013, 145, 1932, 647], [60, 736, 1932, 821]], "cue": "（指右图星座图 + 底栏第 2 条）点出清晰解调 10 Gbps", "timeLabel": "约 20 秒", "durationSec": 20, "cumTargetSec": 676, "script": "右图面向 6G 无线通信：无需外置光调制器，直接光电混频突破 180 GHz，在 140 GHz 频段跑通清晰的 10 Gbps QPSK 星座图 [23]。", "explain": "140 GHz 已经远超普通电子芯片的直接工作频率，石墨烯靠皮秒级极速直接完成光变亚太赫兹电信号的混频，4 团干净聚拢的星座点说明无线传输非常稳。", "illus": "assets/illus/step-35.webp"}]}, {"n": 16, "title": "第 16 页 · 五、总结｜石墨烯会取代商用锗吗？", "actId": 4, "image": "assets/slides/slide-16.webp", "slideSec": 52, "whyHere": "首尾呼应 P2 提出的总问题！学完整个领域后给出清醒客观的产业判断：石墨烯不是去常规短距硬碰商用锗，而是占领商用锗做不到的两大新阵地。", "core": "常规短距仍由商用锗占优；石墨烯不可替代的两大阵地是 >180–500 GHz 6G 混频，以及 3–8 μm 传感与氮化硅异质集成；未来重点打通三项量产工艺。", "bridge": "👉 翻页串词：最后快速展示本次综述的全部 27 篇参考文献。", "blocks": [{"step": 36, "localIndex": 1, "localTotal": 3, "name": "左图雷达：不取代常规商用锗", "side": "left", "boxes": [[68, 169, 1061, 973], [1101, 176, 1928, 262]], "cue": "【翻页 → P16】指左图雷达 + 右上第 1 条，冷静定调", "timeLabel": "约 17 秒", "durationSec": 17, "cumTargetSec": 693, "script": "最后回答最核心的问题：石墨烯会取代商用锗吗？左图雷达给出了冷静结论：在 1.3 和 1.55 μm 常规短距里，商用外延锗依然占优，石墨烯不是去直接替代它 [27]。", "explain": "做综述最忌讳盲目吹捧：在已经跑了十几年的常规硅光短距市场，商用锗性价比极高，石墨烯没必要去正面硬拼。", "illus": "assets/illus/step-36.webp"}, {"step": 37, "localIndex": 2, "localTotal": 3, "name": "右上第 2、3 条：两大不可替代阵地", "side": "right", "boxes": [[1101, 285, 1928, 482]], "cue": "（指右上第 2、3 条）点出石墨烯真正的护城河", "timeLabel": "约 19 秒", "durationSec": 19, "cumTargetSec": 712, "script": "石墨烯真正不可替代的是右边两大阵地：一是超 180 到 500 GHz 的 6G 亚太赫兹混频 [23, 27]；二是 3 到 8 μm 中红外传感 [20]，以及氮化硅等无源平台的低温集成 [13, 18, 27]。", "explain": "这两块正好对应商用锗物理上撞墙的地方：极高频跟不上、中红外看不见、氮化硅长不上去——这正是石墨烯大放异彩的舞台。", "illus": "assets/illus/step-37.webp"}, {"step": 38, "localIndex": 3, "localTotal": 3, "name": "右下蓝框：未来三项工程主线", "side": "bottom", "boxes": [[1111, 762, 1932, 986]], "cue": "（指右下蓝框）一句话收束未来展望", "timeLabel": "约 16 秒", "durationSec": 16, "cumTargetSec": 728, "script": "未来只要打通全自动洁净转移、无金边接触和耐高温非易失铁电结，就能推动这些场景真正落地 [26, 27]。", "explain": "原理已经跑通，剩下就是把转移、去金电极和高温稳定性做成全自动产线标准件，完成从论文到产品的最后一公里。", "illus": "assets/illus/step-38.webp"}]}, {"n": 17, "title": "第 17 页 · 参考文献（一）：[1]–[14] 轻扫过页", "actId": 4, "image": "assets/slides/slide-17.webp", "slideSec": 8, "whyHere": "汇报收尾展示完整学术出处：前 14 篇对应早期奠基与波导增强工作，一句话轻松带过即可。", "core": "一句话带过第 1 到 14 篇参考文献，无需逐条念英文标题。", "bridge": "👉 翻页串词：下一页是第 15 到 27 篇近年前沿文献。", "blocks": [{"step": 39, "localIndex": 1, "localTotal": 1, "name": "一句话带过前 14 篇文献", "side": "bottom", "boxes": [[68, 141, 1932, 889]], "cue": "【翻页 → P17】停留约 8 秒，一句话带过", "timeLabel": "约 8 秒", "durationSec": 8, "cumTargetSec": 736, "script": "最后两页列出了本次综述参考的全部 27 篇文献，这一页是第 1 到 14 篇早期与波导增强工作。", "explain": "参考文献页不需要念任何英文标题，停留几秒让老师看清格式完整、覆盖全面即可从容翻页。", "illus": "assets/illus/step-39.webp"}]}, {"n": 18, "title": "第 18 页 · 参考文献（二）：[15]–[27] 轻扫过页", "actId": 4, "image": "assets/slides/slide-18.webp", "slideSec": 7, "whyHere": "展示近六年最新前沿与综述文献出处，一句话带过后立刻进入结束致谢页。", "core": "一句话带过第 15 到 27 篇近年异质集成、高速系统与最新综述文献。", "bridge": "👉 翻页串词：翻到最后一页微笑致谢。", "blocks": [{"step": 40, "localIndex": 1, "localTotal": 1, "name": "一句话带过后 13 篇文献", "side": "bottom", "boxes": [[68, 142, 1932, 882]], "cue": "【翻页 → P18】停留约 7 秒，迅速翻至致谢页", "timeLabel": "约 7 秒", "durationSec": 7, "cumTargetSec": 743, "script": "这一页是第 15 到 27 篇近年异质集成、高速系统与最新综述文献。", "explain": "流畅衔接至致谢页，把最从容的状态留给最后一句致谢和老师同学提问。", "illus": "assets/illus/step-40.webp"}]}, {"n": 19, "title": "第 19 页 · 结束页：从容致谢与答辩准备", "actId": 4, "image": "assets/slides/slide-19.webp", "slideSec": 10, "whyHere": "圆满收尾！整场纯口播约 12.5 分钟，加上现场看屏、指图和自然停顿刚好落在 14 分左右，留足从容余量。", "core": "微笑致谢，礼貌邀请老师和同学提问指正。", "bridge": "🎉 汇报圆满结束！如果老师提问，可随时切到顶栏「全篇逻辑与答辩 Q&A」查看高频问答。", "blocks": [{"step": 41, "localIndex": 1, "localTotal": 1, "name": "微笑致谢与邀请提问", "side": "bottom", "boxes": [[250, 312, 1751, 841]], "cue": "【翻页 → P19】微笑致意，声音平稳收尾", "timeLabel": "约 10 秒", "durationSec": 10, "cumTargetSec": 753, "script": "以上就是我的全部汇报内容，感谢老师和各位同学的聆听，欢迎大家提问指正！", "explain": "整场节奏非常舒服：每页都是完整自然的人话，既能对着 PPT 轻松讲出来，也留出了充足余量应对临场停顿。", "illus": "assets/illus/step-41.webp"}]}], "qas": [{"q": "Q1：同样是零偏压热电探测器，为什么微环方案 [19] 电压响应度高达 90 V/W，但带宽只有 12 GHz，而氮化硅和空气槽方案 [10, 18, 22] 带宽超 65 GHz 却只有几 V/W？", "a": "核心在于“光子绕圈蓄能”的代价。微环共振把光功率放大约 10 倍，短短 6 微米就能将电子气加热到 400 K，得到 90 V/W [19]；但光在环里存留需要时间，150 pm 窄线宽把带宽卡在了 12 GHz。直波导和槽波导无谐振延迟，速度轻松突破 65–67 GHz [10, 18, 22]。"}, {"q": "Q2：有的论文写响应度 1.9 A/W [25]，有的写 0.65 A/W [21]，还有的写 90 V/W [19]，怎么公平对比？", "a": "看清两点前提：一是**速度与机制不同**——1.9 A/W 来自界面陷阱光门控增益，速度慢不适合高速通信 [25]；而 0.65 A/W 的转角器件 [21] 与 0.50 A/W 的蝴蝶结器件 [14] 都是超 65–110 GHz 真高速器件。二是**单位与口径不同**——A/W 与 V/W 不能混比，且须区分光纤总功率、波导内功率与净吸收功率 [5, 15, 26]。"}, {"q": "Q3：既然三百毫米产线外延锗已做到 1.08 A/W 与超 110 GHz [27]，石墨烯不可替代的价值在哪？", "a": "如 2026 年综述 [27] 总结，常规 1.31 和 1.55 微米短距接收仍是外延锗更成熟便宜；石墨烯强在锗管做不到的三块阵地：180–500 GHz 6G 亚太赫兹混频 [23, 27]、3–8 微米室温中红外气体传感 [20, 27]，以及氮化硅等非晶平台的低温单片集成 [13, 18, 27]。"}, {"q": "Q4：加偏压的光辐射热效应（PB）和零偏压光热电效应（PTE）怎么区分？", "a": "一测零偏压：PTE 在源漏零偏压下直接有信号，且扫描双栅呈现特征性六重正负号反转 [6, 10]。二看电流增减：有偏压的 PB 器件受热电阻升高，照光后总电流比暗电流**更小**（负向光响应）[14, 17]。"}, {"q": "Q5：为什么近两年工业级 CVD 石墨烯反而做出比实验室手剥薄片更好的性能？", "a": "早期手剥虽然迁移率高 [1, 6] 但无法晶圆流片；近年靠优化聚合物封装替代手剥 hBN [18] 与可控转角生长 [21]，CVD 已包揽 0.65 A/W 最高高速响应 [21]、>180 GHz 混频带宽 [23] 和 100 Gbps 实测速率 [14]，且欧洲 6–8 英寸产线良率超 99% [27]。"}, {"q": "Q6：2025 年铁电非易失 p-i-n 器件 [26] 解决了以前分立双栅热电器件的什么痛点？", "a": "以前零偏压器件虽然省了主沟道偏压，仍须长期接两路栅压直流源维持 p-n 结（四路芯片要接八路电源 [22]）。2025 年铁电夹层只需脉冲极化一次，拔掉所有电源仍可保持稳态结超 28 小时，大幅简化供电电路 [26]。"}]};
+const [SW, SH] = DECK.slideSize;
+
+const STEPS = [];
+DECK.slides.forEach((sl, sIdx) => {
+  sl.blocks.forEach((blk, bIdx) => {
+    STEPS.push({ slideIdx: sIdx, blockIdx: bIdx, slide: sl, block: blk });
+  });
+});
+
+let curStep = 0;
+let mode = 'guide';
+let reciteRevealed = false;
+let spotlightOn = true;
+let showCites = false;
+let fontSize = 18;
+let timerSec = 0;
+let timerHandle = null;
+
+function fmtTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+}
+
+function formatScriptHTML(raw) {
+  let s = raw.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const hasCites = /\[[0-9,\s–-]+\]/.test(s);
+  document.getElementById('citeBtn').style.display = hasCites ? 'inline-block' : 'none';
+  s = s.replace(/\s*(\[[0-9,\s–-]+\])/g, '<span class="cite-ref">$1</span>');
+  return s;
+}
+
+function actForSlide(sl) {
+  if (DECK.acts && DECK.acts.length) {
+    return DECK.acts.find(a => a.id === sl.actId) || DECK.acts[0];
+  }
+  return { id: 1, name: '全篇顺稿', color: '#0b4f9c' };
+}
+
+function buildFilmstrip() {
+  const wrap = document.getElementById('filmstrip');
+  wrap.innerHTML = DECK.slides.map((sl, idx) => {
+    const act = actForSlide(sl);
+    const firstStepIdx = STEPS.findIndex(st => st.slideIdx === idx);
+    return `<button class="film-cell" id="film-${idx}" style="--act-col:${act.color}" onclick="goStep(${firstStepIdx})" title="${sl.title}">P${sl.n}</button>`;
+  }).join('');
+}
+
+function buildStorylineAndQA() {
+  document.getElementById('deckTitleTop').textContent = DECK.title + (DECK.subtitle ? ' · ' + DECK.subtitle : '');
+  document.getElementById('deckSummaryDesc').textContent = DECK.storyline || `共 ${DECK.totalSlides} 页幻灯片、${DECK.totalSteps} 个讲述节拍（预计总时长 ${fmtTime(DECK.totalSec)}）。`;
+
+  const groups = (DECK.acts && DECK.acts.length)
+    ? DECK.acts.map(act => ({
+        title: `${act.name}（P${act.range[0]}–P${act.range[1]}）`,
+        time: act.time || '',
+        color: act.color || '#1864ab',
+        summary: act.summary || '',
+        slides: DECK.slides.filter(sl => sl.actId === act.id),
+      }))
+    : [{ title: '逐页脉络总览', time: fmtTime(DECK.totalSec), color: '#1864ab', summary: '', slides: DECK.slides }];
+
+  document.getElementById('actsContainer').innerHTML = groups.map(g => {
+    const cards = g.slides.map(sl => {
+      const firstStepIdx = STEPS.findIndex(st => st.slide.n === sl.n);
+      const coreHtml = sl.core ? `<div class="story-core"><strong>本页核心：</strong>${sl.core}</div>` : '';
+      const bridgeHtml = sl.bridge ? `<div class="story-bridge">${sl.bridge}</div>` : '';
+      return `
+        <div class="story-card" onclick="goStep(${firstStepIdx}); setMode('guide')">
+          <div class="story-card-top">
+            <img class="story-thumb" src="${sl.image}" loading="lazy" alt="P${sl.n}" />
+            <div>
+              <div style="font-size:12px;font-weight:800;color:${g.color}">P${sl.n} · 共 ${sl.blocks.length} 拍（约 ${sl.slideSec} 秒）</div>
+              <div style="font-size:14px;font-weight:700;margin-top:2px">${sl.title.replace(/^第\s*\d+\s*页\s*[·：:]?\s*/, '') || sl.title}</div>
+            </div>
+          </div>
+          ${coreHtml}
+          ${bridgeHtml}
+        </div>
+      `;
+    }).join('');
+    return `
+      <div class="act-section">
+        <div class="act-sec-head">
+          <div class="act-sec-title" style="color:${g.color}">${g.title}</div>
+          ${g.time ? `<span class="dur-pill">${g.time}</span>` : ''}
+        </div>
+        ${g.summary ? `<p class="act-sec-desc">${g.summary}</p>` : ''}
+        <div class="story-grid">${cards}</div>
+      </div>
+    `;
+  }).join('');
+
+  if (DECK.qas && DECK.qas.length) {
+    document.getElementById('storyTabBtn').textContent = '🗺️ 全篇疏通 & Q&A';
+    document.getElementById('qaSection').style.display = 'block';
+    document.getElementById('qaSecTitle').textContent = `💬 高频提问答辩锦囊（共 ${DECK.qas.length} 题 · 点击展开应答话术）`;
+    document.getElementById('qaContainer').innerHTML = DECK.qas.map(item => `
+      <div class="qa-item" onclick="this.classList.toggle('open')">
+        <div class="qa-q">
+          <span>${item.q}</span>
+          <span style="color:var(--purple);flex-shrink:0">展开 ▾</span>
+        </div>
+        <div class="qa-a">${item.a}</div>
+      </div>
+    `).join('');
+  }
+}
+
+function renderSlideSVG(sl, activeBlockIdx) {
+  const svg = document.getElementById('slideSvg');
+  const activeBlk = sl.blocks[activeBlockIdx];
+  const unit = Math.max(1, SW / 2000);
+  const rBadge = Math.round(26 * unit);
+  const fBadge = Math.round(23 * unit);
+  let html = '';
+
+  if (spotlightOn) {
+    const cutouts = activeBlk.boxes.map(([x0, y0, x1, y1]) => {
+      const pad = Math.round(10 * unit);
+      return `<rect x="${Math.max(0, x0 - pad)}" y="${Math.max(0, y0 - pad)}" width="${x1 - x0 + pad * 2}" height="${y1 - y0 + pad * 2}" rx="${Math.round(14 * unit)}" fill="black" />`;
+    }).join('');
+    html += `
+      <defs>
+        <mask id="spotMask">
+          <rect x="0" y="0" width="${SW}" height="${SH}" fill="white" />
+          ${cutouts}
+        </mask>
+      </defs>
+      <rect x="0" y="0" width="${SW}" height="${SH}" fill="rgba(15, 23, 42, 0.24)" mask="url(#spotMask)" />
+    `;
+  }
+
+  sl.blocks.forEach((blk, idx) => {
+    if (idx === activeBlockIdx) return;
+    const targetGlobalIdx = STEPS.findIndex(st => st.slide.n === sl.n && st.blockIdx === idx);
+    blk.boxes.forEach(([x0, y0, x1, y1], j) => {
+      html += `<rect class="ghost-box-rect" stroke-width="${Math.max(2, 3 * unit)}" x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}" rx="${Math.round(10 * unit)}" data-jump="${targetGlobalIdx}" />`;
+      if (j === 0) {
+        const bx = Math.max(rBadge + 4, x0);
+        const by = Math.max(rBadge + 4, y0);
+        html += `
+          <g class="svg-badge-group" data-jump="${targetGlobalIdx}">
+            <circle cx="${bx}" cy="${by}" r="${Math.round(rBadge * 0.86)}" fill="${idx < activeBlockIdx ? '#64748b' : '#ffffff'}" stroke="#6741d9" stroke-width="${Math.max(2, 3.5 * unit)}" />
+            <text x="${bx}" y="${by + Math.round(fBadge * 0.34)}" text-anchor="middle" font-size="${Math.round(fBadge * 0.88)}" font-weight="800" fill="${idx < activeBlockIdx ? '#ffffff' : '#6741d9'}">${blk.step}</text>
+          </g>
+        `;
+      }
+    });
+  });
+
+  activeBlk.boxes.forEach(([x0, y0, x1, y1]) => {
+    html += `<rect class="active-box-rect" stroke-width="${Math.max(3, 6 * unit)}" x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}" rx="${Math.round(12 * unit)}" />`;
+    const bx = Math.max(rBadge + 4, x0);
+    const by = Math.max(rBadge + 4, y0);
+    html += `
+      <g>
+        <circle cx="${bx}" cy="${by}" r="${rBadge}" fill="#6741d9" stroke="#ffffff" stroke-width="${Math.max(2, 4 * unit)}" />
+        <text x="${bx}" y="${by + Math.round(fBadge * 0.36)}" text-anchor="middle" font-size="${fBadge}" font-weight="800" fill="#ffffff">${activeBlk.step}</text>
+      </g>
+    `;
+  });
+
+  svg.innerHTML = html;
+}
+
+function render() {
+  const item = STEPS[curStep];
+  const { slide: sl, block: blk, slideIdx, blockIdx } = item;
+  const act = actForSlide(sl);
+
+  const actBadge = document.getElementById('actBadge');
+  actBadge.textContent = `${act.name} · P${sl.n}/${DECK.totalSlides}`;
+  actBadge.style.background = act.color;
+
+  const imgEl = document.getElementById('slideImg');
+  if (!imgEl.src.endsWith(sl.image)) imgEl.src = sl.image;
+  document.getElementById('slideTitleLabel').textContent = sl.title;
+
+  document.getElementById('beatPills').innerHTML = sl.blocks.map((b, idx) => {
+    const gIdx = STEPS.findIndex(st => st.slideIdx === slideIdx && st.blockIdx === idx);
+    const cls = idx === blockIdx ? 'beat-pill active' : (idx < blockIdx ? 'beat-pill done' : 'beat-pill');
+    return `<button class="${cls}" onclick="goStep(${gIdx})">第 ${idx + 1}/${sl.blocks.length} 拍 (#${b.step})</button>`;
+  }).join('');
+
+  renderSlideSVG(sl, blockIdx);
+
+  DECK.slides.forEach((_, idx) => {
+    const cell = document.getElementById(`film-${idx}`);
+    if (cell) cell.className = 'film-cell' + (idx === slideIdx ? ' current' : (idx < slideIdx ? ' visited' : ''));
+  });
+
+  document.getElementById('prevStepBtn').disabled = curStep === 0;
+  document.getElementById('prevSlideBtn').disabled = slideIdx === 0;
+  document.getElementById('nextSlideBtn').disabled = slideIdx === DECK.slides.length - 1;
+  const nextBtn = document.getElementById('nextStepBtn');
+  if (curStep < STEPS.length - 1) {
+    const nxt = STEPS[curStep + 1];
+    nextBtn.textContent = (nxt.slideIdx === slideIdx)
+      ? `点此下一拍：#${nxt.block.step} ${nxt.block.name.slice(0, 10)}… →`
+      : `翻到 P${nxt.slide.n}（#${nxt.block.step}）→`;
+  } else {
+    nextBtn.textContent = '🎉 已顺完全篇！查看脉络总览 →';
+  }
+
+  // Persistent in-place logic card (why are we on this slide?)
+  const logicCard = document.getElementById('logicCard');
+  if (sl.whyHere || sl.core) {
+    logicCard.style.display = 'block';
+    logicCard.style.borderLeftColor = act.color;
+    document.getElementById('logicTitle').style.color = act.color;
+    document.getElementById('logicProgress').textContent = `${act.name} · 第 ${sl.n}/${DECK.totalSlides} 页`;
+    const whyEl = document.getElementById('logicWhy');
+    const coreEl = document.getElementById('logicCore');
+    if (sl.whyHere) {
+      whyEl.style.display = 'block';
+      whyEl.innerHTML = `<strong>⬅️ 为什么来到这页：</strong>${sl.whyHere}`;
+    } else {
+      whyEl.style.display = 'none';
+    }
+    if (sl.core) {
+      coreEl.style.display = 'block';
+      coreEl.innerHTML = `<strong>🎯 这页只讲明白一件事：</strong>${sl.core}`;
+    } else {
+      coreEl.style.display = 'none';
+    }
+  } else {
+    logicCard.style.display = 'none';
+  }
+
+  // Right Coach Card with re-triggered subtle animation
+  const card = document.getElementById('stepCard');
+  card.classList.remove('step-card-anim');
+  void card.offsetWidth;
+  card.classList.add('step-card-anim');
+
+  document.getElementById('stepBadge').textContent = blk.step;
+  document.getElementById('blockName').textContent = blk.name || `第 ${blk.step} 拍`;
+  document.getElementById('durPill').textContent = `${blk.timeLabel} · #${blk.step}/${DECK.totalSteps}`;
+
+  const cueEl = document.getElementById('pointerCue');
+  if (blk.cue) {
+    cueEl.style.display = 'block';
+    cueEl.textContent = `👆 动作与指图：${blk.cue}`;
+  } else {
+    cueEl.style.display = 'none';
+  }
+
+  document.getElementById('scriptBody').innerHTML = formatScriptHTML(blk.script);
+
+  const illusWrap = document.getElementById('illusWrap');
+  const zoomHint = document.getElementById('zoomHint');
+  const orangeBox = document.getElementById('orangeBox');
+  if (blk.illus) {
+    illusWrap.style.display = 'block';
+    zoomHint.style.display = 'inline';
+    document.getElementById('illusImg').src = blk.illus;
+  } else {
+    illusWrap.style.display = 'none';
+    zoomHint.style.display = 'none';
+  }
+  document.getElementById('explainBody').innerHTML = blk.explain ? `<strong>💡 一句话听懂：</strong>${blk.explain}` : '';
+  orangeBox.style.display = (blk.illus || blk.explain) ? 'block' : 'none';
+
+  reciteRevealed = false;
+  syncReciteMask();
+
+  const bridgeEl = document.getElementById('bridgeCard');
+  if (blockIdx < sl.blocks.length - 1) {
+    const nxtBlk = sl.blocks[blockIdx + 1];
+    bridgeEl.style.display = 'block';
+    bridgeEl.innerHTML = `<span class="bridge-tag">⏭ 本页下一拍预告（#${nxtBlk.step}）</span><div>讲完这块不用翻页，目光顺势移向 <strong>${nxtBlk.name}</strong>${nxtBlk.cue ? '：' + nxtBlk.cue : ''}</div>`;
+  } else if (sl.bridge) {
+    bridgeEl.style.display = 'block';
+    bridgeEl.innerHTML = `<span class="bridge-tag">🔗 承上启下翻页串词（P${sl.n} → ${sl.n < DECK.totalSlides ? 'P' + (sl.n + 1) : '收尾'}）</span><div>${sl.bridge}</div>`;
+  } else {
+    bridgeEl.style.display = 'none';
+  }
+
+  document.getElementById('targetReadout').textContent = fmtTime(blk.cumTargetSec);
+  updatePaceBadge();
+
+  if (curStep + 1 < STEPS.length) {
+    new Image().src = STEPS[curStep + 1].slide.image;
+    if (STEPS[curStep + 1].block.illus) new Image().src = STEPS[curStep + 1].block.illus;
+  }
+  try { localStorage.setItem(DECK.storageKey, String(curStep)); } catch (e) {}
+}
+
+function syncReciteMask() {
+  document.getElementById('blueBox').classList.toggle('masked', mode === 'recite' && !reciteRevealed);
+}
+function revealRecite(e) { if (e) e.stopPropagation(); reciteRevealed = !reciteRevealed; syncReciteMask(); }
+function goStep(idx) { curStep = Math.max(0, Math.min(STEPS.length - 1, idx)); render(); }
+function stepBy(delta) {
+  if (delta > 0 && curStep === STEPS.length - 1) { setMode('story'); return; }
+  goStep(curStep + delta);
+}
+function jumpSlide(delta) {
+  const target = Math.max(0, Math.min(DECK.slides.length - 1, STEPS[curStep].slideIdx + delta));
+  const idx = STEPS.findIndex(st => st.slideIdx === target);
+  if (idx !== -1) goStep(idx);
+}
+function onStageClick(e) {
+  const jumpAttr = e.target.closest('[data-jump]');
+  if (jumpAttr) { goStep(parseInt(jumpAttr.getAttribute('data-jump'), 10)); return; }
+  stepBy(1);
+}
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.mode === m));
+  document.body.classList.toggle('view-story', m === 'story');
+  syncReciteMask();
+}
+function toggleSpotlight() {
+  spotlightOn = !spotlightOn;
+  document.getElementById('spotBtn').classList.toggle('on', spotlightOn);
+  renderSlideSVG(STEPS[curStep].slide, STEPS[curStep].blockIdx);
+}
+function toggleCites(e) {
+  if (e) e.stopPropagation();
+  showCites = !showCites;
+  document.body.classList.toggle('hide-cites', !showCites);
+  document.getElementById('citeBtn').textContent = showCites ? '隐藏 [文献号]' : '显示 [文献号]';
+}
+function changeFont(delta, e) {
+  if (e) e.stopPropagation();
+  fontSize = Math.max(14, Math.min(26, fontSize + delta));
+  document.documentElement.style.setProperty('--script-size', fontSize + 'px');
+}
+function toggleTheme() {
+  const isDark = document.documentElement.classList.toggle('dark');
+  document.getElementById('themeBtn').textContent = isDark ? '☀️' : '🌙';
+}
+function updatePaceBadge() {
+  const tag = document.getElementById('paceTag');
+  if (!timerHandle && timerSec === 0) { tag.style.display = 'none'; return; }
+  tag.style.display = 'inline-block';
+  const diff = timerSec - STEPS[curStep].block.cumTargetSec;
+  if (Math.abs(diff) <= 18) { tag.textContent = '节奏刚好'; tag.style.background = 'var(--green-fill)'; tag.style.color = 'var(--green)'; }
+  else if (diff < -18) { tag.textContent = `快 ${Math.abs(diff)}s`; tag.style.background = 'var(--blue-fill)'; tag.style.color = 'var(--blue-stroke)'; }
+  else { tag.textContent = `慢 ${diff}s`; tag.style.background = 'var(--orange-fill)'; tag.style.color = 'var(--orange-stroke)'; }
+}
+function toggleTimer() {
+  const btn = document.getElementById('timerToggleBtn');
+  if (timerHandle) { clearInterval(timerHandle); timerHandle = null; btn.textContent = '▶ 继续'; }
+  else {
+    timerHandle = setInterval(() => { timerSec += 1; document.getElementById('timerReadout').textContent = fmtTime(timerSec); updatePaceBadge(); }, 1000);
+    btn.textContent = '⏸ 暂停';
+  }
+}
+function resetTimer() {
+  if (timerHandle) { clearInterval(timerHandle); timerHandle = null; }
+  timerSec = 0; document.getElementById('timerReadout').textContent = '00:00';
+  document.getElementById('timerToggleBtn').textContent = '▶ 计时'; updatePaceBadge();
+}
+function openLightbox() {
+  const src = document.getElementById('illusImg').src;
+  if (!src) return;
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+
+// Touch swipe on mobile
+let touchX = null;
+document.getElementById('slideFrame').addEventListener('touchstart', e => { if (e.touches.length === 1) touchX = e.touches[0].clientX; }, { passive: true });
+document.getElementById('slideFrame').addEventListener('touchend', e => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  touchX = null;
+  if (Math.abs(dx) > 48) { stepBy(dx < 0 ? 1 : -1); }
+}, { passive: true });
+
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('lightbox').classList.contains('open')) {
+    if (e.key === 'Escape' || e.key === ' ') { e.preventDefault(); closeLightbox(); }
+    return;
+  }
+  if (mode === 'story') { if (e.key === 'Escape') setMode('guide'); return; }
+  if (e.key === ' ' || e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); stepBy(1); }
+  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); stepBy(-1); }
+  else if (e.key === '[') jumpSlide(-1);
+  else if (e.key === ']') jumpSlide(1);
+  else if (e.key === 'v' || e.key === 'V') { if (mode === 'recite') revealRecite(); }
+  else if (e.key === 'l' || e.key === 'L') toggleSpotlight();
+  else if (e.key === 't' || e.key === 'T') toggleTimer();
+});
+
+buildFilmstrip();
+buildStorylineAndQA();
+try {
+  const saved = parseInt(localStorage.getItem(DECK.storageKey) || '0', 10);
+  if (!isNaN(saved) && saved >= 0 && saved < STEPS.length) curStep = saved;
+} catch (e) {}
+render();
+</script>
+</body>
+</html>
