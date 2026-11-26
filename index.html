@@ -1,0 +1,2283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<title>芯片集成的高响应度超快石墨烯光电探测器 · 15 分钟学术拓展版（纯讲 14:26 · 21 题答辩 Q&A）</title>
+<style>
+  :root {
+    --bg: #f3f5f9;
+    --surface: #ffffff;
+    --surface-2: #f8fafc;
+    --ink: #0f172a;
+    --ink-2: #334155;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --brand: #0b4f9c;
+    --purple: #6741d9;
+    --purple-soft: #f3f0ff;
+    --blue-stroke: #1864ab;
+    --blue-fill: #edf6ff;
+    --orange-stroke: #b35b00;
+    --orange-fill: #fffbeb;
+    --green: #2b8a3e;
+    --green-fill: #ebfbee;
+    --shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+    --radius: 16px;
+    --script-size: 18px;
+    --slide-aspect: 2001 / 1125;
+  }
+  html.dark {
+    --bg: #0b1120;
+    --surface: #131c31;
+    --surface-2: #1c2742;
+    --ink: #f1f5f9;
+    --ink-2: #cbd5e1;
+    --muted: #94a3b8;
+    --line: #26334d;
+    --brand: #60a5fa;
+    --purple: #a78bfa;
+    --purple-soft: rgba(139, 92, 246, 0.16);
+    --blue-stroke: #60a5fa;
+    --blue-fill: rgba(30, 64, 175, 0.22);
+    --orange-stroke: #fbbf24;
+    --orange-fill: rgba(180, 83, 9, 0.2);
+    --green: #4ade80;
+    --green-fill: rgba(22, 101, 52, 0.25);
+    --shadow: 0 12px 34px rgba(0, 0, 0, 0.4);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== Top Header ===== */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .brand-wrap { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .act-badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    color: #fff;
+    background: var(--brand);
+    white-space: nowrap;
+  }
+  .deck-title {
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mode-tabs {
+    display: flex;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 3px;
+  }
+  .mode-btn {
+    border: none;
+    background: transparent;
+    color: var(--ink-2);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .mode-btn.active {
+    background: var(--purple);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(103, 65, 217, 0.3);
+  }
+  .tools-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .timer-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+  .timer-btn, .icon-btn {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .timer-btn:hover, .icon-btn:hover { border-color: var(--purple); color: var(--purple); }
+  .icon-btn.on { background: var(--purple-soft); border-color: var(--purple); color: var(--purple); }
+  .pace-tag { font-size: 11px; padding: 2px 7px; border-radius: 999px; font-weight: 600; }
+
+  /* ===== Main Studio Layout ===== */
+  .studio {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.38fr) minmax(360px, 1fr);
+    gap: 18px;
+    max-width: 1720px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 16px 18px 24px;
+    align-items: start;
+  }
+
+  /* ===== Left: PPT Stage ===== */
+  .stage-col {
+    position: sticky;
+    top: 66px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .slide-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 2px;
+  }
+  .slide-title-label { font-size: 16px; font-weight: 700; color: var(--ink); }
+  .slide-step-pills { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .beat-pill {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .beat-pill.done { border-color: var(--purple); color: var(--purple); opacity: 0.72; }
+  .beat-pill.active {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: #fff;
+    transform: scale(1.05);
+  }
+
+  .slide-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: var(--slide-aspect);
+    background: #ffffff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+    cursor: pointer;
+    user-select: none;
+  }
+  .slide-frame img { width: 100%; height: 100%; display: block; object-fit: contain; }
+  .slide-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .active-box-rect {
+    fill: rgba(103, 65, 217, 0.04);
+    stroke: #6741d9;
+    stroke-dasharray: 14 8;
+    filter: drop-shadow(0 0 10px rgba(103, 65, 217, 0.45));
+    animation: dashMarch 1.2s linear infinite;
+  }
+  @keyframes dashMarch { to { stroke-dashoffset: -22; } }
+  .ghost-box-rect {
+    fill: rgba(103, 65, 217, 0.01);
+    stroke: rgba(103, 65, 217, 0.42);
+    stroke-dasharray: 9 7;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ghost-box-rect:hover { fill: rgba(103, 65, 217, 0.09); stroke: #6741d9; }
+  .svg-badge-group { cursor: pointer; }
+  .stage-hint-toast {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    background: rgba(15, 23, 42, 0.72);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+  }
+
+  .nav-bar {
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    gap: 8px;
+    align-items: center;
+  }
+  .nav-btn {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 11px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .nav-btn:hover:not(:disabled) { border-color: var(--purple); color: var(--purple); }
+  .nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .nav-btn-primary {
+    background: linear-gradient(135deg, #6741d9, #4c28b8);
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(103, 65, 217, 0.32);
+    transition: transform 0.12s, box-shadow 0.12s;
+    text-align: center;
+  }
+  .nav-btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(103, 65, 217, 0.42); }
+
+  .filmstrip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(34px, 1fr));
+    gap: 4px;
+    background: var(--surface);
+    padding: 8px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+  }
+  .film-cell {
+    border: none;
+    background: var(--surface-2);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s;
+  }
+  .film-cell::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 6px 6px 0 0;
+    background: var(--act-col, #94a3b8);
+    opacity: 0.55;
+  }
+  .film-cell.visited { color: var(--ink-2); }
+  .film-cell.current { background: var(--purple); color: #fff; transform: translateY(-1px); }
+  .film-cell.current::before { opacity: 1; background: #fde047; }
+
+  /* ===== Right: Coach Cards ===== */
+  .coach-col { display: flex; flex-direction: column; gap: 11px; }
+  .logic-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4.5px solid var(--brand);
+    border-radius: 13px;
+    padding: 10px 14px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    font-size: 13.5px;
+    line-height: 1.56;
+    color: var(--ink-2);
+  }
+  .logic-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 5px;
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--brand);
+  }
+  .logic-row { margin: 3px 0; }
+  .logic-row strong { color: var(--ink); }
+  .step-card-anim { animation: popIn 0.22s cubic-bezier(0.16, 1, 0.3, 1); }
+  @keyframes popIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .step-top-card {
+    background: var(--surface);
+    border: 1.5px solid var(--purple);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+  .step-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .step-num-title { display: flex; align-items: center; gap: 9px; min-width: 0; }
+  .purple-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: var(--purple);
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .block-name { font-size: 17px; font-weight: 800; color: var(--ink); }
+  .dur-pill {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--purple);
+    background: var(--purple-soft);
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pointer-cue {
+    font-size: 13.5px;
+    color: var(--ink-2);
+    background: var(--surface-2);
+    border-left: 3.5px solid var(--purple);
+    padding: 7px 11px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .blue-box {
+    background: var(--blue-fill);
+    border: 1.5px solid var(--blue-stroke);
+    border-radius: 13px;
+    padding: 13px 15px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .box-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .blue-head { color: var(--blue-stroke); }
+  .orange-head { color: var(--orange-stroke); }
+  .mini-ctrl { display: flex; align-items: center; gap: 5px; }
+  .tiny-btn {
+    border: 1px solid rgba(24, 100, 171, 0.3);
+    background: rgba(255, 255, 255, 0.65);
+    color: var(--blue-stroke);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  html.dark .tiny-btn { background: rgba(15, 23, 42, 0.5); }
+  .script-body {
+    font-size: var(--script-size);
+    line-height: 1.72;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+    transition: filter 0.2s;
+  }
+  .script-body .cite-ref {
+    font-size: 0.72em;
+    color: var(--muted);
+    opacity: 0.65;
+    margin: 0 1px;
+    font-weight: 500;
+  }
+  body.hide-cites .script-body .cite-ref { display: none; }
+
+  .blue-box.masked .script-body { filter: blur(8px); user-select: none; }
+  .recite-overlay {
+    display: none;
+    position: absolute;
+    inset: 38px 10px 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(237, 246, 255, 0.55);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--blue-stroke);
+  }
+  html.dark .recite-overlay { background: rgba(19, 28, 49, 0.6); }
+  .blue-box.masked .recite-overlay { display: flex; }
+
+  .orange-box {
+    background: var(--orange-fill);
+    border: 1.5px solid var(--orange-stroke);
+    border-radius: 13px;
+    padding: 13px 15px;
+  }
+  .illus-wrap {
+    background: #fffdf4;
+    border: 1px solid rgba(179, 91, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    cursor: zoom-in;
+  }
+  .illus-wrap img { width: 100%; height: auto; display: block; }
+  .explain-body { font-size: 15px; line-height: 1.62; color: var(--ink); }
+  .explain-body strong { color: var(--orange-stroke); }
+
+  .bridge-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px 15px;
+    font-size: 13.5px;
+    line-height: 1.58;
+    color: var(--ink-2);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  }
+  .bridge-card .bridge-tag {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--green-fill);
+    color: var(--green);
+    margin-bottom: 5px;
+  }
+
+  /* ===== Storyline & Q&A Full View ===== */
+  .overview-pane {
+    display: none;
+    max-width: 1320px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 18px 48px;
+  }
+  body.view-story .studio { display: none; }
+  body.view-story .overview-pane { display: block; }
+
+  .act-section {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow);
+  }
+  .act-sec-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .act-sec-title { font-size: 18px; font-weight: 800; }
+  .act-sec-desc { font-size: 14px; color: var(--ink-2); margin: 0 0 14px; line-height: 1.6; }
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .story-card {
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    border-radius: 12px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .story-card:hover { border-color: var(--purple); transform: translateY(-2px); }
+  .story-card-top { display: flex; align-items: center; gap: 10px; }
+  .story-thumb {
+    width: 84px;
+    aspect-ratio: var(--slide-aspect);
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    flex-shrink: 0;
+    background: #fff;
+  }
+  .story-core { font-size: 13px; color: var(--ink); line-height: 1.5; }
+  .story-bridge { font-size: 12px; color: var(--purple); line-height: 1.45; border-top: 1px dashed var(--line); padding-top: 6px; }
+
+  .qa-list { display: grid; gap: 10px; margin-top: 12px; }
+  .qa-item {
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    border-radius: 12px;
+    padding: 13px 16px;
+    cursor: pointer;
+  }
+  .qa-q { font-weight: 700; font-size: 15px; display: flex; justify-content: space-between; gap: 10px; }
+  .qa-a {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    font-size: 14.5px;
+    line-height: 1.68;
+    color: var(--ink-2);
+  }
+  .qa-item.open .qa-a { display: block; }
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: rgba(15, 23, 42, 0.85);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 95vw; max-height: 92vh; border-radius: 12px; background: #fff; }
+
+  /* ===== Mobile Responsive ===== */
+  @media (max-width: 1024px) {
+    html, body { overflow-x: hidden; max-width: 100vw; }
+    .studio {
+      grid-template-columns: minmax(0, 1fr);
+      padding: 8px 10px 76px;
+      gap: 10px;
+    }
+    .stage-col, .coach-col { min-width: 0; width: 100%; }
+    .stage-col {
+      position: sticky;
+      top: 0;
+      z-index: 25;
+      background: var(--bg);
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+    .topbar { position: static; padding: 8px 10px; gap: 6px; }
+    .deck-title, .filmstrip, .stage-hint-toast { display: none; }
+    .slide-header-bar { flex-wrap: wrap; gap: 4px; }
+    .slide-title-label { font-size: 13px; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .beat-pill { font-size: 11px; padding: 2px 8px; }
+    .mode-btn { padding: 5px 8px; font-size: 12px; }
+    .block-name { font-size: 15px; }
+    .box-head { flex-wrap: wrap; }
+    .nav-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 45;
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+      box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.08);
+      grid-template-columns: auto auto minmax(0, 1fr) auto;
+      gap: 6px;
+    }
+    .nav-btn { padding: 9px 9px; font-size: 12.5px; white-space: nowrap; }
+    .nav-btn-primary {
+      padding: 9px 10px;
+      font-size: 13.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  /* ===== Enhanced Academic Extension Highlight & Dedicated Q&A Studio ===== */
+  .brand-wrap { flex: 1 1 240px; }
+  .deck-title { max-width: 360px; }
+  .own-take-hl {
+    background: linear-gradient(120deg, rgba(14, 116, 144, 0.10) 0%, rgba(14, 116, 144, 0.16) 100%);
+    border-bottom: 2px solid #0e7490;
+    border-radius: 5px;
+    padding: 1px 4px;
+    transition: all 0.18s;
+  }
+  html.dark .own-take-hl {
+    background: rgba(14, 116, 144, 0.25);
+    border-bottom-color: #38bdf8;
+  }
+  .own-take-pill {
+    display: inline-block;
+    font-size: 0.68em;
+    font-weight: 800;
+    color: #0e7490;
+    background: #ecfeff;
+    border: 1px solid #22d3ee;
+    padding: 0 6px;
+    border-radius: 999px;
+    margin-right: 4px;
+    vertical-align: 0.08em;
+    line-height: 1.55;
+  }
+  html.dark .own-take-pill {
+    color: #a5f3fc;
+    background: rgba(14, 116, 144, 0.48);
+    border-color: #38bdf8;
+  }
+  body.hide-own-hl .own-take-hl {
+    background: transparent;
+    border-bottom: none;
+    padding: 0;
+  }
+  body.hide-own-hl .own-take-pill { display: none; }
+  .tiny-btn.own-on {
+    background: #ecfeff;
+    border-color: #0e7490;
+    color: #0e7490;
+  }
+  html.dark .tiny-btn.own-on {
+    background: rgba(14, 116, 144, 0.45);
+    border-color: #38bdf8;
+    color: #a5f3fc;
+  }
+  /* ===== Q&A Flashcard Studio（闪卡练习 + 列表速查） ===== */
+  :root {
+    --fc-accent: #0e7490;
+    --fc-accent-ink: #ffffff;
+    --fc-core-bg: linear-gradient(135deg, rgba(14, 116, 144, 0.07) 0%, rgba(103, 65, 217, 0.07) 100%);
+    --fc-core-border: #0e7490;
+    --fc-core-ink: #0b3443;
+    --fc-avoid-bg: #fffaf0;
+    --fc-avoid-border: #f1d29b;
+    --fc-avoid-ink: #7a4a06;
+    --fc-ok: #2b8a3e;
+    --fc-ok-soft: #ebfbee;
+    --fc-ok-ink: #ffffff;
+    --fc-warn: #c2410c;
+    --fc-warn-soft: #fff4e6;
+    --fc-warn-ink: #ffffff;
+    --fc-d1: #2b8a3e;
+    --fc-d1-soft: #ebfbee;
+    --fc-d2: #1864ab;
+    --fc-d2-soft: #e7f1ff;
+    --fc-d3: #6741d9;
+    --fc-d3-soft: #f3f0ff;
+  }
+  html.dark {
+    --fc-accent: #38bdf8;
+    --fc-accent-ink: #062a3a;
+    --fc-core-bg: linear-gradient(135deg, rgba(56, 189, 248, 0.11) 0%, rgba(167, 139, 250, 0.11) 100%);
+    --fc-core-border: #38bdf8;
+    --fc-core-ink: #e0f2fe;
+    --fc-avoid-bg: rgba(180, 83, 9, 0.14);
+    --fc-avoid-border: rgba(251, 191, 36, 0.38);
+    --fc-avoid-ink: #fcd9a0;
+    --fc-ok: #4ade80;
+    --fc-ok-soft: rgba(22, 101, 52, 0.30);
+    --fc-ok-ink: #052e16;
+    --fc-warn: #fb923c;
+    --fc-warn-soft: rgba(194, 65, 12, 0.24);
+    --fc-warn-ink: #431407;
+    --fc-d1: #4ade80;
+    --fc-d1-soft: rgba(22, 101, 52, 0.30);
+    --fc-d2: #7cb8ff;
+    --fc-d2-soft: rgba(30, 64, 175, 0.32);
+    --fc-d3: #c4b5fd;
+    --fc-d3-soft: rgba(139, 92, 246, 0.26);
+  }
+  .qa-pane {
+    display: none;
+    max-width: 1240px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 18px 18px 56px;
+  }
+  body.view-qa .studio,
+  body.view-qa .overview-pane { display: none; }
+  body.view-qa .qa-pane { display: block; }
+
+  .fc-shell {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--fc-accent);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 20px 20px;
+    min-width: 0;
+  }
+  .fc-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .fc-title-wrap { flex: 1 1 340px; min-width: 0; }
+  .fc-title { font-size: 19px; font-weight: 800; color: var(--ink); line-height: 1.4; }
+  .fc-sub { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.55; }
+  .fc-head-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; min-width: 0; }
+  .fc-view-switch {
+    display: inline-flex;
+    gap: 2px;
+    padding: 3px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+  .fc-view-btn {
+    border: none;
+    background: transparent;
+    color: var(--ink-2);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  }
+  .fc-view-btn.active {
+    background: var(--fc-accent);
+    color: var(--fc-accent-ink);
+    box-shadow: 0 2px 8px rgba(14, 116, 144, 0.22);
+  }
+  .fc-stats { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+  .fc-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    color: var(--ink-2);
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 4px 11px;
+    border-radius: 999px;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .fc-pill-ok { color: var(--fc-ok); background: var(--fc-ok-soft); border-color: transparent; }
+  .fc-pill-warn { color: var(--fc-warn); background: var(--fc-warn-soft); border-color: transparent; }
+  .fc-pill-btn { cursor: pointer; background: var(--surface); font-family: inherit; }
+  .fc-pill-btn:hover { border-color: var(--purple); color: var(--purple); }
+
+  .fc-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 14px 0 16px;
+  }
+  .qa-search {
+    flex: 1 1 260px;
+    min-width: 0;
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    color: var(--ink);
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    outline: none;
+  }
+  .qa-search:focus, .fc-select:focus { border-color: var(--fc-accent); }
+  .fc-select {
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    color: var(--ink);
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+  }
+  .fc-tool-btn {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-2);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .fc-tool-btn:hover { border-color: var(--fc-accent); color: var(--fc-accent); }
+  .fc-tool-btn.on { background: var(--fc-warn-soft); border-color: var(--fc-warn); color: var(--fc-warn); }
+  .fc-tool-btn.confirm { background: var(--fc-warn); border-color: var(--fc-warn); color: var(--fc-warn-ink); }
+  .fc-count { margin-left: auto; font-size: 12.5px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+
+  .fc-layout {
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+  }
+  .fc-side {
+    position: sticky;
+    top: 84px;
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    border-radius: 14px;
+    padding: 12px 10px;
+    min-width: 0;
+  }
+  .fc-side-label { font-size: 11.5px; font-weight: 800; letter-spacing: 0.08em; color: var(--muted); padding: 0 6px 8px; }
+  .fc-cats { display: flex; flex-direction: column; gap: 4px; }
+  .qa-cat-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--ink-2);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 10px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .qa-cat-btn:hover { background: var(--surface); border-color: var(--line); }
+  .qa-cat-btn.active { background: var(--fc-accent); border-color: var(--fc-accent); color: var(--fc-accent-ink); }
+  .qa-cat-cnt {
+    flex-shrink: 0;
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 0 7px;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .qa-cat-btn.active .qa-cat-cnt { background: rgba(255, 255, 255, 0.24); color: inherit; }
+  .fc-main { min-width: 0; }
+  #qaPane .fc-list-view { display: none; }
+  #qaPane.qa-view-list .fc-card-view { display: none; }
+  #qaPane.qa-view-list .fc-list-view { display: block; }
+  .fc-card-view { touch-action: pan-y; min-width: 0; }
+
+  /* ---- 单张闪卡 ---- */
+  .fc-card {
+    position: relative;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    animation: fcIn 0.26s ease;
+    transition: border-color 0.2s;
+  }
+  .fc-card.fc-static { animation: none; }
+  .fc-card.st-mastered { border-color: var(--fc-ok); }
+  .fc-card.st-wrong { border-color: var(--fc-warn); }
+  @keyframes fcIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+  .fc-progress { height: 4px; background: var(--surface-2); }
+  .fc-progress > span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--fc-accent), var(--purple));
+    border-radius: 0 4px 4px 0;
+    transition: width 0.3s ease;
+  }
+  .fc-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 14px 22px 0; }
+  .fc-meta .fc-idx {
+    margin-left: auto;
+    font-size: 12.5px;
+    color: var(--muted);
+    font-weight: 700;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .qa-meta-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+  .qa-badge { font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+  .qa-badge-new { background: #ecfeff; color: #0e7490; border: 1px solid #22d3ee; }
+  html.dark .qa-badge-new { background: rgba(14, 116, 144, 0.45); color: #a5f3fc; }
+  .qa-badge-orig { background: var(--blue-fill); color: var(--blue-stroke); border: 1px solid rgba(24, 100, 171, 0.25); }
+  .qa-badge-cat { background: var(--purple-soft); color: var(--purple); }
+  .qa-badge-d1 { background: var(--fc-d1-soft); color: var(--fc-d1); }
+  .qa-badge-d2 { background: var(--fc-d2-soft); color: var(--fc-d2); }
+  .qa-badge-d3 { background: var(--fc-d3-soft); color: var(--fc-d3); }
+  .qa-status-mastered { background: var(--fc-ok-soft); color: var(--fc-ok); }
+  .qa-status-wrong { background: var(--fc-warn-soft); color: var(--fc-warn); }
+  .qa-status-none { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+  .qa-slide-jump {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-2);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+  }
+  .qa-slide-jump:hover { border-color: var(--purple); color: var(--purple); }
+  .fc-front { padding: 16px 22px 18px; cursor: pointer; }
+  .fc-qnum { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; color: var(--fc-accent); margin-bottom: 6px; }
+  .fc-q { margin: 0; font-size: 21px; line-height: 1.62; font-weight: 700; color: var(--ink); overflow-wrap: anywhere; }
+  .fc-tap-hint { margin-top: 12px; font-size: 12.5px; color: var(--muted); }
+  .fc-tap-hint .when-open { display: none; }
+  .fc-card.revealed .fc-tap-hint .when-closed { display: none; }
+  .fc-card.revealed .fc-tap-hint .when-open { display: inline; }
+  .fc-back-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.2s ease, opacity 0.2s ease;
+  }
+  .fc-card.revealed .fc-back-wrap { grid-template-rows: 1fr; opacity: 1; }
+  .fc-back { min-height: 0; overflow: hidden; }
+  .fc-back-inner { display: grid; gap: 12px; padding: 0 22px 4px; }
+  .fc-sec-label { font-size: 12.5px; font-weight: 800; letter-spacing: 0.03em; margin-bottom: 6px; }
+  .fc-core {
+    background: var(--fc-core-bg);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--fc-core-border);
+    border-radius: 12px;
+    padding: 12px 16px;
+  }
+  .fc-core .fc-sec-label { color: var(--fc-accent); }
+  .fc-core p { margin: 0; font-size: 17px; line-height: 1.62; font-weight: 700; color: var(--fc-core-ink); overflow-wrap: anywhere; }
+  .fc-detail { border: 1px solid var(--line); background: var(--surface-2); border-radius: 12px; padding: 14px 16px; }
+  .fc-detail .fc-sec-label { color: var(--ink-2); margin-bottom: 10px; }
+  .fc-detail-body { font-size: 15.5px; line-height: 1.78; color: var(--ink-2); overflow-wrap: anywhere; }
+  .fc-detail-body strong { color: var(--ink); font-weight: 750; }
+  .fc-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+  .fc-points li { display: flex; align-items: flex-start; gap: 10px; }
+  .fc-pt-idx {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    margin-top: 3px;
+    border-radius: 999px;
+    background: var(--fc-accent);
+    color: var(--fc-accent-ink);
+    font-size: 12px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .fc-pt-txt { flex: 1 1 0; min-width: 0; }
+  .qa-cite { font-size: 0.78em; color: var(--muted); opacity: 0.72; margin-left: 2px; }
+  .fc-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 14px 22px 12px;
+    border-top: 1px solid var(--line);
+    background: var(--surface-2);
+  }
+  .fc-actions .fc-sep { flex: 1 1 auto; }
+  .fc-btn {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-2);
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+  }
+  .fc-btn:hover { border-color: var(--fc-accent); color: var(--fc-accent); }
+  .fc-btn:active { transform: translateY(1px); }
+  .fc-btn-primary {
+    min-width: 118px;
+    background: var(--fc-accent);
+    border-color: var(--fc-accent);
+    color: var(--fc-accent-ink);
+    box-shadow: 0 3px 10px rgba(14, 116, 144, 0.22);
+  }
+  .fc-btn-primary:hover { color: var(--fc-accent-ink); filter: brightness(1.06); }
+  .fc-btn-ok.on { background: var(--fc-ok); border-color: var(--fc-ok); color: var(--fc-ok-ink); }
+  .fc-btn-warn.on { background: var(--fc-warn); border-color: var(--fc-warn); color: var(--fc-warn-ink); }
+  .fc-btn-ok:not(.on):hover { border-color: var(--fc-ok); color: var(--fc-ok); }
+  .fc-btn-warn:not(.on):hover { border-color: var(--fc-warn); color: var(--fc-warn); }
+  .fc-btn.copied { border-color: var(--fc-ok); color: var(--fc-ok); }
+  .fc-kbd-hint { padding: 0 22px 14px; background: var(--surface-2); font-size: 12px; color: var(--muted); letter-spacing: 0.02em; }
+  .fc-swipe-hint { display: none; }
+  .fc-empty {
+    border: 1px dashed var(--line);
+    border-radius: 18px;
+    padding: 44px 20px;
+    text-align: center;
+    background: var(--surface-2);
+  }
+  .fc-empty-icon { font-size: 30px; }
+  .fc-empty-title { font-weight: 800; font-size: 16px; margin: 8px 0 4px; color: var(--ink); }
+  .fc-empty-desc { font-size: 13.5px; color: var(--muted); margin: 0 auto 14px; line-height: 1.6; max-width: 46ch; }
+
+  /* ---- 列表速查 ---- */
+  .fc-list-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+  .fc-list-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .fc-list-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+  #qaDedicatedList { margin-top: 10px; }
+  #qaDedicatedList .qa-item { transition: border-color 0.15s; min-width: 0; }
+  #qaDedicatedList .qa-item:hover { border-color: var(--fc-accent); }
+  #qaDedicatedList .qa-item.st-mastered { border-left: 4px solid var(--fc-ok); }
+  #qaDedicatedList .qa-item.st-wrong { border-left: 4px solid var(--fc-warn); }
+  #qaDedicatedList .qa-q span:first-child { overflow-wrap: anywhere; min-width: 0; }
+  #qaDedicatedList .qa-a { color: var(--ink-2); cursor: auto; }
+  #qaDedicatedList .qa-item.open .qa-a { display: grid; gap: 10px; }
+  #qaDedicatedList .fc-core p { font-size: 15.5px; }
+  #qaDedicatedList .fc-detail-body { font-size: 14.5px; }
+  .qa-item .qa-chevron { color: var(--purple); flex-shrink: 0; font-size: 13px; }
+  .qa-item.open .qa-chevron::after { content: "收起 ▴"; }
+  .qa-item:not(.open) .qa-chevron::after { content: "展开 ▾"; }
+  .qa-item-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+  .qa-item-actions .fc-btn { font-size: 12.5px; padding: 6px 11px; }
+
+  @media (max-width: 1024px) {
+    .mode-tabs { width: 100%; justify-content: space-between; }
+    .mode-btn { flex: 1 1 0; text-align: center; padding: 6px 4px; font-size: 11.5px; }
+    .qa-pane { padding: 10px 8px 40px; }
+    .fc-shell { padding: 12px 12px 14px; border-radius: 14px; }
+    .fc-title { font-size: 16px; }
+    .fc-sub { font-size: 12px; }
+    .fc-head-right { width: 100%; align-items: stretch; }
+    .fc-view-switch { width: 100%; }
+    .fc-view-btn { flex: 1 1 0; padding: 6px 8px; }
+    .fc-stats { justify-content: flex-start; }
+    .fc-pill { font-size: 11.5px; padding: 3px 9px; }
+    .fc-toolbar { gap: 6px; margin: 12px 0; }
+    .qa-search { flex: 1 1 100%; }
+    .fc-select, .fc-tool-btn { flex: 1 1 calc(50% - 3px); min-width: 0; font-size: 12.5px; padding: 7px 8px; }
+    .fc-count { width: 100%; margin-left: 0; }
+    .fc-layout { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+    .fc-side { position: static; padding: 0; border: none; background: transparent; }
+    .fc-side-label { display: none; }
+    .fc-cats { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+    .qa-cat-btn {
+      width: auto;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+    .qa-cat-cnt { padding: 0 5px; font-size: 11px; }
+    .fc-card { border-radius: 14px; }
+    .fc-meta { padding: 12px 14px 0; }
+    .fc-meta .fc-idx { margin-left: 0; }
+    .fc-front { padding: 12px 14px 14px; }
+    .fc-q { font-size: 17px; }
+    .fc-back-inner { padding: 0 14px 4px; gap: 10px; }
+    .fc-core, .fc-detail, .fc-avoid { padding: 10px 12px; }
+    .fc-core p { font-size: 15.5px; }
+    .fc-detail-body { font-size: 14.5px; line-height: 1.72; }
+    .fc-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      padding: 12px 12px 10px;
+    }
+    .fc-actions .fc-sep { display: none; }
+    .fc-btn { min-width: 0; padding: 9px 4px; font-size: 12.5px; white-space: normal; }
+    .fc-btn-primary { min-width: 0; }
+    .fc-kbd-hint { display: none; }
+    .fc-swipe-hint {
+      display: block;
+      padding: 0 12px 10px;
+      background: var(--surface-2);
+      text-align: center;
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+    .fc-empty { padding: 32px 14px; }
+    #qaDedicatedList .qa-item { padding: 12px; }
+  }
+
+</style>
+</head>
+<body class="hide-cites">
+
+<header class="topbar">
+  <div class="brand-wrap">
+    <span id="actBadge" class="act-badge">P1</span>
+    <span id="deckTitleTop" class="deck-title"></span>
+  </div>
+
+  <div class="mode-tabs" role="tablist">
+    <button class="mode-btn active" data-mode="guide" onclick="setMode('guide')">🎤 顺稿精讲</button>
+    <button class="mode-btn" data-mode="recite" onclick="setMode('recite')">🧠 脱稿背诵</button>
+    <button id="storyTabBtn" class="mode-btn" data-mode="story" onclick="setMode('story')">🗺️ 全篇疏通</button>
+    <button id="qaTabBtn" class="mode-btn" data-mode="qa" onclick="setMode('qa')">💬 Q&amp;A (21)</button>
+  </div>
+
+  <div class="tools-right">
+    <div class="timer-box">
+      <span id="timerReadout">00:00</span>
+      <span style="color:var(--muted)">/ 目标 <span id="targetReadout">00:10</span></span>
+      <span id="paceTag" class="pace-tag" style="display:none"></span>
+      <button id="timerToggleBtn" class="timer-btn" onclick="toggleTimer()">▶ 计时</button>
+      <button class="timer-btn" onclick="resetTimer()" title="重置计时">↺</button>
+    </div>
+    <button id="spotBtn" class="icon-btn on" onclick="toggleSpotlight()" title="快捷键 L">🔦 聚光灯</button>
+    <button id="themeBtn" class="icon-btn" onclick="toggleTheme()" title="深浅色切换">🌙</button>
+  </div>
+</header>
+
+<main class="studio">
+  <section class="stage-col">
+    <div class="slide-header-bar">
+      <div id="slideTitleLabel" class="slide-title-label">第 1 页</div>
+      <div id="beatPills" class="slide-step-pills"></div>
+    </div>
+
+    <div id="slideFrame" class="slide-frame" onclick="onStageClick(event)">
+      <img id="slideImg" src="" alt="PPT Slide" />
+      <svg id="slideSvg" class="slide-overlay" viewBox="0 0 2001 1125" preserveAspectRatio="none"></svg>
+      <div class="stage-hint-toast">点 PPT 画面或按 Space → 跳出下一拍</div>
+    </div>
+
+    <div class="nav-bar">
+      <button id="prevSlideBtn" class="nav-btn" onclick="jumpSlide(-1)" title="上一页 PPT ([)">⏮ 上页</button>
+      <button id="prevStepBtn" class="nav-btn" onclick="stepBy(-1)" title="上一拍 (←)">← 上拍</button>
+      <button id="nextStepBtn" class="nav-btn-primary" onclick="stepBy(1)" title="下一拍 (Space / →)">下一拍 →</button>
+      <button id="nextSlideBtn" class="nav-btn" onclick="jumpSlide(1)" title="下一页 PPT (])">下页 ⏭</button>
+    </div>
+
+    <div id="filmstrip" class="filmstrip"></div>
+  </section>
+
+  <aside id="coachCol" class="coach-col">
+    <div id="logicCard" class="logic-card" style="display:none">
+      <div class="logic-card-head">
+        <span id="logicTitle">🧭 为什么讲到这页？（本页逻辑定位）</span>
+        <span id="logicProgress" style="font-weight:700;opacity:0.8"></span>
+      </div>
+      <div id="logicWhy" class="logic-row"></div>
+      <div id="logicCore" class="logic-row"></div>
+    </div>
+
+    <div id="stepCard" class="step-top-card step-card-anim">
+      <div class="step-meta-row">
+        <div class="step-num-title">
+          <span id="stepBadge" class="purple-dot">1</span>
+          <span id="blockName" class="block-name"></span>
+        </div>
+        <span id="durPill" class="dur-pill"></span>
+      </div>
+
+      <div id="pointerCue" class="pointer-cue"></div>
+
+      <div id="blueBox" class="blue-box">
+        <div class="box-head blue-head">
+          <span>📘 讲稿｜照着念（逐字原稿）</span>
+          <div class="mini-ctrl">
+            <button id="ownBtn" class="tiny-btn own-on" onclick="toggleOwnHL(event)" title="标出本段补充的 PPT 之外专业知识点">📌 标出拓展补充</button>
+            <button id="citeBtn" class="tiny-btn" onclick="toggleCites(event)">显示 [文献号]</button>
+            <button class="tiny-btn" onclick="changeFont(-2, event)">A-</button>
+            <button class="tiny-btn" onclick="changeFont(2, event)">A+</button>
+          </div>
+        </div>
+        <div id="scriptBody" class="script-body"></div>
+        <div class="recite-overlay" onclick="revealRecite(event)">
+          👀 先看左图聚光灯 + 下方橙框试着自己讲一遍<br/>（点这里或按 V 键揭晓原稿核对）
+        </div>
+      </div>
+
+      <div id="orangeBox" class="orange-box">
+        <div class="box-head orange-head">
+          <span>📙 原理与机理速览｜示意图 + 核心技术要点</span>
+          <span id="zoomHint" style="font-size:11px;font-weight:600;opacity:0.75">点击配图可放大</span>
+        </div>
+        <div id="illusWrap" class="illus-wrap" onclick="openLightbox()">
+          <img id="illusImg" src="" alt="帮助理解配图" />
+        </div>
+        <div id="explainBody" class="explain-body"></div>
+      </div>
+    </div>
+
+    <div id="bridgeCard" class="bridge-card"></div>
+  </aside>
+</main>
+
+<section id="overviewPane" class="overview-pane">
+  <div class="act-section" style="border-left: 5px solid var(--purple)">
+    <div class="act-sec-head">
+      <div class="act-sec-title">🧭 全篇演讲脉络疏通（点击任意卡片直达该页练习）</div>
+      <button class="timer-btn" onclick="goStep(0); setMode('guide')">↺ 从第 1 页第 1 拍开始顺稿</button>
+    </div>
+    <p id="deckSummaryDesc" class="act-sec-desc"></p>
+  </div>
+  <div id="actsContainer"></div>
+
+  <div id="qaSection" class="act-section" style="display:none">
+    <div class="act-sec-head">
+      <div id="qaSecTitle" class="act-sec-title">💬 高频提问答辩锦囊（点击展开应答话术）</div>
+      <button class="timer-btn" onclick="openQaFlashcards()">🃏 进入 Q&amp;A 闪卡练习模式 →</button>
+    </div>
+    <div id="qaContainer" class="qa-list"></div>
+  </div>
+</section>
+
+<section id="qaPane" class="qa-pane">
+  <div class="fc-shell">
+    <header class="fc-header">
+      <div class="fc-title-wrap">
+        <div id="qaMainTitle" class="fc-title">💬 答辩 Q&amp;A 闪卡练习（共 21 题：原有 6 题 + 新增 15 题）</div>
+        <div class="fc-sub">开口先用 <strong>一句话直接给结论</strong>，再按 1 / 2 / 3 分点讲清原因；掌握与待复习进度自动保存在本机浏览器。</div>
+      </div>
+      <div class="fc-head-right">
+        <div class="fc-view-switch" role="tablist" aria-label="Q&amp;A 视图切换">
+          <button id="qaViewCardBtn" class="fc-view-btn active" role="tab" onclick="setQaView('card')">🃏 闪卡模式</button>
+          <button id="qaViewListBtn" class="fc-view-btn" role="tab" onclick="setQaView('list')">📋 列表速查</button>
+        </div>
+        <div class="fc-stats">
+          <span id="fcPosPill" class="fc-pill">第 1 / 21 题</span>
+          <span id="fcMasteredPill" class="fc-pill fc-pill-ok">✓ 已掌握 0</span>
+          <span id="fcWrongPill" class="fc-pill fc-pill-warn">⚠ 待复习 0</span>
+          <button class="fc-pill fc-pill-btn" onclick="setMode('guide')">← 返回顺稿台</button>
+        </div>
+      </div>
+    </header>
+    <div class="fc-toolbar">
+      <input id="qaSearchInput" class="qa-search" type="search" placeholder="🔍 搜索问题、核心速答或关键词…" oninput="onQaFilterChange()" />
+      <select id="fcDiffSelect" class="fc-select" onchange="onQaFilterChange()" aria-label="难度筛选"></select>
+      <button id="fcWrongOnlyBtn" class="fc-tool-btn" onclick="toggleWrongOnly()" title="仅保留被标记为“不会 / 待复习”的题目">只练不会 (0)</button>
+      <button id="fcRandomBtn" class="fc-tool-btn" onclick="fcRandom()" title="快捷键 R">🎲 随机一题</button>
+      <button id="fcResetBtn" class="fc-tool-btn" onclick="fcResetMemory()" title="清除本机保存的已掌握 / 不会标记">↺ 清除记忆</button>
+      <span id="qaCountBadge" class="fc-count">题池 21 / 21</span>
+    </div>
+    <div class="fc-layout">
+      <aside class="fc-side">
+        <div class="fc-side-label">分类</div>
+        <div id="qaCatsWrap" class="fc-cats"></div>
+      </aside>
+      <div class="fc-main">
+        <div id="fcCardView" class="fc-card-view"></div>
+        <div id="qaListView" class="fc-list-view">
+          <div class="fc-list-head">
+            <div class="fc-list-desc">点击题目展开「一句话先答」与分点回答；点击 <code>跳到 P#</code> 可直接切回顺稿台对应页面指图作答。</div>
+            <div class="fc-list-btns">
+              <button class="fc-tool-btn" onclick="toggleAllQAs(true)">全部展开</button>
+              <button class="fc-tool-btn" onclick="toggleAllQAs(false)">全部收起</button>
+            </div>
+          </div>
+          <div id="qaDedicatedList" class="qa-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="Zoomed" />
+</div>
+
+<script>
+const DECK = {"title": "芯片集成的高响应度超快石墨烯光电探测器", "subtitle": "15 分钟学术拓展版（纯讲 14:26 · 21 题答辩 Q&A）", "storyline": "整场汇报只讲一条严密的因果链：为什么需要石墨烯、它怎么发电（P1–P4）→ 怎么改造波导解决 2.3% 弱吸收并突破带宽与波长限制（P5–P9）→ 怎么升级材料界面、能带、异质结并进芯片厂量产（P10–P13）→ 装进高速通信和 6G 系统能跑多快，最后冷静回答会不会取代商用锗（P14–P19）。", "storageKey": "talkweb-step-4fea67a7db", "slideSize": [2001, 1125], "totalSlides": 19, "totalSteps": 41, "totalSec": 866, "acts": [{"id": 1, "name": "第一部分 · 背景与机理", "range": [1, 4], "time": "00:00–03:35", "color": "#1864ab", "summary": "先把大前提讲清楚：为什么商用锗不够用、石墨烯缺什么（P2）→ 光子进石墨烯怎么变电（P3）→ 实验怎么认出光热电、读文献防哪两个坑（P4）。"}, {"id": 2, "name": "第二部分 · 波导聚光破局", "range": [5, 9], "time": "03:35–07:50", "color": "#0b7285", "summary": "围绕“单层只吸光 2.3%”一步步升级波导：硅波导躺平共线（P5）→ 太长电容大？切 70 nm 空气槽挤光隔热（P6）→ 慢光与微环绕圈冲 90 V/W（P7）→ 微环卡在 12 GHz？改金属纳米缝破 110 GHz（P8）→ 发挥长波优势，看 2 μm 与 5.2 μm 传感（P9）。"}, {"id": 3, "name": "第三部分 · 材料升级与量产", "range": [10, 13], "time": "07:50–11:28", "color": "#6741d9", "summary": "波导把光聚强后，转向器件材料与工艺：界面封装与双栅供电痛点用 PVA + 铁电锁结解决（P10）→ 拧 4.1° 转角改能带让石墨烯自己强吸光（P11）→ 叠异质结主打高速低暗流或高灵敏监测（P12）→ 低温去金 + CVD 良率超 99% 迈向量产（P13）。"}, {"id": 4, "name": "第四部分 · 高速应用与总结", "range": [14, 19], "time": "11:28–14:26（含停顿约 15:00）", "color": "#2b8a3e", "summary": "器件和工艺都过关后看系统实测：单路 100G 眼图与 240G 相干（P14）→ 四路并行 WDM 与 6G 140 GHz 混频（P15）→ 首尾呼应回答“石墨烯会不会取代商用锗”（P16）→ 文献与致谢（P17–P19）。"}], "slides": [{"n": 1, "title": "第 1 页 · 封面：亮出题目与四大板块路线图", "actId": 1, "image": "assets/slides/slide-01.webp", "slideSec": 25, "whyHere": "开场定调：用 20 秒让老师和同学听清汇报题目，以及整场汇报按哪四个大板块依次展开。", "core": "顺着封面副标题预告四站：背景与机理 → 波导聚光 → 材料与量产 → 高速应用与总结。", "bridge": "👉 翻页串词：先进入第一部分，看看芯片里已经有商用锗探测器了，为什么还要研究石墨烯。", "blocks": [{"step": 1, "localIndex": 1, "localTotal": 2, "name": "问好与亮出题目", "side": "top", "boxes": [[140, 155, 1860, 505]], "cue": "【P1 上屏】微笑看大家，从容念出大标题", "timeLabel": "约 9 秒", "durationSec": 9, "cumTargetSec": 9, "script": "老师好，各位同学大家好！今天我汇报的题目是《芯片集成的高响应度超快石墨烯光电探测器》。", "explain": "点明三个核心关键词：“芯片集成”指片上波导耦合、“高响应度”对应强光电转换、“超快”指向数十至百 GHz 级带宽。", "illus": "assets/illus/step-01.webp"}, {"step": 2, "localIndex": 2, "localTotal": 2, "name": "预告全篇四大板块", "side": "bottom", "boxes": [[140, 520, 1860, 588]], "cue": "（指副标题四部分）预告整场汇报路线与分析维度", "timeLabel": "约 16 秒", "durationSec": 16, "cumTargetSec": 25, "script": "下面我按屏幕上的四个部分展开：先讲背景与机理，再讲波导聚光、材料与量产，最后看高速应用与总结。梳理这 27 篇文献时，我也会结合器件物理与工艺约束，分析各类方案的边界。", "explain": "四个板块构成完整逻辑链：背景机理 → 光场耦合增强 → 材料界面与量产工艺 → 高速系统验证与产业定位。", "illus": "assets/illus/step-02.webp", "ownTake": "梳理这 27 篇文献时，我也会结合器件物理与工艺约束，分析各类方案的边界。"}]}, {"n": 2, "title": "第 2 页 · 一、背景｜为什么需要石墨烯？", "actId": 1, "image": "assets/slides/slide-02.webp", "slideSec": 59, "whyHere": "立住整场报告的总问题：芯片里已经有成熟的商用锗探测器了，为什么还要折腾石墨烯？并引出全文要攻克的核心矛盾（单层只吸光 2.3%）。", "core": "外延锗有两大瓶颈（超过 1.6 μm 无法吸光、难集成到氮化硅）；石墨烯能补齐短板，但单层只吸光 2.3%。", "bridge": "👉 翻页串词：知道了为什么要用石墨烯，那光子打进石墨烯后，到底是怎么变成电信号的？看第 3 页。", "blocks": [{"step": 3, "localIndex": 1, "localTotal": 3, "name": "左图演进与 >100 GHz 需求", "side": "left", "boxes": [[68, 165, 1120, 955], [1149, 177, 1931, 273]], "cue": "【翻页 → P2】指左图演进趋势 + 右上第 1 条", "timeLabel": "约 16 秒", "durationSec": 16, "cumTargetSec": 41, "script": "先看第一部分：为什么需要石墨烯？左图对比了石墨烯和商用锗的性能演进 [27]。随着算力增长，光互连要求探测器突破 100 GHz 且功耗更低 [13, 27]。", "explain": "左图横轴为带宽、纵轴为响应度，数据中心算力互联需求正推动片上探测器向 >100 GHz 与低功耗象限演进。", "illus": "assets/illus/step-03.webp"}, {"step": 4, "localIndex": 2, "localTotal": 3, "name": "商用锗瓶颈 vs 石墨烯优势", "side": "right", "boxes": [[1149, 297, 1920, 513]], "cue": "（指右上第 2、3 条）先讲锗的两道坎与石墨烯优势，补充材料物理根源", "timeLabel": "约 27 秒", "durationSec": 27, "cumTargetSec": 68, "script": "商用外延锗有两个瓶颈：波长超过 1.6 μm 就无法吸光，也很难集成到氮化硅波导上 [4, 20, 27]。而石墨烯全波段都能吸光、速度达皮秒级，还能低温贴合各类芯片 [1, 24]。本质上，锗受带隙限制且依赖单晶硅高温外延，而石墨烯零带隙且无悬挂键，天然支持宽谱吸收与低温集成。", "explain": "外延锗受约 0.8 eV 带隙限制（>1.6 μm 吸收截止）且需单晶硅高温外延；石墨烯零带隙且无悬挂键，支持宽谱与跨平台低温集成。", "illus": "assets/illus/step-04.webp", "ownTake": "本质上，锗受带隙限制且依赖单晶硅高温外延，而石墨烯零带隙且无悬挂键，天然支持宽谱吸收与低温集成。"}, {"step": 5, "localIndex": 3, "localTotal": 3, "name": "右下蓝框：2.3% 弱吸收矛盾", "side": "bottom", "boxes": [[1158, 762, 1932, 986]], "cue": "（指右下蓝框）抛出贯穿全场的核心矛盾", "timeLabel": "约 16 秒", "durationSec": 16, "cumTargetSec": 84, "script": "但单层石墨烯太薄，垂直照光只吸收 2.3% [3, 14]。后面所有工作，都是为了同时做到高吸收、小电容和低暗电流。", "explain": "单原子层石墨烯法向入射吸收率仅约 2.3%（πα），后续波导与能带工程均围绕提升光吸收同时控制电容与暗电流展开。", "illus": "assets/illus/step-05.webp"}]}, {"n": 3, "title": "第 3 页 · 一、机理｜光子进石墨烯怎么变电？有偏 vs 零偏", "actId": 1, "image": "assets/slides/slide-03.webp", "slideSec": 74, "whyHere": "承接上页：既然要用石墨烯，这页直接把最底层的物理原理讲透——光子打进石墨烯先干什么，四种机制各自怎么把光变成电流或电压。", "core": "光子进来只干两件事：激发更多电子，或把电子照热。有偏压 (a,b) 靠电阻/导电率变化测电流（有暗电流）；零偏压 (c,d) 靠内建电场或温差自己发电（零暗电流，PTE 还能省 TIA）。", "bridge": "👉 翻页串词：既然零偏光热电这么好，做实验时怎么确认测到的就是光热电呢？看第 4 页。", "blocks": [{"step": 6, "localIndex": 1, "localTotal": 3, "name": "光子进来干两件事 + 皮秒极速", "side": "top", "boxes": [[136, 11, 1394, 111], [930, 172, 1910, 258]], "cue": "【翻页 → P3】指标题与右上第 1 条，先把源头讲清楚", "timeLabel": "约 18 秒", "durationSec": 18, "cumTargetSec": 102, "script": "这页讲清核心原理：光子进石墨烯怎么变电？光子进来只干两件事，激发更多自由电子，或把电子照热；热电子 2 到 4 ps 就能冷却，所以速度潜力超 500 GHz [1, 13]。", "explain": "光子激发产生自由载流子增量（Δn）或电子体系升温（ΔTe）；热电子 2–4 ps 快速冷却决定了石墨烯具备 >500 GHz 本征潜力。", "illus": "assets/illus/step-06.webp"}, {"step": 7, "localIndex": 2, "localTotal": 3, "name": "上半 (a,b)：有偏压与暗电流", "side": "left", "boxes": [[177, 139, 786, 560], [931, 274, 1955, 460]], "cue": "（指左图上半 a、b + 右上第 2、3 条）讲清电阻变大与导电变强", "timeLabel": "约 24 秒", "durationSec": 24, "cumTargetSec": 126, "script": "先看左图上半有偏压模式：a 是光辐射热，电子照热后电阻变大、电流减小 [14]；b 是光导效应，自由电子变多、导电变强，电流增大 [17]。但只要加偏压，没光时就会有暗电流。", "explain": "有偏压模式下（a）PB 因电子升温加剧声子散射、电阻升高致电流减小；（b）PC 因载流子增多致电流增大，但零带隙导致静态暗电流。", "illus": "assets/illus/step-07.webp"}, {"step": 8, "localIndex": 3, "localTotal": 3, "name": "下半 (c,d) 与蓝框：零偏发电", "side": "right", "boxes": [[939, 762, 1932, 986], [177, 565, 786, 989], [930, 476, 1930, 663]], "cue": "（指左图下半 c、d + 右上第 4、5 条与蓝框）突出零暗电流、免 TIA，补充热电子与塞贝克关系", "timeLabel": "约 32 秒", "durationSec": 32, "cumTargetSec": 158, "script": "再看下半零偏压模式，不加外电压也能发电，完全零暗电流：c 是光伏效应，靠 p-n 结内建电场自动分电荷 [6]；d 是光热电 PTE，靠光照温差和左右掺杂不同直接输出电压 [6, 10]，有望省去高功耗的 TIA 放大器 [13, 19]。石墨烯电子热容极小，百飞秒内即可热化；光热电电压正比于塞贝克系数差与温升的乘积，但需精确维持 p-n 结。", "explain": "零偏压模式无静态暗电流：（c）PV 靠内建电场分离载流子；（d）PTE 依赖塞贝克梯度直接输出开路电压，可对接免 TIA 电压读取架构。", "illus": "assets/illus/step-08.webp", "ownTake": "石墨烯电子热容极小，百飞秒内即可热化；光热电电压正比于塞贝克系数差与温升的乘积，但需精确维持 p-n 结。"}]}, {"n": 4, "title": "第 4 页 · 一、判据｜怎么认出光热电？读数据防两坑", "actId": 1, "image": "assets/slides/slide-04.webp", "slideSec": 57, "whyHere": "承接 P3 四种机制：实验里几种机制常常混在一起，这页告诉你怎么验明光热电，以及读论文比数据时要避开哪两个常见坑。", "core": "左图六重变号认出 PTE（强光会饱和）；右图调栅压可切换三种机制；读文献要避开慢速高增益与功率口径差异两个坑。", "bridge": "👉 翻页串词：第一部分背景和原理讲完了，接下来进入第二部分——怎么改造波导，攻克 2.3% 的弱吸收难题？看第 5 页。", "blocks": [{"step": 9, "localIndex": 1, "localTotal": 3, "name": "左图：六重变号认出光热电", "side": "left", "boxes": [[68, 145, 892, 800], [59, 824, 1723, 871]], "cue": "【翻页 → P4】指左图六瓣图 + 底栏第 1 条", "timeLabel": "约 18 秒", "durationSec": 18, "cumTargetSec": 176, "script": "实验上怎么认出光热电呢？看左图，扫描双栅出现六重正负号反转，就是 PTE 的典型特征 [6]；不过入射光太强时热电子会饱和，响应度会缓降 [6, 19]。", "explain": "塞贝克系数在狄拉克点两侧非单调变号，双栅扫描呈标志性六重反转（普通光伏仅两次变号）；强光下因热容升高与泡利阻塞出现次线性饱和。", "illus": "assets/illus/step-09.webp"}, {"step": 10, "localIndex": 2, "localTotal": 3, "name": "右图：调栅压切换三种模式", "side": "right", "boxes": [[934, 145, 1932, 800], [59, 882, 1673, 929]], "cue": "（指右图曲线 + 底栏第 2 条）说明一器多能", "timeLabel": "约 12 秒", "durationSec": 12, "cumTargetSec": 188, "script": "看右图，在同一个波导里，只需调节栅压就能在 PTE、光辐射热和光导之间切换 [17]。", "explain": "同一波导器件通过栅压调节费米能级与偏置状态，即可在零偏 PTE、有偏 PB 与近狄拉克点 PC 三种主导机制间切换。", "illus": "assets/illus/step-10.webp"}, {"step": 11, "localIndex": 3, "localTotal": 3, "name": "底栏第 3 条：读文献防两坑", "side": "bottom", "boxes": [[59, 940, 1891, 986]], "cue": "（指底栏第 3 条）提醒横向对比两坑，补充一手文献口径核查", "timeLabel": "约 27 秒", "durationSec": 27, "cumTargetSec": 215, "script": "读文献比数据还要防两个坑：一是光门控虽高达 1.9 A/W 但速度很慢 [24, 25]；二是要分清光纤、波导和净吸收三种功率口径 [5, 15, 26]。复核原始文献发现，各论文对插损的扣除口径不一，部分综述甚至参数错配，横向对比必须回溯一手条件。", "explain": "评估指标需区分两类边界：一是长寿命界面陷阱光门控（1.9 A/W）受限于低带宽；二是光纤输入、波导内与净吸收三种功率分母口径差异。", "illus": "assets/illus/step-11.webp", "ownTake": "复核原始文献发现，各论文对插损的扣除口径不一，部分综述甚至参数错配，横向对比必须回溯一手条件。"}]}, {"n": 5, "title": "第 5 页 · 二、波导(1)｜攻克 2.3% 弱吸收：硅波导共线", "actId": 2, "image": "assets/slides/slide-05.webp", "slideSec": 53, "whyHere": "正式进入第二部分「波导聚光」，正面回答 P2 留下的总难题：单层石墨烯垂直照光只吸收 2.3%，第 1 招就是让光放倒、贴着石墨烯边走边吸。", "core": "垂直照光只吸 2.3% → 改成硅波导贴面共线传输，53 μm 吸光超 60%、覆盖通信全波段，并跑出无金 50 Gbps。", "bridge": "👉 翻页串词：普通直波导虽然吸光够了，但长度要几十微米、电容偏大；怎么把它缩得更短？看第 6 页。", "blocks": [{"step": 12, "localIndex": 1, "localTotal": 3, "name": "左图：自由空间卡在 2.3%", "side": "left", "boxes": [[68, 145, 407, 599], [59, 623, 1607, 670]], "cue": "【翻页 → P5】指左图 + 底栏第 1 条", "timeLabel": "约 14 秒", "durationSec": 14, "cumTargetSec": 229, "script": "接下来进入第二部分：怎么攻克 2.3% 弱吸收？左图早期垂直照光器件虽超 40 GHz 并跑通 10 Gbps，但只吸收 2.3% 的光 [1, 2]。", "explain": "早期自由空间垂直照射虽验证了 >40 GHz 与 10 Gbps 潜力，但受限于单层 2.3% 吸收率，响应度停留在 mA/W 量级。", "illus": "assets/illus/step-12.webp"}, {"step": 13, "localIndex": 2, "localTotal": 3, "name": "中图：硅波导躺平边走边吸", "side": "top", "boxes": [[434, 145, 1082, 600], [59, 683, 1937, 769]], "cue": "（指中图 + 底栏第 2 条前半）讲清横向共线吸收", "timeLabel": "约 16 秒", "durationSec": 16, "cumTargetSec": 245, "script": "中图改用硅波导共线耦合，让光贴着石墨烯横向边走边吸，53 μm 就吸光超 60%，达到 0.108 A/W [3]。", "explain": "硅波导倏逝场共线耦合将作用长度延展至 53 μm，吸收率跃升至 >60%，并靠非对称电极（100 nm / 3.5 μm）避免双侧光电流抵消。", "illus": "assets/illus/step-13.webp"}, {"step": 14, "localIndex": 3, "localTotal": 3, "name": "右图 + 第 3 条：全波段与无金 50G", "side": "right", "boxes": [[1108, 145, 1932, 599], [59, 786, 1625, 832]], "cue": "（指右图 + 底栏第 2 条后半与第 3 条）完成波段与工艺升级，补充非对称电极与单位长度吸收", "timeLabel": "约 23 秒", "durationSec": 23, "cumTargetSec": 268, "script": "右图进一步覆盖了 1310 到 1650 nm 通信全波段 [4]；随后改用大面积 CVD 石墨烯和无金镍铝电极，跑出了 50 Gbps [5]。共线结构还需靠非对称电极避免两侧光电流抵消；但每微米仅吸光 0.06 到 0.09 dB，长器件电容限制了带宽。", "explain": "直波导路线相继覆盖 1310–1650 nm 全通信波段并验证无金 CVD 50 Gbps，但 0.06–0.09 dB/μm 的弱吸收仍需数十微米长度，制约 RC 带宽。", "illus": "assets/illus/step-14.webp", "ownTake": "共线结构还需靠非对称电极避免两侧光电流抵消；但每微米仅吸光 0.06 到 0.09 dB，长器件电容限制了带宽。"}]}, {"n": 6, "title": "第 6 页 · 二、波导(2)｜怎么缩更短？空气槽聚光与隔热", "actId": 2, "image": "assets/slides/slide-06.webp", "slideSec": 51, "whyHere": "承接 P5 的不足：普通直波导需要 53 μm 才能吸够光，器件太长电容就大、会拖慢速度。所以第 2 招在硅波导中间切出 70 nm 空气狭缝，把光硬挤进去！", "core": "左图 70 nm 空气狭缝强力聚光并悬空隔热（温升 148 K）；右图直接拿两侧硅槽壁当双背栅，省去顶栅电容跑出 65 GHz。", "bridge": "👉 翻页串词：空气槽是从空间上把光挤窄，那能不能从时间上让光走慢一点、多待一会儿？看第 7 页。", "blocks": [{"step": 15, "localIndex": 1, "localTotal": 2, "name": "左图：70 nm 空气槽聚光与隔热", "side": "left", "boxes": [[263, 145, 842, 782], [59, 808, 1912, 894]], "cue": "【翻页 → P6】指左图狭缝 + 底栏第 1 条", "timeLabel": "约 24 秒", "durationSec": 24, "cumTargetSec": 292, "script": "普通直波导太长、电容偏大，怎么缩得更短？看左图，在硅波导中间切出 70 nm 空气槽，把光挤进狭缝，每微米吸光达 0.935 dB；同时石墨烯悬空隔热，电子温升达 148 K，热电信号更强 [9]。", "explain": "70 nm 硅空气槽利用高折射率边界条件将 TE 模场强约束于缝内（0.935 dB/μm），同时悬空隔绝衬底声子散热，使电子温升达 148 K。", "illus": "assets/illus/step-15.webp"}, {"step": 16, "localIndex": 2, "localTotal": 2, "name": "右图：硅槽壁兼作双背栅 65 GHz", "side": "right", "boxes": [[913, 145, 1737, 782], [59, 914, 1864, 960]], "cue": "（指右图双侧硅壁 + 底栏第 2 条）点出双背栅优势，补充散热降幅与工艺约束", "timeLabel": "约 27 秒", "durationSec": 27, "cumTargetSec": 319, "script": "右图更进一步，直接用狭缝两侧的硅壁当作双背栅，精准对准最热区域，省去顶部栅极电容，实现 65 GHz 零偏探测 [10]。悬空结构将衬底声子散热降低三个数量级，硅背栅不走高频规避了顶栅电容，但亚百纳米槽对工艺精度要求高。", "explain": "两侧掺杂硅槽壁兼作局部双背栅，既将 p-n 结精准定位于热场中心，又因直流背栅不承载 RF 信号而规避顶栅寄生电容，实现 65 GHz 零偏响应。", "illus": "assets/illus/step-16.webp", "ownTake": "悬空结构将衬底声子散热降低三个数量级，硅背栅不走高频规避了顶栅电容，但亚百纳米槽对工艺精度要求高。"}]}, {"n": 7, "title": "第 7 页 · 二、波导(3)｜慢光与微环：90 V/W 与限速代价", "actId": 2, "image": "assets/slides/slide-07.webp", "slideSec": 51, "whyHere": "波导聚光第 3 招：P6 是从空间把光挤窄，这页换成从时间下手——让光走慢一点（光子晶体慢光）或者绕圈多跑几趟（微环），同时引出微环的限速代价！", "core": "慢光波导做到 4.7 V/W；硅微环 6 μm 吸光超 90% 创下 90 V/W 纪录，但光绕圈蓄能把带宽卡在 12 GHz。", "bridge": "👉 翻页串词：微环响应虽高，但速度卡死在 12 GHz，有没有既只有几微米、又能冲破 100 GHz 的办法？看第 8 页。", "blocks": [{"step": 17, "localIndex": 1, "localTotal": 2, "name": "左上图：光子晶体慢光 4.7 V/W", "side": "left", "boxes": [[68, 153, 1273, 501], [1302, 188, 1923, 317]], "cue": "【翻页 → P7】指左上图打孔波导 + 右上第 1 条", "timeLabel": "约 20 秒", "durationSec": 20, "cumTargetSec": 339, "script": "除了切槽挤光，还能从时间上让光多停留。左上图用光子晶体慢光结构减慢光速 [7, 11]，配合两侧连续硅栅控，把零偏响应提到 4.7 V/W [12]。", "explain": "光子晶体慢光降低群速度延长作用时间，同时两侧连续硅平板消除窄槽波导外侧的未栅控死区，充分转化全沟道电子温差，获 4.7 V/W。", "illus": "assets/illus/step-17.webp"}, {"step": 18, "localIndex": 2, "localTotal": 2, "name": "左下图 + 蓝框：微环 90 V/W 与限速", "side": "right", "boxes": [[1312, 685, 1932, 945], [68, 535, 1273, 980], [1302, 341, 1924, 471]], "cue": "（指左下图微环 + 右上第 2 条与右下蓝框）先亮纪录再讲代价，补充腔内增强倍数与估算局限", "timeLabel": "约 31 秒", "durationSec": 31, "cumTargetSec": 370, "script": "左下图让光在硅微环里绕圈叠加，只需 6 μm 就吸光超 90%，创下 90 V/W 零偏纪录；但如右下框所示，光绕圈需要时间，150 pm 窄线宽把带宽卡在了 12 GHz 左右 [19]。临界耦合将环内光强放大约 10 倍、电子升至 400 K，但光子寿命锁定了带宽，且文中灵敏度目前仍为理论估算。", "explain": "硅微环临界耦合放大腔内光强约 10 倍，仅 6 μm 吸光 >90%、获 90 V/W 零偏纪录；但高 Q 腔光子寿命（150 pm 线宽）将带宽限制在 ~12 GHz。", "illus": "assets/illus/step-18.webp", "ownTake": "临界耦合将环内光强放大约 10 倍、电子升至 400 K，但光子寿命锁定了带宽，且文中灵敏度目前仍为理论估算。"}]}, {"n": 8, "title": "第 8 页 · 二、波导(4)｜突破微环限速：等离激元 >110 GHz", "actId": 2, "image": "assets/slides/slide-08.webp", "slideSec": 49, "whyHere": "直接解决 P7 的限速痛点：微环因为绕圈延迟卡在 12 GHz，第 4 招改用非谐振的金属等离激元纳米缝聚光，既小到几微米，又直接冲破 110 GHz！", "core": "金属纳米缝强力聚光、无谐振延迟且电容极小：6 μm 蝴蝶结达 0.50 A/W，2.7 μm 窄金属槽达 0.36 A/W，双双突破 110 GHz。", "bridge": "👉 翻页串词：前面几页都在常规 1.55 微米波段，别忘了石墨烯还能做商用锗做不到的长波长！看第 9 页。", "blocks": [{"step": 19, "localIndex": 1, "localTotal": 2, "name": "纳米缝原理与 6 μm 蝴蝶结", "side": "left", "boxes": [[146, 145, 574, 770], [59, 796, 1808, 840]], "cue": "【翻页 → P8】指底栏第 1 条 + 左图蝴蝶结", "timeLabel": "约 24 秒", "durationSec": 24, "cumTargetSec": 394, "script": "想突破微环 12 GHz 限速，科学家改用金属表面等离激元：把光强力聚进纳米缝隙，将器件缩到几微米、大幅降低电容，且没有谐振延迟 [8, 14, 15]。左图 6 μm 蝴蝶结天线拿到 0.50 A/W 并突破 110 GHz [14]。", "explain": "蝴蝶结等离激元纳米尖端将波导模转为强面内电场，6 μm 器件无谐振延迟即实现 0.50 A/W 与 >110 GHz 平坦带宽。", "illus": "assets/illus/step-19.webp"}, {"step": 20, "localIndex": 2, "localTotal": 2, "name": "右图：2.7 μm 窄金属槽破 110 GHz", "side": "right", "boxes": [[657, 145, 1854, 770], [59, 859, 1871, 944]], "cue": "（指右图 120 nm 窄槽 + 底栏第 2 条后半）补齐窄金属槽，补充渡越时间、电容与金属损耗代价", "timeLabel": "约 25 秒", "durationSec": 25, "cumTargetSec": 419, "script": "右图用 120 nm 窄金属槽，把器件进一步缩到 2.7 μm，拿到 0.36 A/W，同样突破了 110 GHz [15]。120 纳米槽将渡越时间压至 1.1 皮秒、电容降至飞法级，实测已达仪器上限，代价是金属欧姆损耗与毫安级暗流。", "explain": "120 nm 非对称金属槽将载流子渡越时间压至 1.1 ps、电容降至 0.83 fF（2.7 μm），实测受限于 110 GHz 仪器上限，主要代价为金属损耗与暗流。", "illus": "assets/illus/step-20.webp", "ownTake": "120 纳米槽将渡越时间压至 1.1 皮秒、电容降至飞法级，实测已达仪器上限，代价是金属欧姆损耗与毫安级暗流。"}]}, {"n": 9, "title": "第 9 页 · 二、波导(5)｜发挥长波优势：2 μm 与 5.2 μm 传感", "actId": 2, "image": "assets/slides/slide-09.webp", "slideSec": 51, "whyHere": "第二部分波导结构的收官，呼应 P2 埋下的伏笔：商用锗超过 1.6 μm 就失灵，这页展示石墨烯波导如何迈向 2 μm 新通信与 5.2 μm 中红外气体传感！", "core": "左图薄硅宽脊减少金属损耗，2 μm 达 70 mA/W、>20 GHz；右图硫系玻璃替代氧化层，5.2 μm 室温零偏测出 23 ppm 一氧化氮。", "bridge": "👉 翻页串词：第二部分波导聚光讲完了，光已经聚得很强；接下来进入第三部分，看看怎么升级材料界面并推向芯片厂量产！看第 10 页。", "blocks": [{"step": 21, "localIndex": 1, "localTotal": 2, "name": "左图：2 μm 薄硅宽脊突破锗带隙", "side": "left", "boxes": [[68, 145, 1237, 765], [59, 796, 1838, 843]], "cue": "【翻页 → P9】指左图 + 底栏第 1 条，扣回 P2 的 1.6 μm 瓶颈", "timeLabel": "约 22 秒", "durationSec": 22, "cumTargetSec": 441, "script": "前面都在 1.55 μm 波段，别忘了商用锗超过 1.6 μm 就会失灵。看左图，团队改用薄硅宽脊波导减少金属吸光损耗，在 2 μm 波段实现了 70 mA/W 和超 20 GHz 带宽 [17]。", "explain": "2 μm 波段将硅层减薄至 100 nm 并拓宽脊宽，增强垂直倏逝场使石墨烯吸收占比达 70%、压低金属寄生损耗，实现 70 mA/W 与 >20 GHz。", "illus": "assets/illus/step-21.webp"}, {"step": 22, "localIndex": 2, "localTotal": 2, "name": "右图：5.2 μm 硫系波导室温测气", "side": "right", "boxes": [[1317, 145, 1932, 765], [59, 858, 1828, 905]], "cue": "（指右图气体传感 + 底栏第 2 条）点出硫系玻璃中红外探测，补充吸收占比与噪声特征", "timeLabel": "约 29 秒", "durationSec": 29, "cumTargetSec": 470, "script": "右图更走向 5.2 μm 中红外：因为普通氧化硅在这里会吸光，他们改用透明的硫系玻璃做波导，在室温零偏下测出一氧化氮气体低至 23 ppm [20]。2 微米宽脊将石墨烯吸收占比提至 70%；5.2 微米器件虽灵敏度低于制冷碲镉汞，但室温零偏且低频无 1/f 噪声。", "explain": "SiO₂ 在 >4 μm 强吸光，改用 CaF₂ 衬底与硫系玻璃波导后在 5.2 μm 实现室温零偏探测，低频无 1/f 噪声展宽，NO 检测限达 23 ppm。", "illus": "assets/illus/step-22.webp", "ownTake": "2 微米宽脊将石墨烯吸收占比提至 70%；5.2 微米器件虽灵敏度低于制冷碲镉汞，但室温零偏且低频无 1/f 噪声。"}]}, {"n": 10, "title": "第 10 页 · 三、材料(1)｜升级界面与供电：封装与铁电锁结", "actId": 3, "image": "assets/slides/slide-10.webp", "slideSec": 56, "whyHere": "大转场进入第三部分「材料与量产」！波导把光聚强后，先解决器件上两个最现实的工程痛点：界面封装难量产，以及零偏器件的双栅还要一直插电源。", "core": "左图用 PVA 聚合物替代手剥氮化硼，大面积 CVD 跑出零偏超 67 GHz；右图用铁电层脉冲锁结，断电保持超 28 小时、省去双路栅电源。", "bridge": "👉 翻页串词：解决了界面封装和供电，那能不能不靠外部波导，直接改造石墨烯自己的能带？看第 11 页。", "blocks": [{"step": 23, "localIndex": 1, "localTotal": 2, "name": "左图：PVA 封装取代手剥氮化硼", "side": "left", "boxes": [[68, 145, 500, 710], [59, 734, 1888, 820]], "cue": "【翻页 → P10】指左图 + 底栏第 1 条，先说清封装改进", "timeLabel": "约 24 秒", "durationSec": 24, "cumTargetSec": 494, "script": "波导讲完后，第三部分看材料与工艺升级，先解决界面和供电两个痛点。左图在氮化硅波导上用 PVA 聚合物替代手剥氮化硼 [6]，让大面积 CVD 阵列实现零偏超 67 GHz [18]。", "explain": "低温旋涂 PVA 聚合物取代手剥 hBN，在 Si₃N₄ 波导上使晶圆级 CVD 迁移率达 ~16,000 cm²/(V·s)、残余电荷起伏低至 <10¹¹ cm⁻²，实现 >67 GHz。", "illus": "assets/illus/step-23.webp"}, {"step": 24, "localIndex": 2, "localTotal": 2, "name": "右图：铁电锁结省去双路栅电源", "side": "right", "boxes": [[542, 145, 1932, 707], [59, 840, 1910, 926]], "cue": "（指右图铁电夹层 + 底栏第 2 条）说明铁电锁结，补充迁移率指标与有机层工艺局限", "timeLabel": "约 32 秒", "durationSec": 32, "cumTargetSec": 526, "script": "再看供电痛点：以前零偏器件仍需两路电源一直给栅极供电维持 p-n 结。右图加入铁电层，只需通一次脉冲就能锁住结，断电后仍保持超 28 小时，省去了双路栅电源 [26]。PVA 将迁移率提至约一万六并抑制电荷起伏，铁电层靠剩余极化锁结；但有机层受吸湿与 135 °C 耐温限制，需无机替代。", "explain": "铁电 P(VDF-TrFE) 经 ±15 V 脉冲极化后依靠剩余极化电场锁定 p-i-n 结，撤除电源保持 >28 h；但受 135 °C 耐温限制，后续需向无机铪基铁电演进。", "illus": "assets/illus/step-24.webp", "ownTake": "PVA 将迁移率提至约一万六并抑制电荷起伏，铁电层靠剩余极化锁结；但有机层受吸湿与 135 °C 耐温限制，需无机替代。"}]}, {"n": 11, "title": "第 11 页 · 三、材料(2)｜不靠波导改能带：4.1° 转角吸光", "actId": 3, "image": "assets/slides/slide-11.webp", "slideSec": 56, "whyHere": "材料升级第 2 招：前面全都在改外部波导或封装层，这页换个全新思路——直接把两层石墨烯拧一个精确角度，改变它自己的能带，不用复杂天线也能强吸光！", "core": "双层转角 4.1° 对齐 1550 nm 共振，普通硅波导吸光翻 3 倍、0.5 V 达 0.65 A/W 与 >65 GHz；30° 转角则支撑超 180 GHz 混频。", "bridge": "👉 翻页串词：除了两层石墨烯自己转角，把它和其他半导体叠成异质结又能带来什么优势？看第 12 页。", "blocks": [{"step": 25, "localIndex": 1, "localTotal": 3, "name": "左图：4.1° 转角对齐 1550 nm", "side": "left", "boxes": [[68, 279, 1238, 713], [1260, 176, 1922, 305]], "cue": "【翻页 → P11】指左图转角结构 + 右上第 1 条", "timeLabel": "约 16 秒", "durationSec": 16, "cumTargetSec": 542, "script": "除了改造外部波导，还能直接改石墨烯自己的能带。看左图，把两层石墨烯精确转开 4.1°，使层间共振峰刚好对齐 1550 nm [21]。", "explain": "4.1° 转角双层石墨烯形成摩尔超晶格，其范霍夫奇点高态密度峰的带间跃迁能量恰好共振对齐 1550 nm（0.8 eV）通信波长。", "illus": "assets/illus/step-25.webp"}, {"step": 26, "localIndex": 2, "localTotal": 3, "name": "右上第 2、3 条：免天线翻 3 倍", "side": "right", "boxes": [[1261, 328, 1929, 565]], "cue": "（指右上第 2、3 条）点出免微环与天线的简洁优势", "timeLabel": "约 18 秒", "durationSec": 18, "cumTargetSec": 560, "script": "这样不靠微环或金属天线，在普通硅波导上短短 8 μm 吸光就翻了 3 倍，0.5 V 下拿到 0.65 A/W 和超 65 GHz [21]。", "explain": "借助能带本征共振，普通硅条波导上仅 8 μm 吸收系数即提升逾 3 倍至 0.58 dB/μm，无需复杂金属天线即在 0.5 V 下获 0.65 A/W 与 >65 GHz。", "illus": "assets/illus/step-26.webp"}, {"step": 27, "localIndex": 3, "localTotal": 3, "name": "右下蓝框：30° 准晶铺垫 6G 混频", "side": "bottom", "boxes": [[1270, 762, 1932, 986]], "cue": "（指右下蓝框）埋下 P15 伏笔，补充范霍夫奇点机理与转角工艺挑战", "timeLabel": "约 22 秒", "durationSec": 22, "cumTargetSec": 582, "script": "再看右下框，把转角拧到 30° 形成准晶，能保留单层高线性度，支撑超 180 GHz 亚太赫兹混频 [23]。物理根源是 4.1 度摩尔超晶格的范霍夫奇点共振匹配 0.8 eV 光子能量，但共振伴随波长选择性，晶圆级控角也是难点。", "explain": "30° 准晶转角实现层间电子解耦，兼顾单层高线性度与双层吸光增益，为后端 >180 GHz 亚太赫兹混频提供材料基础。", "illus": "assets/illus/step-27.webp", "ownTake": "物理根源是 4.1 度摩尔超晶格的范霍夫奇点共振匹配 0.8 eV 光子能量，但共振伴随波长选择性，晶圆级控角也是难点。"}]}, {"n": 12, "title": "第 12 页 · 三、材料(3)｜异质结提质：垂直高速与嵌芯高敏", "actId": 3, "image": "assets/slides/slide-12.webp", "slideSec": 51, "whyHere": "材料升级第 3 招：P11 是纯石墨烯自己叠双层，这页看石墨烯搭配其他半导体（二维 MoTe₂ 或硅芯）组成的异质结，分别服务高速低暗流和弱光高敏两个场景。", "core": "左图 MoTe₂ 垂直结主打高速低暗流（24–50 GHz）；右图硅波导嵌芯主打高灵敏增益（1.9 A/W，适于片上低速光功率监测）。", "bridge": "👉 翻页串词：讲完波导、封装、转角和异质结，大家最关心的问题来了——这些结构真能进芯片厂量产吗？看第 13 页。", "blocks": [{"step": 28, "localIndex": 1, "localTotal": 2, "name": "左图：MoTe₂ 垂直结主打高速", "side": "left", "boxes": [[68, 145, 1163, 699], [59, 724, 1919, 770]], "cue": "【翻页 → P12】指左图堆叠结构 + 底栏第 1 条", "timeLabel": "约 22 秒", "durationSec": 22, "cumTargetSec": 604, "script": "石墨烯还可以和其他半导体做成异质结。左图 MoTe₂ 垂直结让光横向吸收、电子垂直短距离穿过薄层，在 O 波段做到 24 到 50 GHz 和高信噪比 [16]。", "explain": "Au/MoTe₂/石墨烯垂直结正交解耦横向吸光与垂直短程输运，借助半导体带隙压低暗电流至亚微安，在 O 波段实现 24–50 GHz 响应。", "illus": "assets/illus/step-28.webp"}, {"step": 29, "localIndex": 2, "localTotal": 2, "name": "右图：波导嵌芯 1.9 A/W 测弱光", "side": "right", "boxes": [[1198, 145, 1932, 697], [59, 786, 1863, 871]], "cue": "（指右图嵌芯结构 + 底栏第 2 条）点明适用场景，补充正交解耦、带隙边界与量子效率", "timeLabel": "约 29 秒", "durationSec": 29, "cumTargetSec": 633, "script": "右图把石墨烯夹在非晶硅和晶硅波导芯之间，靠界面电荷增益达到 1.9 A/W，虽然速度不快，但很适合片上低速光功率监测 [25]。左图正交解耦吸光与渡越、暗流至亚微安，但带隙限在 O 波段；右图借陷阱势垒调制达 153% 外量子效率与 60 纳安暗流。", "explain": "石墨烯嵌入 a-Si:H 与 c-Si 波导芯层，利用界面陷阱势垒调制（SPARK）在 60 nA 低暗电流下获 1.9 A/W（EQE 153%），适合低速片上光功率监测。", "illus": "assets/illus/step-29.webp", "ownTake": "左图正交解耦吸光与渡越、暗流至亚微安，但带隙限在 O 波段；右图借陷阱势垒调制达 153% 外量子效率与 60 纳安暗流。"}]}, {"n": 13, "title": "第 13 页 · 三、量产(4)｜能进芯片厂吗？低温去金与 CVD", "actId": 3, "image": "assets/slides/slide-13.webp", "slideSec": 55, "whyHere": "第三部分收官之问：实验室里性能再好，进不了芯片代工厂也没用。这页交代工业界标准后端工艺规则，并用 >99% 中试良率证明量产可行性！", "core": "CMOS 后端两条铁律：≤300 °C 低温贴膜 + 铜/钨/铝全面去金；大面积 CVD 已反超手剥，欧洲中试线良率超 99%。", "bridge": "👉 翻页串词：器件和量产工艺都过关了，接下来进入第四部分，看看它装进真实高速通信系统能跑多快！看第 14 页。", "blocks": [{"step": 30, "localIndex": 1, "localTotal": 2, "name": "左图 + 要点：低温贴膜与去金", "side": "left", "boxes": [[71, 136, 733, 1046], [776, 177, 1921, 393]], "cue": "【翻页 → P13】指左图工艺流 + 右上第 1、2 条", "timeLabel": "约 24 秒", "durationSec": 24, "cumTargetSec": 657, "script": "这些结构能进芯片厂量产吗？左图是标准后端流程：先做好硅波导，再在 300 °C 以下低温贴膜防损伤 [13, 27]；因为金会污染硅产线，电极要改用铜、钨、铝边接触 [5, 13, 27]。", "explain": "标准 CMOS 后端要求 ≤300 °C 低温异位转移（规避千度生长热预算），并全面改用 Cu/W/Al 无金大马士革边接触以防金原子扩散污染硅产线。", "illus": "assets/illus/step-30.webp"}, {"step": 31, "localIndex": 2, "localTotal": 2, "name": "第 3 条 + 蓝框：CVD 反超与良率", "side": "right", "boxes": [[786, 762, 1932, 986], [777, 417, 1859, 513]], "cue": "（指右上第 3 条 + 右下蓝框）收尾工艺部分，补充异位生长原因与中试迁移率现状", "timeLabel": "约 31 秒", "durationSec": 31, "cumTargetSec": 688, "script": "而且晶圆级 CVD 如今在响应度 [21]、带宽 [23] 和速率 [14] 上都已反超手工剥离薄片 [18, 24]；欧洲 6 到 8 英寸中试线良率超 99%，正加速迈向量产 [27]。因千度生长与金扩散会破坏前道电路，只能异位生长加低温转移；且中试线迁移率约三千以上，距通信级一万仍有差距。", "explain": "晶圆级 CVD 已在最高高速响应度、带宽与数据速率上反超剥离薄片；欧洲 6/8 英寸中试线良率 >99%，下一步聚焦迁移率与片间一致性提升。", "illus": "assets/illus/step-31.webp", "ownTake": "因千度生长与金扩散会破坏前道电路，只能异位生长加低温转移；且中试线迁移率约三千以上，距通信级一万仍有差距。"}]}, {"n": 14, "title": "第 14 页 · 四、应用(1)｜高速实测：100G 眼图与 240G 相干", "actId": 4, "image": "assets/slides/slide-14.webp", "slideSec": 45, "whyHere": "进入第四部分「高速应用」！前面把原理、波导、材料和量产全打通了，这页直接上真实高速通信链路的实测成绩单。", "core": "单路通信十年提速 10 倍，睁开清晰 100 Gbps 眼图；片上相干接收芯片以 <14 fJ/bit 超低能耗跑通 240 Gbps 16-QAM。", "bridge": "👉 翻页串词：单路已经跑到 100G 和 240G，那多路并行和未来的 6G 无线通信表现怎么样？看第 15 页。", "blocks": [{"step": 32, "localIndex": 1, "localTotal": 2, "name": "左图：单路十年提速至 100 Gbps", "side": "left", "boxes": [[68, 145, 978, 603], [59, 630, 1914, 716]], "cue": "【翻页 → P14】指左图眼图 + 底栏第 1 条", "timeLabel": "约 19 秒", "durationSec": 19, "cumTargetSec": 707, "script": "器件和工艺过关后，第四部分看高速系统实测。左图单路速率跨越了 10 倍：从早期 10 到 12 Gbps [2, 3, 4]、无金 50 Gbps [5]，一路跑到清晰的 100 Gbps 眼图 [14]。", "explain": "单通道直接检测速率由 10–12 Gbps、无金 50 Gbps 跃升至 100 Gbps OOK/PAM-4 眼图；实测采用双层石墨烯提高饱和阈值并结合离线均衡。", "illus": "assets/illus/step-32.webp"}, {"step": 33, "localIndex": 2, "localTotal": 2, "name": "右图：片上相干接收 240 Gbps", "side": "right", "boxes": [[1008, 145, 1932, 603], [59, 736, 1854, 783]], "cue": "（指右图相干芯片 + 底栏第 2 条）突出 240G 与 <14 fJ/bit，补充百 G 实测功率与均衡条件", "timeLabel": "约 26 秒", "durationSec": 26, "cumTargetSec": 733, "script": "右图片上平衡相干接收芯片，在低于 14 fJ/bit 的超低能耗下，成功跑通了 240 Gbps 的 16-QAM 传输 [24]。需客观看待，100 Gbps 实测用双层提高饱和阈值，仍需 11 到 12 dBm 较高光功率与离线均衡，灵敏度仍有提升空间。", "explain": "片上平衡相干接收架构结合 90° 光混频器与本振放大，在 <14 fJ/bit 极低前端能耗下实现 240 Gbps 16-QAM 高阶调制解调。", "illus": "assets/illus/step-33.webp", "ownTake": "需客观看待，100 Gbps 实测用双层提高饱和阈值，仍需 11 到 12 dBm 较高光功率与离线均衡，灵敏度仍有提升空间。"}]}, {"n": 15, "title": "第 15 页 · 四、应用(2)｜多路并行 WDM 与 6G 亚太赫兹", "actId": 4, "image": "assets/slides/slide-15.webp", "slideSec": 47, "whyHere": "承接 P14 单路测试：实际芯片里要多通道并行（左图 4 路 WDM），而未来 6G 无线需要百 GHz 以上高频信号（右图 140 GHz 混频），正好呼应前面免 TIA 与 30° 转角的伏笔！", "core": "左图 0.006 mm² 四路芯片免 TIA 跑通 4×16 Gbps；右图直接光电混频超 180 GHz，140 GHz 频段跑通 10 Gbps QPSK。", "bridge": "👉 翻页串词：所有进展都看完了，最后一页我们回到开篇的问题——石墨烯到底会不会取代商用锗？看第 16 页。", "blocks": [{"step": 34, "localIndex": 1, "localTotal": 2, "name": "左图：四路并行 WDM 免 TIA 芯片", "side": "left", "boxes": [[68, 145, 983, 647], [59, 673, 1877, 720]], "cue": "【翻页 → P15】指左图芯片 + 底栏第 1 条", "timeLabel": "约 20 秒", "durationSec": 20, "cumTargetSec": 753, "script": "单路之外，多路并行和无线应用也很亮眼。左图四路波分复用芯片仅占 0.006 mm²，全通道超 67 GHz，免 TIA 直接跑通 4×16 Gbps 传输 [22]。", "explain": "四通道 WDM 接收芯片核心区仅 0.006 mm²、全路 >67 GHz，在免 TIA 与免均衡下跑通 4×16 Gbps；受约 1.1 V/W 响应限制，单路尚受制于信噪比。", "illus": "assets/illus/step-34.webp"}, {"step": 35, "localIndex": 2, "localTotal": 2, "name": "右图：6G 亚太赫兹 140 GHz 混频", "side": "right", "boxes": [[1013, 145, 1932, 647], [60, 736, 1932, 821]], "cue": "（指右图星座图 + 底栏第 2 条）点出清晰解调 10 Gbps，补充 WDM 信噪比制约与自混频优势", "timeLabel": "约 27 秒", "durationSec": 27, "cumTargetSec": 780, "script": "右图面向 6G 无线通信：无需外置光调制器，直接光电混频突破 180 GHz，在 140 GHz 频段跑通清晰的 10 Gbps QPSK 星座图 [23]。左图免均衡跑通 64 Gbps，但约 1.1 V/W 响应使单路暂受限于信噪比；右图借光电自混频省去高插损外置调制器。", "explain": "氮化硅波导集成 30° 转角双层石墨烯，经双激光拍频与基带电信号自混频省去外置调制器，在 140 GHz 实现 10 Gbps QPSK（BER 1.5×10⁻⁵）。", "illus": "assets/illus/step-35.webp", "ownTake": "左图免均衡跑通 64 Gbps，但约 1.1 V/W 响应使单路暂受限于信噪比；右图借光电自混频省去高插损外置调制器。"}]}, {"n": 16, "title": "第 16 页 · 五、总结｜石墨烯会取代商用锗吗？", "actId": 4, "image": "assets/slides/slide-16.webp", "slideSec": 61, "whyHere": "首尾呼应 P2 提出的总问题！学完整个领域后给出清醒客观的产业判断：石墨烯不是去常规短距硬碰商用锗，而是占领商用锗做不到的两大新阵地。", "core": "常规短距仍由商用锗占优；石墨烯不可替代的两大阵地是 >180–500 GHz 6G 混频，以及 3–8 μm 传感与氮化硅异质集成；未来重点打通三项量产工艺。", "bridge": "👉 翻页串词：最后快速展示本次综述的全部 27 篇参考文献。", "blocks": [{"step": 36, "localIndex": 1, "localTotal": 3, "name": "左图雷达：不取代常规商用锗", "side": "left", "boxes": [[68, 169, 1061, 973], [1101, 176, 1928, 262]], "cue": "【翻页 → P16】指左图雷达 + 右上第 1 条，冷静定调", "timeLabel": "约 17 秒", "durationSec": 17, "cumTargetSec": 797, "script": "最后回答最核心的问题：石墨烯会取代商用锗吗？左图雷达给出了冷静结论：在 1.3 和 1.55 μm 常规短距里，商用外延锗依然占优，石墨烯不是去直接替代它 [27]。", "explain": "五维雷达对比显示，300 mm 商用外延锗已达 1.08 A/W 与 2.4 pW/Hz¹/² 低 NEP，常规 1.3/1.55 μm 短距市场仍由外延锗主导。", "illus": "assets/illus/step-36.webp"}, {"step": 37, "localIndex": 2, "localTotal": 3, "name": "右上第 2、3 条：两大不可替代阵地", "side": "right", "boxes": [[1101, 285, 1928, 482]], "cue": "（指右上第 2、3 条）点出石墨烯不可替代的两大阵地", "timeLabel": "约 19 秒", "durationSec": 19, "cumTargetSec": 816, "script": "石墨烯真正不可替代的是右边两大阵地：一是超 180 到 500 GHz 的 6G 亚太赫兹混频 [23, 27]；二是 3 到 8 μm 中红外传感 [20]，以及氮化硅等无源平台的低温集成 [13, 18, 27]。", "explain": "石墨烯的差异化护城河集中在商用锗难以胜任的领域：>180–500 GHz 6G 亚太赫兹混频、3–8 μm 室温中红外传感及 SiN 等非晶平台低温集成。", "illus": "assets/illus/step-37.webp"}, {"step": 38, "localIndex": 3, "localTotal": 3, "name": "右下蓝框：未来三项工程主线", "side": "bottom", "boxes": [[1111, 762, 1932, 986]], "cue": "（指右下蓝框）收束未来工程主线，给出量化对标结论", "timeLabel": "约 25 秒", "durationSec": 25, "cumTargetSec": 841, "script": "未来只要打通全自动洁净转移、无金边接触和耐高温非易失铁电结，就能推动这些场景真正落地 [26, 27]。量化看，300 毫米商用锗已达 1.08 A/W 与 2.4 皮瓦量级 NEP，远优于高速石墨烯的 40 皮瓦量级，因此石墨烯的核心定位是差异化互补。", "explain": "迈向规模商用的三大工程主线：全自动无残胶洁净转移（含在线缺陷检测）、低阻无金一维边接触，以及 CMOS 兼容的高温无机非易失掺杂结。", "illus": "assets/illus/step-38.webp", "ownTake": "量化看，300 毫米商用锗已达 1.08 A/W 与 2.4 皮瓦量级 NEP，远优于高速石墨烯的 40 皮瓦量级，因此石墨烯的核心定位是差异化互补。"}]}, {"n": 17, "title": "第 17 页 · 参考文献（一）：[1]–[14] 轻扫过页", "actId": 4, "image": "assets/slides/slide-17.webp", "slideSec": 8, "whyHere": "汇报收尾展示完整学术出处：前 14 篇对应早期奠基与波导增强工作，一句话轻松带过即可。", "core": "一句话带过第 1 到 14 篇参考文献，无需逐条念英文标题。", "bridge": "👉 翻页串词：下一页是第 15 到 27 篇近年前沿文献。", "blocks": [{"step": 39, "localIndex": 1, "localTotal": 1, "name": "一句话带过前 14 篇文献", "side": "bottom", "boxes": [[68, 141, 1932, 889]], "cue": "【翻页 → P17】停留约 8 秒，一句话带过", "timeLabel": "约 8 秒", "durationSec": 8, "cumTargetSec": 849, "script": "最后两页列出了本次综述参考的全部 27 篇文献，这一页是第 1 到 14 篇早期与波导增强工作。", "explain": "快速展示前 14 篇早期奠基与波导光场增强核心文献，保持平稳节奏过渡至下一页。", "illus": "assets/illus/step-39.webp"}]}, {"n": 18, "title": "第 18 页 · 参考文献（二）：[15]–[27] 轻扫过页", "actId": 4, "image": "assets/slides/slide-18.webp", "slideSec": 7, "whyHere": "展示近六年最新前沿与综述文献出处，一句话带过后立刻进入结束致谢页。", "core": "一句话带过第 15 到 27 篇近年异质集成、高速系统与最新综述文献。", "bridge": "👉 翻页串词：翻到最后一页微笑致谢。", "blocks": [{"step": 40, "localIndex": 1, "localTotal": 1, "name": "一句话带过后 13 篇文献", "side": "bottom", "boxes": [[68, 142, 1932, 882]], "cue": "【翻页 → P18】停留约 7 秒，迅速翻至致谢页", "timeLabel": "约 7 秒", "durationSec": 7, "cumTargetSec": 856, "script": "这一页是第 15 到 27 篇近年异质集成、高速系统与最新综述文献。", "explain": "快速展示后 13 篇近六年异质集成、高速系统实测与前沿综述文献，自然衔接收尾致谢。", "illus": "assets/illus/step-40.webp"}]}, {"n": 19, "title": "第 19 页 · 结束页：从容致谢与答辩准备", "actId": 4, "image": "assets/slides/slide-19.webp", "slideSec": 10, "whyHere": "圆满收尾！整场纯口播约 14.4 分钟，加上现场看屏、指图和自然停顿正好稳落在 15 分钟左右。", "core": "微笑致谢，礼貌邀请老师和同学提问指正。", "bridge": "🎉 汇报圆满结束！如果老师提问，可随时点顶栏「💬 Q&A (21)」快速检索应答话术。", "blocks": [{"step": 41, "localIndex": 1, "localTotal": 1, "name": "微笑致谢与邀请提问", "side": "bottom", "boxes": [[250, 312, 1751, 841]], "cue": "【翻页 → P19】微笑致意，声音平稳收尾", "timeLabel": "约 10 秒", "durationSec": 10, "cumTargetSec": 866, "script": "以上就是我的全部汇报内容，感谢老师和各位同学的聆听，欢迎大家提问指正！", "explain": "纯口播约 14.4 分钟，叠加指图停顿稳落 15 分钟左右；致谢后可随时切至顶栏 Q&A 页签应对提问。", "illus": "assets/illus/step-41.webp"}]}], "qas": [{"id": 1, "q": "Q1：同样是零偏压热电探测器，为什么微环方案 [19] 电压响应度高达 90 V/W，但带宽只有 12 GHz，而空气槽和氮化硅方案 [10, 18, 22] 带宽超 65 GHz 却只有几 V/W？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>微环为什么响应度这么高（90 V/W）？</strong> 微环处于临界耦合时，光在环里反复叠加，腔内光功率大约放大了 10 倍。短短 6 微米的石墨烯就能吸收 90% 以上的光，把局部电子加热到约 400 K；电子温升大，产生的热电电压自然就高<span class=\"qa-cite\">[19]</span>。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>微环为什么带宽只有 12 GHz？</strong> 光在微环里需要时间进腔蓄能、再衰减出来，这个驻留时间对应着 150 pm 的窄谐振线宽，直接把调制速度限制在了 12 GHz 左右——这并不是石墨烯本身变慢了，而是微环腔的限制<span class=\"qa-cite\">[19]</span>。</div></li><li><span class=\"fc-pt-idx\">3</span><div class=\"fc-pt-txt\"><strong>空气槽和氮化硅直波导为什么刚好相反？</strong> 它们没有谐振腔，光只单次通过石墨烯，没有腔内延迟，所以带宽轻松超过 65–67 GHz；但单次吸收产生的电子温升远不如微环，因此电压响应度只有几 V/W<span class=\"qa-cite\">[10, 18, 22]</span>。</div></li></ol>", "cat": "波导与带宽", "isNew": false, "slides": [7, 6, 10], "difficulty": "进阶", "core": "因为微环是谐振腔结构，它是用“响应速度”去换“更高的响应度”。"}, {"id": 2, "q": "Q2：有的论文写响应度 1.9 A/W [25]，有的写 0.65 A/W [21]，还有的写 90 V/W [19]，怎么公平对比？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>先区分速度和工作机制</strong>：1.9 A/W 来自非晶硅/石墨烯界面的电荷陷阱增益（光门控效应），电荷释放很慢，不能用来做高速光通信，只适合低速光功率监测<span class=\"qa-cite\">[25]</span>；而 0.65 A/W 的转角器件<span class=\"qa-cite\">[21]</span> 和 0.50 A/W 的蝴蝶结器件<span class=\"qa-cite\">[14]</span> 都是 65–110 GHz 以上的真正高速探测器，两者应用场景完全不同。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>再区分单位（A/W vs V/W）</strong>：A/W 测的是外加偏压或短路下的电流响应度，V/W 测的是零偏压开路下的电压响应度，量纲不同，不能直接混在一起排高低<span class=\"qa-cite\">[19]</span>。</div></li><li><span class=\"fc-pt-idx\">3</span><div class=\"fc-pt-txt\"><strong>最后核对光功率分母口径</strong>：同样标 A/W，有的论文分母用的是光纤总输入功率，有的扣掉了耦合损耗只算进波导的功率，还有的只算石墨烯净吸收功率<span class=\"qa-cite\">[5, 15, 26]</span>——分母越小，算出来的响应度数字就越大，对比时必须换算到同一基准。</div></li></ol>", "cat": "物理与判据", "isNew": false, "slides": [4, 12, 11], "difficulty": "高频深挖", "core": "不能直接拿这三个数字比大小，必须先看清器件是高速还是低速，再看清单位和光功率分母是不是同一套口径。"}, {"id": 3, "q": "Q3：既然 300 mm 产线外延锗已做到 1.08 A/W 与超 110 GHz [27]，石墨烯不可替代的价值在哪？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>超 180–500 GHz 的 6G 亚太赫兹应用</strong>：石墨烯热电子冷却只有 2–4 ps，本征速度潜力远高于传统半导体，可以直接在芯片上做 140–180 GHz 以上的高频光电混频<span class=\"qa-cite\">[23, 27]</span>。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>3–8 微米室温中红外气体传感</strong>：锗的带隙决定了它超过 1.6 微米就基本不吸光了，而石墨烯零带隙全光谱响应，能在室温零偏压下做成片上中红外传感器，不需要制冷<span class=\"qa-cite\">[20, 27]</span>。</div></li><li><span class=\"fc-pt-idx\">3</span><div class=\"fc-pt-txt\"><strong>氮化硅等非晶波导平台的低温集成</strong>：高质量外延锗必须在单晶硅上高温外延生长，长不到氮化硅或硫系玻璃波导上；石墨烯没有表面悬挂键，可以在 300 °C 以下低温直接转移贴合到各种无源光芯片上<span class=\"qa-cite\">[13, 18, 27]</span>。</div></li></ol>", "cat": "系统与定位", "isNew": false, "slides": [16, 2, 15], "difficulty": "高频深挖", "core": "在常规 1.31 和 1.55 微米硅光短距通信里，石墨烯目前确实打不过商用外延锗；它真正不可替代的价值，在于外延锗在物理上做不到的三个方向。"}, {"id": 4, "q": "Q4：加偏压的光辐射热效应（PB）和零偏压光热电效应（PTE）怎么区分？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>先撤掉源漏偏压（测 0 V）</strong>：只要不加外偏压，光辐射热效应就没有电流信号；而光热电效应靠光照产生的电子温差就能自己输出开路电压，而且扫描两个栅极电压时，会出现特征性的<strong>六重正负号交替图案</strong>，这是识别 PTE 最可靠的实验判据<span class=\"qa-cite\">[6, 10]</span>。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>再看加偏压时的电流变化方向</strong>：给器件加上偏压后，光辐射热效应是因为光把电子照热、加剧了声子散射、使沟道电阻变大，所以照光时总电流反而比没光时的暗电流<strong>更小</strong>（表现为与偏压反向的负光电流）<span class=\"qa-cite\">[14, 17]</span>。</div></li></ol>", "cat": "物理与判据", "isNew": false, "slides": [3, 4], "difficulty": "基础", "core": "实验上主要看两个最直观的现象——零偏压下有没有输出信号，以及照光后总电流是变大还是变小。"}, {"id": 5, "q": "Q5：为什么近两年工业级 CVD 石墨烯反而做出比实验室手剥薄片更好的性能？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>材料本身和界面保护进步很大</strong>：过去 CVD 性能差主要是多晶晶界和湿法转移残胶拉低了迁移率；现在用单晶铜箔定向生长大面积单晶 CVD，再配合 PVA 聚合物等洁净封装替代手剥氮化硼，晶圆级器件也能把迁移率做到上万<span class=\"qa-cite\">[18]</span>。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>结合新结构拿下了多项最高指标</strong>：目前高速电流响应度纪录（0.65 A/W，4.1° 转角<span class=\"qa-cite\">[21]</span>）、最高混频带宽（>180 GHz，30° 转角<span class=\"qa-cite\">[23]</span>）和最高单路直接检测速率（100 Gbps，蝴蝶结<span class=\"qa-cite\">[14]</span>）用的全都是 CVD 石墨烯。</div></li><li><span class=\"fc-pt-idx\">3</span><div class=\"fc-pt-txt\"><strong>量产可行性完全不同</strong>：手剥薄片没法晶圆流片，而欧洲 6–8 英寸先导产线已经用 CVD 做到了 99% 以上的器件良率<span class=\"qa-cite\">[27]</span>。</div></li></ol>", "cat": "材料与量产", "isNew": false, "slides": [13, 10, 11], "difficulty": "基础", "core": "手剥薄片的迁移率依然很高，但它只能做单个实验室样品；近几年 CVD 在生长质量、洁净封装和转角工艺上补齐了短板，所以在几个关键高速指标上反超了。"}, {"id": 6, "q": "Q6：2025 年铁电非易失 p-i-n 器件 [26] 解决了以前分立双栅热电器件的什么痛点？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>原来的痛点是什么</strong>：零偏压光热电器件必须靠左右两个栅极分别把石墨烯掺成 p 型和 n 型，一旦撤掉栅压，p-n 结就消失了。单器件就要接两路稳压源，做成四通道接收芯片甚至要独立引出 8 路直流栅压线<span class=\"qa-cite\">[22]</span>，布线和控制电路非常繁琐。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>铁电方案怎么解决的</strong>：在波导和石墨烯之间夹一层铁电聚合物 P(VDF-TrFE)，只需要在初始化时打一次 ±15 V 的电脉冲，铁电层就会留下永久的向上/向下剩余极化电场，把石墨烯锁定成 p-i-n 结<span class=\"qa-cite\">[26]</span>。</div></li><li><span class=\"fc-pt-idx\">3</span><div class=\"fc-pt-txt\"><strong>实际效果</strong>：把所有电源都拔掉以后，这个结还能稳定维持超过 28 小时，真正做到了零源漏偏压、零持续栅压<span class=\"qa-cite\">[26]</span>。</div></li></ol>", "cat": "材料与量产", "isNew": false, "slides": [10, 15], "difficulty": "基础", "core": "以前所谓的“零偏压”器件其实只是主沟道不加电，栅极还得一直插着两路直流电源；铁电层把这两路持续供电也彻底省掉了。"}, {"id": 7, "q": "Q7：石墨烯热电子冷却时间只有 2–4 ps，理论本征带宽超 500 GHz，为什么绝大多数实测波导器件还停留在几十到 110 GHz？瓶颈卡在哪？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>中低带宽器件（20–65 GHz）主要卡在 RC 常数</strong>：普通直波导往往有 30–80 微米长，电极和焊盘带来几十 fF 的寄生电容，再加上石墨烯沟道和接触电阻常在几百欧姆量级，按 1/(2πRC) 算出来带宽就在几十 GHz（比如文献<span class=\"qa-cite\">[5]</span> 算得 RC 带宽 43 GHz，实测 41 GHz，正好吻合）。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>超高速器件（>110 GHz）主要卡在测试仪器</strong>：用等离激元把器件缩到 2.7–6 微米、电容压到飞法级之后（如蝴蝶结<span class=\"qa-cite\">[14]</span> 和窄金属槽<span class=\"qa-cite\">[15]</span>），实测到 110 GHz 时曲线依然是完全平的、没有滚降。这说明器件真实带宽超过 110 GHz，只是探针和频谱仪最高只能测到 110 GHz<span class=\"qa-cite\">[27]</span>。</div></li></ol>", "cat": "物理与判据", "isNew": true, "slides": [3, 5, 8], "difficulty": "高频深挖", "core": "因为大多数器件还没碰到 2–4 ps 这个材料极限，实际卡住实测带宽的主要是电路 RC 延迟和测试仪器的量程上限。"}, {"id": 8, "q": "Q8：光热电 PTE 器件在强光照射下为什么会出现响应度缓降（次线性饱和）？对高速通信有什么实际影响？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>电子温升跟不上光功率增长</strong>：随着电子温度升高，石墨烯的电子热容会变大，同时超碰撞声子散热也会加快，所以光功率翻倍时，电子温升 ΔTe 翻不到一倍，电压响应度就会缓慢下降（比如微环<span class=\"qa-cite\">[19]</span> 超过 0.2 mW 后大约按 P⁻¹/³ 衰减，<span class=\"qa-cite\">[6]</span> 呈 P⁰·⁴⁷ 规律）。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>极强局部光场下的泡利阻塞</strong>：当局部光强太高时，激发态被电子填满，后续光子吸收变弱，这就是泡利阻塞饱和（比如蝴蝶结<span class=\"qa-cite\">[14]</span> 单层容易饱和，后来改用双层才扛住 11–12 dBm 光功率跑出 100 Gbps）。</div></li><li><span class=\"fc-pt-idx\">3</span><div class=\"fc-pt-txt\"><strong>对高速通信的实际影响</strong>：接收端不能靠一味加大发射激光功率来硬提信噪比；设计高聚光或微腔器件时，必须同时兼顾小信号灵敏度和大信号不失真。</div></li></ol>", "cat": "物理与判据", "isNew": true, "slides": [4, 7, 8], "difficulty": "进阶", "core": "主要有两个原因——电子越热越难继续升温，加上强光下吸光本身会饱和；结果就是器件的线性动态范围有限。"}, {"id": 9, "q": "Q9：汇报强调“免 TIA 架构”是零偏 PTE 的系统红利，但这种电压读取方式有没有隐藏代价？实际电路会遇到什么问题？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>高内阻与 50 Ω 射频前端不匹配</strong>：零偏 PTE 器件的沟道加接触电阻通常在 500–1000 Ω 左右<span class=\"qa-cite\">[18, 19]</span>，直接接到标准的 50 Ω 射频前端时，大部分信号电压都会被内阻分压损失掉，所以必须专门设计高输入阻抗的片上电压缓冲放大器来配合。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>电阻越大，约翰逊热噪声越高</strong>：零偏压虽然消除了暗电流散粒噪声，但热噪声电压跟电阻的平方根成正比，高电阻会抬高噪声基底、拉低接收灵敏度。</div></li><li><span class=\"fc-pt-idx\">3</span><div class=\"fc-pt-txt\"><strong>高速器件的输出电压还偏小</strong>：非谐振高速 PTE 的电压响应度大多只有 1–6 V/W（例如四通道 WDM 芯片<span class=\"qa-cite\">[22]</span> 单路只有约 1.1 V/W），光功率不够高时信噪比会很紧张。</div></li></ol>", "cat": "物理与判据", "isNew": true, "slides": [3, 15, 7], "difficulty": "进阶", "core": "有代价，免 TIA 并不是不要后级电路了；实际落地时主要会碰到高电阻带来的阻抗失配与热噪声，以及绝对输出电压偏低两个问题。"}, {"id": 10, "q": "Q10：空气槽波导（P6）和表面等离激元纳米槽（P8）都是在极窄缝隙里聚光，两者本质区别是什么？什么场景选哪种？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>硅空气槽（P6）的原理和适用场景</strong>：靠硅和空气的高折射率差，把光挤进 70–80 nm 空气缝里。因为没有金属，不会产生金属寄生吸光损耗；石墨烯悬空在槽上方能隔绝向衬底的散热（电子温升 148 K）<span class=\"qa-cite\">[9]</span>，两侧硅壁还能直接当零射频电容的双背栅，非常适合<strong>零偏压、低功耗的高速光热电探测</strong>（做到 65 GHz<span class=\"qa-cite\">[10]</span>）。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>等离激元金属槽（P8）的原理和适用场景</strong>：靠金属纳米结构突破衍射极限聚光，把整个器件缩到 2.7–6 微米、电容压到飞法级，带宽轻松冲破 <strong>110 GHz</strong><span class=\"qa-cite\">[14, 15]</span>。但代价是金属自身会吸收一部分光，而且通常需要外加偏压、存在毫安级暗电流，因此更适合<strong>首要追求极限带宽、对静态功耗不敏感的场景</strong>。</div></li></ol>", "cat": "波导与带宽", "isNew": true, "slides": [6, 8], "difficulty": "进阶", "core": "空气槽是纯介质（硅+空气）聚光，没有金属损耗、适合零偏压低功耗；等离激元槽是金属聚光，尺寸更小、带宽更高，但有金属损耗和暗电流。"}, {"id": 11, "q": "Q11：早期硅直波导（P5）为什么刻意把电极做成非对称排布（一侧 100 nm、一侧 3.5 μm），而不是对称放在波导两侧？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>对称放置为什么会抵消？</strong> 金属和石墨烯接触时，会在电极边缘 100–200 nm 范围内形成局部掺杂和内建电场。如果左右两个相同金属电极对称贴在波导两边，它们产生的内建电场方向正好相反；光照时两边各产生一股反向光电流，在零偏压下合起来几乎等于零<span class=\"qa-cite\">[1, 3]</span>。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>怎么打破这种对称？</strong> 论文里主要有两种办法：一种是像 Gan 等<span class=\"qa-cite\">[3]</span> 那样，把一侧电极紧贴波导（100 nm）、另一侧拉远到 3.5 μm 脱离光场区，只让近侧结工作；另一种是像 Mueller<span class=\"qa-cite\">[2]</span> 和 Ding<span class=\"qa-cite\">[15]</span> 那样，左右分别用功函数不同的 Pd 和 Ti 电极，让两侧内建电场方向一致。</div></li></ol>", "cat": "波导与带宽", "isNew": true, "slides": [5, 8], "difficulty": "基础", "core": "为了防止左右两边产生的光电流方向相反、自己把对方抵消掉。"}, {"id": 12, "q": "Q12：5.2 μm 中红外气体传感（P9）为什么要换掉硅和氧化硅、改用氟化钙加硫系玻璃波导？灵敏度和商用中红外探测器比怎么样？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>为什么必须换材料平台？</strong> 标准 SOI 硅光芯片用二氧化硅做下包层，但二氧化硅在波长超过 4 微米以后就不透明了，会把中红外光直接吸收掉。换成对 8 微米以内都透明的氟化钙（CaF₂）衬底和硫系玻璃（Ge₂₈Sb₁₂Se₆₀）波导，光才能低损耗传输到石墨烯上<span class=\"qa-cite\">[20]</span>。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>和商用中红外探测器对比如何？</strong> 这个器件的噪声等效功率是 1.1 nW/Hz¹/²，绝对灵敏度比昂贵的液氮制冷碲镉汞（HgCdTe）探测器还要弱几个数量级；但它最大的优势是<strong>室温免制冷、零偏压工作、低频到 0.1 Hz 都没有 1/f 噪声展宽</strong>，能直接集成在微型传感芯片上，测一氧化氮 23 ppm 已经满足美国 NIOSH 25 ppm 的安全监测标准<span class=\"qa-cite\">[20]</span>。</div></li></ol>", "cat": "波导与带宽", "isNew": true, "slides": [9, 2], "difficulty": "基础", "core": "因为普通硅光芯片底下的二氧化硅在 4 微米以上会强烈吸光，光根本传不下去；而它的绝对灵敏度确实不如商用制冷探测器，胜在常温、零偏、能做成片上微芯片。"}, {"id": 13, "q": "Q13：4.1° 转角双层石墨烯（P11）吸光翻 3 倍很惊艳，但整片晶圆怎么精确控制转角？角度偏了一点会怎样？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>角度偏了会怎样？</strong> 4.1° 转角形成的摩尔超晶格会产生范霍夫奇点高态密度峰，其跃迁能量正好对齐 1550 nm（0.8 eV）。一旦角度偏差哪怕零点几度，共振峰波长就会明显漂移，1550 nm 处的吸光增强就会打折扣，而且这种共振本身也带来了波长选择性（只在 1510–1630 nm 附近呈峰状响应）<span class=\"qa-cite\">[21]</span>。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>现在晶圆级做到什么程度了？</strong> 文献<span class=\"qa-cite\">[21]</span> 已经尝试用 4 英寸单晶铜箔 Cu(111) 上定向生长的 CVD 石墨烯做错角叠层，16 个器件的响应度离散控制在 11% 左右；但做成 8 器件阵列后，带宽还是从单器件的 >65 GHz 掉到了 36 GHz，晶圆级高精度自动对角和防层间弛豫依然是待解难题。</div></li></ol>", "cat": "材料与量产", "isNew": true, "slides": [11], "difficulty": "进阶", "core": "这正是转角路线目前最大的工程瓶颈——转角只要偏零点几度，共振吸收峰就会偏离 1550 nm，大尺寸晶圆上稳定控角非常难。"}, {"id": 14, "q": "Q14：MoTe₂ 垂直异质结（P12）既把暗电流压到亚微安又有 24–50 GHz 带宽，为什么没有取代纯石墨烯成为主流？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>失去了 1550 nm C 波段和宽谱优势</strong>：MoTe₂ 是有带隙的半导体，它靠带隙把暗电流压到了亚微安，但也同时把光吸收范围锁死在了 1260–1340 nm 的 O 波段，到了最常用的 1550 nm C 波段几乎没有响应<span class=\"qa-cite\">[16]</span>。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>速度和厚度是一对尖锐矛盾</strong>：MoTe₂ 的垂直面外迁移率其实很低（约 0.03 cm²/(V·s)），必须把薄层压到 11–35 nm 才能缩短电子渡越时间、换来 24–50 GHz 带宽；但薄到 11 nm 时暗电流又会明显反弹<span class=\"qa-cite\">[16]</span>。</div></li><li><span class=\"fc-pt-idx\">3</span><div class=\"fc-pt-txt\"><strong>量产工艺门槛高</strong>：目前高指标样品还依赖手工剥离和叠层，在整片晶圆上精确控制十几纳米层厚的 MoTe₂，比生长单层 CVD 石墨烯难得多。</div></li></ol>", "cat": "材料与量产", "isNew": true, "slides": [12], "difficulty": "进阶", "core": "因为它有两个绕不开的限制——波段被带隙锁死了，覆盖不到 1550 nm，而且大面积均匀生长的工艺难度比单层石墨烯高得多。"}, {"id": 15, "q": "Q15：P10 的 PVA 聚合物封装 [18] 和铁电聚合物 P(VDF-TrFE) 锁结 [26]，这类有机高分子材料能直接进 CMOS 芯片厂吗？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>两类有机材料各自卡在哪里？</strong> PVA 容易受空气湿度影响，而且在 1550 nm 波段自身有约 2.5 dB/mm 的光吸收损耗，必须额外做致密防潮封盖<span class=\"qa-cite\">[18]</span>；铁电共聚物 P(VDF-TrFE) 的耐温上限只有 <strong>135 °C</strong>，极化电压也高达 ±15–30 V，扛不住 CMOS 后端退火和封装回流焊的高温<span class=\"qa-cite\">[26]</span>。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>未来的工程替代路线是什么？</strong> 这两篇论文的核心价值是验证了“免手剥封装”和“铁电非易失锁结”的可行性；真要进芯片厂，下一步需要改用 <strong>CMOS 兼容的无机铪基铁电薄膜（如掺杂 HfO₂）</strong> 和低温致密无机介质来落地<span class=\"qa-cite\">[26, 27]</span>。</div></li></ol>", "cat": "材料与量产", "isNew": true, "slides": [10, 16], "difficulty": "进阶", "core": "目前这种有机聚合物形态还进不了标准 CMOS 产线，因为怕潮、不耐高温，后续必须换成无机材料。"}, {"id": 16, "q": "Q16：芯片代工厂为什么严禁在硅产线里用金（Au）电极？石墨烯又为什么不能直接在硅波导上生长、非要低温转移？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>为什么严禁金（Au）电极？</strong> 金原子在硅里扩散非常快，会在硅禁带中引入深能级复合中心，直接破坏邻近 CMOS 晶体管的电学性能，还会交叉污染整条产线的机台。所以后端电极必须全面去金，改用铜、钨、铝、镍等大马士革边接触工艺<span class=\"qa-cite\">[5, 13, 27]</span>。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>为什么不能在硅波导上直接生长石墨烯？</strong> 高质量 CVD 石墨烯通常需要在 <strong>1000 °C 左右</strong>依托铜箔催化生长；而芯片后端工艺（BEOL）的热预算严格限制在 <strong>≤300 °C</strong>，上千度会直接熔毁前道已经做好的金属连线和晶体管，铜催化剂也会污染硅栅氧。因此只能先在铜箔上异位长好，再低温洁净转移到芯片上<span class=\"qa-cite\">[13, 27]</span>。</div></li></ol>", "cat": "材料与量产", "isNew": true, "slides": [13, 5], "difficulty": "基础", "core": "这两条都是半导体代工厂的硬红线——怕金属扩散污染硅晶体管，以及怕高温把底层做好的电路烧坏。"}, {"id": 17, "q": "Q17：P14 已经跑出 100 Gbps 眼图 [14] 和 240 Gbps 相干接收 [24]，这说明石墨烯探测器可以直接装进数据中心 800G/1.6T 光模块了吗？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>接收灵敏度（NEP）差距还很大</strong>：商用雪崩锗探测器的噪声等效功率低至 2.4 pW/Hz¹/²，而目前高速石墨烯最优也在 39–46 pW/Hz¹/²<span class=\"qa-cite\">[21, 26, 27]</span>。所以 100 Gbps 实测需要高达 11–12 dBm 的波导光功率，外加离线数字均衡<span class=\"qa-cite\">[14]</span>，还达不到商用光模块的弱光接收门槛。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>有偏高速器件伴随较大暗电流发热</strong>：跑出 100 Gbps 的蝴蝶结器件工作在光辐射热模式，有 2–8 mA 的静态暗电流，做成多通道高密度模块时功耗和发热压力较大<span class=\"qa-cite\">[14]</span>。</div></li><li><span class=\"fc-pt-idx\">3</span><div class=\"fc-pt-txt\"><strong>当前模块瓶颈和成本现实</strong>：2026 年综述<span class=\"qa-cite\">[27]</span> 也指出，常规 1.55 μm 短距模块很多时候真正卡在后端电学 ADC/DSP，外延锗成熟便宜，短期内没必要用石墨烯去直接替代。</div></li></ol>", "cat": "系统与定位", "isNew": true, "slides": [14, 16], "difficulty": "高频深挖", "core": "还不能，实验室能跑出 100G/240G 眼图，距离真正装进商用光模块还有灵敏度、暗电流功耗和系统性价比三道坎。"}, {"id": 18, "q": "Q18：6G 亚太赫兹 140 GHz 链路（P15）为什么用石墨烯做“光电自混频”？它比传统光载射频或纯电子方案强在哪里？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>传统方案的痛点</strong>：在 140–180 GHz 这种极高频 D 波段，传统光载射频发射机需要“外置高速电光调制器 + 宽带光电二极管”两级级联，不仅外置调制器插损大、造价高，而且在超低损耗的氮化硅光芯片上，单晶锗根本外延不上去。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>石墨烯光电自混频怎么做的</strong>：文献<span class=\"qa-cite\">[23]</span> 把 30° 转角双层石墨烯直接贴在氮化硅波导上，让两束激光拍频的同时直接加基带电信号，利用石墨烯热电子的超快电导调制，在一个器件里同时完成光电转换和混频上变频。</div></li><li><span class=\"fc-pt-idx\">3</span><div class=\"fc-pt-txt\"><strong>实测优势</strong>：不仅省去了外置电光调制器，而且 130–180 GHz 全频段频响平坦无滚降，在 140 GHz 载波上跑通了 10 Gbps QPSK（误码率 1.5×10⁻⁵）<span class=\"qa-cite\">[23]</span>。</div></li></ol>", "cat": "系统与定位", "isNew": true, "slides": [15, 11], "difficulty": "基础", "core": "主要是为了省掉昂贵、高损耗的外部电光调制器，同时解决氮化硅平台上长不出单晶锗的难题。"}, {"id": 19, "q": "Q19：P13 说欧洲 6/8 英寸中试产线良率已经超过 99% [27]，为什么还没见到大规模商用的石墨烯光芯片？最后卡在什么环节？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>晶圆级迁移率还没追上理想指标</strong>：目前欧洲 2D-EPL 中试线的晶圆级迁移率在 3000 cm²/(V·s) 以上<span class=\"qa-cite\">[27]</span>，虽然比早期好很多，但距离理想通信级目标（>10,000<span class=\"qa-cite\">[13]</span>）以及单晶实验室水平（16,000<span class=\"qa-cite\">[18]</span>）还有差距，片内和片间的性能波动还需要继续压缩。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>两道关键后端工艺仍在量产爬坡</strong>：一是<strong>全自动无聚合物残胶转移</strong>（需要结合视觉质检自动排查裂纹和褶皱），二是<strong>低阻、无金的一维大马士革边接触</strong>。目前欧洲初创公司正投入大规模融资主攻这道量产闭环<span class=\"qa-cite\">[27]</span>。</div></li></ol>", "cat": "系统与定位", "isNew": true, "slides": [13, 16], "difficulty": "高频深挖", "core": "良率超 99% 只证明“能批量做出来、器件都是通的”，距离大规模商用还差高性能一致性和全自动量产闭环两道关。"}, {"id": 20, "q": "Q20：你汇报时提到复核原始论文时发现有些综述存在口径差异甚至勘误，能具体举一两个例子吗？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>功率分母和机制口径差异</strong>：比如 2025 年铁电器件<span class=\"qa-cite\">[26]</span> 报的 193 mA/W 是按石墨烯<strong>净吸收功率</strong>算的内响应度；窄金属槽<span class=\"qa-cite\">[15]</span> 的 360 mA/W 是按<strong>槽内功率</strong>算的，没扣光栅和模式转换插损；嵌芯器件<span class=\"qa-cite\">[25]</span> 的 1.9 A/W 则是低频锁相测出的慢速光门控增益。如果不回溯原文条件直接排榜，很容易得出错误结论。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>二手综述里的转录勘误</strong>：连 2026 年综述<span class=\"qa-cite\">[27]</span> 的汇总表里，都不小心把 2013 年 Gan<span class=\"qa-cite\">[3]</span> 和 Pospischil<span class=\"qa-cite\">[4]</span> 两篇奠基文章的响应度、带宽数据对调了，而且把 2025 年 Tian<span class=\"qa-cite\">[26]</span> 的铁电非易失 p-i-n 结误写成了局部吸附掺杂。提出这点不是否定综述价值，而是说明做定量对比时必须回到一手实验原文核对。</div></li></ol>", "cat": "文献深化与选题", "isNew": true, "slides": [4, 13], "difficulty": "高频深挖", "core": "可以举两个对照原始 PDF 核出来的具体例子——一个是响应度分母口径不统一，另一个是 2026 年最新综述汇总表里的两处转录偏差。"}, {"id": 21, "q": "Q21：如果接下来让你自己选一个方向往下做实验或课题，你最看好切入哪一个具体痛点？为什么？", "a": "<ol class=\"fc-points\"><li><span class=\"fc-pt-idx\">1</span><div class=\"fc-pt-txt\"><strong>应用赛道避开硅基锗的成熟竞争</strong>：氮化硅是非晶无源平台，单晶锗外延不上去，在这个平台上做片上高速探测器属于明确刚需，不用去硅光常规短距里跟外延锗正面竞争。</div></li><li><span class=\"fc-pt-idx\">2</span><div class=\"fc-pt-txt\"><strong>直击当前多通道零偏器件的工程痛点</strong>：像四通道 WDM 芯片<span class=\"qa-cite\">[22]</span> 虽然免了 TIA，但还是要接 8 路直流栅压线；而 2025 年铁电锁结<span class=\"qa-cite\">[26]</span> 思路很好，却卡在有机聚合物只耐 135 °C。把它替换成 CMOS 兼容的无机铪基铁电薄膜，就能同时解决静栅布线和后端耐温两个卡点。</div></li><li><span class=\"fc-pt-idx\">3</span><div class=\"fc-pt-txt\"><strong>整体技术闭环最清晰</strong>：零偏压本身无暗电流、天然适配免 TIA 低功耗架构，配合非易失铁电锁定，是最有希望率先工程化的方向之一。</div></li></ol>", "cat": "文献深化与选题", "isNew": true, "slides": [16, 10], "difficulty": "高频深挖", "core": "如果我自己选课题，我会优先切入“氮化硅无源波导 + 无机铪基铁电（HfO₂）非易失零偏 PTE 探测器”这个组合。"}]};
+const [SW, SH] = DECK.slideSize;
+
+const STEPS = [];
+DECK.slides.forEach((sl, sIdx) => {
+  sl.blocks.forEach((blk, bIdx) => {
+    STEPS.push({ slideIdx: sIdx, blockIdx: bIdx, slide: sl, block: blk });
+  });
+});
+
+let curStep = 0;
+let mode = 'guide';
+let reciteRevealed = false;
+let spotlightOn = true;
+let showCites = false;
+let fontSize = 18;
+let timerSec = 0;
+let timerHandle = null;
+
+function fmtTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+}
+
+function formatScriptHTML(raw) {
+  let s = raw.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const hasCites = /\[[0-9,\s–-]+\]/.test(s);
+  document.getElementById('citeBtn').style.display = hasCites ? 'inline-block' : 'none';
+  s = s.replace(/\s*(\[[0-9,\s–-]+\])/g, '<span class="cite-ref">$1</span>');
+  return s;
+}
+
+function actForSlide(sl) {
+  if (DECK.acts && DECK.acts.length) {
+    return DECK.acts.find(a => a.id === sl.actId) || DECK.acts[0];
+  }
+  return { id: 1, name: '全篇顺稿', color: '#0b4f9c' };
+}
+
+function buildFilmstrip() {
+  const wrap = document.getElementById('filmstrip');
+  wrap.innerHTML = DECK.slides.map((sl, idx) => {
+    const act = actForSlide(sl);
+    const firstStepIdx = STEPS.findIndex(st => st.slideIdx === idx);
+    return `<button class="film-cell" id="film-${idx}" style="--act-col:${act.color}" onclick="goStep(${firstStepIdx})" title="${sl.title}">P${sl.n}</button>`;
+  }).join('');
+}
+
+function buildStorylineAndQA() {
+  document.getElementById('deckTitleTop').textContent = DECK.title + (DECK.subtitle ? ' · ' + DECK.subtitle : '');
+  document.getElementById('deckSummaryDesc').textContent = DECK.storyline || `共 ${DECK.totalSlides} 页幻灯片、${DECK.totalSteps} 个讲述节拍（预计总时长 ${fmtTime(DECK.totalSec)}）。`;
+
+  const groups = (DECK.acts && DECK.acts.length)
+    ? DECK.acts.map(act => ({
+        title: `${act.name}（P${act.range[0]}–P${act.range[1]}）`,
+        time: act.time || '',
+        color: act.color || '#1864ab',
+        summary: act.summary || '',
+        slides: DECK.slides.filter(sl => sl.actId === act.id),
+      }))
+    : [{ title: '逐页脉络总览', time: fmtTime(DECK.totalSec), color: '#1864ab', summary: '', slides: DECK.slides }];
+
+  document.getElementById('actsContainer').innerHTML = groups.map(g => {
+    const cards = g.slides.map(sl => {
+      const firstStepIdx = STEPS.findIndex(st => st.slide.n === sl.n);
+      const coreHtml = sl.core ? `<div class="story-core"><strong>本页核心：</strong>${sl.core}</div>` : '';
+      const bridgeHtml = sl.bridge ? `<div class="story-bridge">${sl.bridge}</div>` : '';
+      return `
+        <div class="story-card" onclick="goStep(${firstStepIdx}); setMode('guide')">
+          <div class="story-card-top">
+            <img class="story-thumb" src="${sl.image}" loading="lazy" alt="P${sl.n}" />
+            <div>
+              <div style="font-size:12px;font-weight:800;color:${g.color}">P${sl.n} · 共 ${sl.blocks.length} 拍（约 ${sl.slideSec} 秒）</div>
+              <div style="font-size:14px;font-weight:700;margin-top:2px">${sl.title.replace(/^第\s*\d+\s*页\s*[·：:]?\s*/, '') || sl.title}</div>
+            </div>
+          </div>
+          ${coreHtml}
+          ${bridgeHtml}
+        </div>
+      `;
+    }).join('');
+    return `
+      <div class="act-section">
+        <div class="act-sec-head">
+          <div class="act-sec-title" style="color:${g.color}">${g.title}</div>
+          ${g.time ? `<span class="dur-pill">${g.time}</span>` : ''}
+        </div>
+        ${g.summary ? `<p class="act-sec-desc">${g.summary}</p>` : ''}
+        <div class="story-grid">${cards}</div>
+      </div>
+    `;
+  }).join('');
+
+  if (DECK.qas && DECK.qas.length) {
+    document.getElementById('storyTabBtn').textContent = '🗺️ 全篇疏通 & Q&A';
+    document.getElementById('qaSection').style.display = 'block';
+    document.getElementById('qaSecTitle').textContent = `💬 高频提问答辩锦囊（共 ${DECK.qas.length} 题 · 点击展开应答话术）`;
+    document.getElementById('qaContainer').innerHTML = DECK.qas.map(item => `
+      <div class="qa-item" onclick="this.classList.toggle('open')">
+        <div class="qa-q">
+          <span>${item.q}</span>
+          <span style="color:var(--purple);flex-shrink:0">展开 ▾</span>
+        </div>
+        <div class="qa-a">${item.a}</div>
+      </div>
+    `).join('');
+  }
+}
+
+function renderSlideSVG(sl, activeBlockIdx) {
+  const svg = document.getElementById('slideSvg');
+  const activeBlk = sl.blocks[activeBlockIdx];
+  const unit = Math.max(1, SW / 2000);
+  const rBadge = Math.round(26 * unit);
+  const fBadge = Math.round(23 * unit);
+  let html = '';
+
+  if (spotlightOn) {
+    const cutouts = activeBlk.boxes.map(([x0, y0, x1, y1]) => {
+      const pad = Math.round(10 * unit);
+      return `<rect x="${Math.max(0, x0 - pad)}" y="${Math.max(0, y0 - pad)}" width="${x1 - x0 + pad * 2}" height="${y1 - y0 + pad * 2}" rx="${Math.round(14 * unit)}" fill="black" />`;
+    }).join('');
+    html += `
+      <defs>
+        <mask id="spotMask">
+          <rect x="0" y="0" width="${SW}" height="${SH}" fill="white" />
+          ${cutouts}
+        </mask>
+      </defs>
+      <rect x="0" y="0" width="${SW}" height="${SH}" fill="rgba(15, 23, 42, 0.24)" mask="url(#spotMask)" />
+    `;
+  }
+
+  sl.blocks.forEach((blk, idx) => {
+    if (idx === activeBlockIdx) return;
+    const targetGlobalIdx = STEPS.findIndex(st => st.slide.n === sl.n && st.blockIdx === idx);
+    blk.boxes.forEach(([x0, y0, x1, y1], j) => {
+      html += `<rect class="ghost-box-rect" stroke-width="${Math.max(2, 3 * unit)}" x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}" rx="${Math.round(10 * unit)}" data-jump="${targetGlobalIdx}" />`;
+      if (j === 0) {
+        const bx = Math.max(rBadge + 4, x0);
+        const by = Math.max(rBadge + 4, y0);
+        html += `
+          <g class="svg-badge-group" data-jump="${targetGlobalIdx}">
+            <circle cx="${bx}" cy="${by}" r="${Math.round(rBadge * 0.86)}" fill="${idx < activeBlockIdx ? '#64748b' : '#ffffff'}" stroke="#6741d9" stroke-width="${Math.max(2, 3.5 * unit)}" />
+            <text x="${bx}" y="${by + Math.round(fBadge * 0.34)}" text-anchor="middle" font-size="${Math.round(fBadge * 0.88)}" font-weight="800" fill="${idx < activeBlockIdx ? '#ffffff' : '#6741d9'}">${blk.step}</text>
+          </g>
+        `;
+      }
+    });
+  });
+
+  activeBlk.boxes.forEach(([x0, y0, x1, y1]) => {
+    html += `<rect class="active-box-rect" stroke-width="${Math.max(3, 6 * unit)}" x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}" rx="${Math.round(12 * unit)}" />`;
+    const bx = Math.max(rBadge + 4, x0);
+    const by = Math.max(rBadge + 4, y0);
+    html += `
+      <g>
+        <circle cx="${bx}" cy="${by}" r="${rBadge}" fill="#6741d9" stroke="#ffffff" stroke-width="${Math.max(2, 4 * unit)}" />
+        <text x="${bx}" y="${by + Math.round(fBadge * 0.36)}" text-anchor="middle" font-size="${fBadge}" font-weight="800" fill="#ffffff">${activeBlk.step}</text>
+      </g>
+    `;
+  });
+
+  svg.innerHTML = html;
+}
+
+function render() {
+  const item = STEPS[curStep];
+  const { slide: sl, block: blk, slideIdx, blockIdx } = item;
+  const act = actForSlide(sl);
+
+  const actBadge = document.getElementById('actBadge');
+  actBadge.textContent = `${act.name} · P${sl.n}/${DECK.totalSlides}`;
+  actBadge.style.background = act.color;
+
+  const imgEl = document.getElementById('slideImg');
+  if (!imgEl.src.endsWith(sl.image)) imgEl.src = sl.image;
+  document.getElementById('slideTitleLabel').textContent = sl.title;
+
+  document.getElementById('beatPills').innerHTML = sl.blocks.map((b, idx) => {
+    const gIdx = STEPS.findIndex(st => st.slideIdx === slideIdx && st.blockIdx === idx);
+    const cls = idx === blockIdx ? 'beat-pill active' : (idx < blockIdx ? 'beat-pill done' : 'beat-pill');
+    return `<button class="${cls}" onclick="goStep(${gIdx})">第 ${idx + 1}/${sl.blocks.length} 拍 (#${b.step})</button>`;
+  }).join('');
+
+  renderSlideSVG(sl, blockIdx);
+
+  DECK.slides.forEach((_, idx) => {
+    const cell = document.getElementById(`film-${idx}`);
+    if (cell) cell.className = 'film-cell' + (idx === slideIdx ? ' current' : (idx < slideIdx ? ' visited' : ''));
+  });
+
+  document.getElementById('prevStepBtn').disabled = curStep === 0;
+  document.getElementById('prevSlideBtn').disabled = slideIdx === 0;
+  document.getElementById('nextSlideBtn').disabled = slideIdx === DECK.slides.length - 1;
+  const nextBtn = document.getElementById('nextStepBtn');
+  if (curStep < STEPS.length - 1) {
+    const nxt = STEPS[curStep + 1];
+    nextBtn.textContent = (nxt.slideIdx === slideIdx)
+      ? `点此下一拍：#${nxt.block.step} ${nxt.block.name.slice(0, 10)}… →`
+      : `翻到 P${nxt.slide.n}（#${nxt.block.step}）→`;
+  } else {
+    nextBtn.textContent = '🎉 已顺完全篇！查看脉络总览 →';
+  }
+
+  // Persistent in-place logic card (why are we on this slide?)
+  const logicCard = document.getElementById('logicCard');
+  if (sl.whyHere || sl.core) {
+    logicCard.style.display = 'block';
+    logicCard.style.borderLeftColor = act.color;
+    document.getElementById('logicTitle').style.color = act.color;
+    document.getElementById('logicProgress').textContent = `${act.name} · 第 ${sl.n}/${DECK.totalSlides} 页`;
+    const whyEl = document.getElementById('logicWhy');
+    const coreEl = document.getElementById('logicCore');
+    if (sl.whyHere) {
+      whyEl.style.display = 'block';
+      whyEl.innerHTML = `<strong>⬅️ 为什么来到这页：</strong>${sl.whyHere}`;
+    } else {
+      whyEl.style.display = 'none';
+    }
+    if (sl.core) {
+      coreEl.style.display = 'block';
+      coreEl.innerHTML = `<strong>🎯 这页只讲明白一件事：</strong>${sl.core}`;
+    } else {
+      coreEl.style.display = 'none';
+    }
+  } else {
+    logicCard.style.display = 'none';
+  }
+
+  // Right Coach Card with re-triggered subtle animation
+  const card = document.getElementById('stepCard');
+  card.classList.remove('step-card-anim');
+  void card.offsetWidth;
+  card.classList.add('step-card-anim');
+
+  document.getElementById('stepBadge').textContent = blk.step;
+  document.getElementById('blockName').textContent = blk.name || `第 ${blk.step} 拍`;
+  document.getElementById('durPill').textContent = `${blk.timeLabel} · #${blk.step}/${DECK.totalSteps}`;
+
+  const cueEl = document.getElementById('pointerCue');
+  if (blk.cue) {
+    cueEl.style.display = 'block';
+    cueEl.textContent = `👆 动作与指图：${blk.cue}`;
+  } else {
+    cueEl.style.display = 'none';
+  }
+
+  document.getElementById('scriptBody').innerHTML = formatScriptHTML(blk.script);
+
+  const illusWrap = document.getElementById('illusWrap');
+  const zoomHint = document.getElementById('zoomHint');
+  const orangeBox = document.getElementById('orangeBox');
+  if (blk.illus) {
+    illusWrap.style.display = 'block';
+    zoomHint.style.display = 'inline';
+    document.getElementById('illusImg').src = blk.illus;
+  } else {
+    illusWrap.style.display = 'none';
+    zoomHint.style.display = 'none';
+  }
+  document.getElementById('explainBody').innerHTML = blk.explain ? `<strong>💡 一句话听懂：</strong>${blk.explain}` : '';
+  orangeBox.style.display = (blk.illus || blk.explain) ? 'block' : 'none';
+
+  reciteRevealed = false;
+  syncReciteMask();
+
+  const bridgeEl = document.getElementById('bridgeCard');
+  if (blockIdx < sl.blocks.length - 1) {
+    const nxtBlk = sl.blocks[blockIdx + 1];
+    bridgeEl.style.display = 'block';
+    bridgeEl.innerHTML = `<span class="bridge-tag">⏭ 本页下一拍预告（#${nxtBlk.step}）</span><div>讲完这块不用翻页，目光顺势移向 <strong>${nxtBlk.name}</strong>${nxtBlk.cue ? '：' + nxtBlk.cue : ''}</div>`;
+  } else if (sl.bridge) {
+    bridgeEl.style.display = 'block';
+    bridgeEl.innerHTML = `<span class="bridge-tag">🔗 承上启下翻页串词（P${sl.n} → ${sl.n < DECK.totalSlides ? 'P' + (sl.n + 1) : '收尾'}）</span><div>${sl.bridge}</div>`;
+  } else {
+    bridgeEl.style.display = 'none';
+  }
+
+  document.getElementById('targetReadout').textContent = fmtTime(blk.cumTargetSec);
+  updatePaceBadge();
+
+  if (curStep + 1 < STEPS.length) {
+    new Image().src = STEPS[curStep + 1].slide.image;
+    if (STEPS[curStep + 1].block.illus) new Image().src = STEPS[curStep + 1].block.illus;
+  }
+  try { localStorage.setItem(DECK.storageKey, String(curStep)); } catch (e) {}
+}
+
+function syncReciteMask() {
+  document.getElementById('blueBox').classList.toggle('masked', mode === 'recite' && !reciteRevealed);
+}
+function revealRecite(e) { if (e) e.stopPropagation(); reciteRevealed = !reciteRevealed; syncReciteMask(); }
+function goStep(idx) { curStep = Math.max(0, Math.min(STEPS.length - 1, idx)); render(); }
+function stepBy(delta) {
+  if (delta > 0 && curStep === STEPS.length - 1) { setMode('story'); return; }
+  goStep(curStep + delta);
+}
+function jumpSlide(delta) {
+  const target = Math.max(0, Math.min(DECK.slides.length - 1, STEPS[curStep].slideIdx + delta));
+  const idx = STEPS.findIndex(st => st.slideIdx === target);
+  if (idx !== -1) goStep(idx);
+}
+function onStageClick(e) {
+  const jumpAttr = e.target.closest('[data-jump]');
+  if (jumpAttr) { goStep(parseInt(jumpAttr.getAttribute('data-jump'), 10)); return; }
+  stepBy(1);
+}
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.mode === m));
+  document.body.classList.toggle('view-story', m === 'story');
+  syncReciteMask();
+}
+function toggleSpotlight() {
+  spotlightOn = !spotlightOn;
+  document.getElementById('spotBtn').classList.toggle('on', spotlightOn);
+  renderSlideSVG(STEPS[curStep].slide, STEPS[curStep].blockIdx);
+}
+function toggleCites(e) {
+  if (e) e.stopPropagation();
+  showCites = !showCites;
+  document.body.classList.toggle('hide-cites', !showCites);
+  document.getElementById('citeBtn').textContent = showCites ? '隐藏 [文献号]' : '显示 [文献号]';
+}
+function changeFont(delta, e) {
+  if (e) e.stopPropagation();
+  fontSize = Math.max(14, Math.min(26, fontSize + delta));
+  document.documentElement.style.setProperty('--script-size', fontSize + 'px');
+}
+function toggleTheme() {
+  const isDark = document.documentElement.classList.toggle('dark');
+  document.getElementById('themeBtn').textContent = isDark ? '☀️' : '🌙';
+}
+function updatePaceBadge() {
+  const tag = document.getElementById('paceTag');
+  if (!timerHandle && timerSec === 0) { tag.style.display = 'none'; return; }
+  tag.style.display = 'inline-block';
+  const diff = timerSec - STEPS[curStep].block.cumTargetSec;
+  if (Math.abs(diff) <= 18) { tag.textContent = '节奏刚好'; tag.style.background = 'var(--green-fill)'; tag.style.color = 'var(--green)'; }
+  else if (diff < -18) { tag.textContent = `快 ${Math.abs(diff)}s`; tag.style.background = 'var(--blue-fill)'; tag.style.color = 'var(--blue-stroke)'; }
+  else { tag.textContent = `慢 ${diff}s`; tag.style.background = 'var(--orange-fill)'; tag.style.color = 'var(--orange-stroke)'; }
+}
+function toggleTimer() {
+  const btn = document.getElementById('timerToggleBtn');
+  if (timerHandle) { clearInterval(timerHandle); timerHandle = null; btn.textContent = '▶ 继续'; }
+  else {
+    timerHandle = setInterval(() => { timerSec += 1; document.getElementById('timerReadout').textContent = fmtTime(timerSec); updatePaceBadge(); }, 1000);
+    btn.textContent = '⏸ 暂停';
+  }
+}
+function resetTimer() {
+  if (timerHandle) { clearInterval(timerHandle); timerHandle = null; }
+  timerSec = 0; document.getElementById('timerReadout').textContent = '00:00';
+  document.getElementById('timerToggleBtn').textContent = '▶ 计时'; updatePaceBadge();
+}
+function openLightbox() {
+  const src = document.getElementById('illusImg').src;
+  if (!src) return;
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+
+// Touch swipe on mobile
+let touchX = null;
+document.getElementById('slideFrame').addEventListener('touchstart', e => { if (e.touches.length === 1) touchX = e.touches[0].clientX; }, { passive: true });
+document.getElementById('slideFrame').addEventListener('touchend', e => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  touchX = null;
+  if (Math.abs(dx) > 48) { stepBy(dx < 0 ? 1 : -1); }
+}, { passive: true });
+
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('lightbox').classList.contains('open')) {
+    if (e.key === 'Escape' || e.key === ' ') { e.preventDefault(); closeLightbox(); }
+    return;
+  }
+  if (e.target && (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName) || e.target.isContentEditable)) return;
+  if (mode === 'qa') { handleQaKey(e); return; }
+  if (mode === 'story') { if (e.key === 'Escape') setMode('guide'); return; }
+  if (e.key === ' ' || e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); stepBy(1); }
+  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); stepBy(-1); }
+  else if (e.key === '[') jumpSlide(-1);
+  else if (e.key === ']') jumpSlide(1);
+  else if (e.key === 'v' || e.key === 'V') { if (mode === 'recite') revealRecite(); }
+  else if (e.key === 'l' || e.key === 'L') toggleSpotlight();
+  else if (e.key === 't' || e.key === 'T') toggleTimer();
+});
+
+buildFilmstrip();
+buildStorylineAndQA();
+try {
+  const saved = parseInt(localStorage.getItem(DECK.storageKey) || '0', 10);
+  if (!isNaN(saved) && saved >= 0 && saved < STEPS.length) curStep = saved;
+} catch (e) {}
+render();
+
+let showOwnHL = true;
+
+function toggleOwnHL(e) {
+  if (e) e.stopPropagation();
+  showOwnHL = !showOwnHL;
+  document.body.classList.toggle('hide-own-hl', !showOwnHL);
+  const btn = document.getElementById('ownBtn');
+  if (btn) {
+    btn.classList.toggle('own-on', showOwnHL);
+    btn.textContent = showOwnHL ? '📌 标出拓展补充' : '标出拓展补充';
+  }
+}
+
+function escapeHtmlStr(raw) {
+  return String(raw).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function formatScriptWithOwnTake(raw, ownTake) {
+  let s = escapeHtmlStr(raw);
+  const hasCites = /\[[0-9,\s–-]+\]/.test(s);
+  document.getElementById('citeBtn').style.display = hasCites ? 'inline-block' : 'none';
+  if (ownTake) {
+    const ownEsc = escapeHtmlStr(ownTake);
+    if (s.includes(ownEsc)) {
+      s = s.replace(ownEsc, `<span class="own-take-hl"><span class="own-take-pill">📌 拓展补充</span>${ownEsc}</span>`);
+    }
+  }
+  s = s.replace(/\s*(\[[0-9,\s–-]+\])/g, '<span class="cite-ref">$1</span>');
+  return s;
+}
+
+function jumpToSlideNum(slideNum, e) {
+  if (e) e.stopPropagation();
+  const idx = STEPS.findIndex(st => st.slide.n === slideNum);
+  if (idx !== -1) {
+    goStep(idx);
+    setMode('guide');
+  }
+}
+
+/* ===================== Q&A 闪卡练习 + 列表速查 ===================== */
+const QA_CATS = ['全部', '仅看新增 15 题', '物理与判据', '波导与带宽', '材料与量产', '系统与定位', '文献深化与选题'];
+const QA_DIFFS = ['基础', '进阶', '高频深挖'];
+const QA_DIFF_CLASS = { '基础': 'qa-badge-d1', '进阶': 'qa-badge-d2', '高频深挖': 'qa-badge-d3' };
+const FC_STORE_KEY = 'graphene-pd-qa-fc-v1';
+const fcState = { masteredIds: [], wrongIds: [], lastCardId: null, qaView: 'card' };
+let activeQaCat = '全部';
+let fcDiff = '全部';
+let fcWrongOnly = false;
+let fcCurId = null;
+let fcRevealed = false;
+let fcLastRenderedId = null;
+let fcResetArmTimer = null;
+let fcCopyTimer = null;
+
+(function fcLoadState() {
+  const qas = DECK.qas || [];
+  const ids = new Set(qas.map(x => x.id));
+  try {
+    const raw = JSON.parse(localStorage.getItem(FC_STORE_KEY) || '{}') || {};
+    if (Array.isArray(raw.masteredIds)) fcState.masteredIds = raw.masteredIds.filter(id => ids.has(id));
+    if (Array.isArray(raw.wrongIds)) fcState.wrongIds = raw.wrongIds.filter(id => ids.has(id) && !fcState.masteredIds.includes(id));
+    if (ids.has(raw.lastCardId)) fcState.lastCardId = raw.lastCardId;
+    if (raw.qaView === 'card' || raw.qaView === 'list') fcState.qaView = raw.qaView;
+  } catch (e) {}
+  fcCurId = fcState.lastCardId != null ? fcState.lastCardId : (qas[0] ? qas[0].id : null);
+})();
+
+function fcSave() {
+  if (fcCurId != null) fcState.lastCardId = fcCurId;
+  try { localStorage.setItem(FC_STORE_KEY, JSON.stringify(fcState)); } catch (e) {}
+}
+
+function fcStatus(id) {
+  if (fcState.masteredIds.includes(id)) return 'mastered';
+  if (fcState.wrongIds.includes(id)) return 'wrong';
+  return 'none';
+}
+
+function qaKeyword() {
+  const el = document.getElementById('qaSearchInput');
+  return (el ? el.value : '').trim().toLowerCase();
+}
+
+function qaPlainText(item) {
+  return [item.q, item.core || '', item.avoid || '', String(item.a).replace(/<[^>]+>/g, ''), item.cat || '', item.difficulty || '']
+    .join(' ').toLowerCase();
+}
+
+function qaMatch(item, kw, skip) {
+  skip = skip || {};
+  if (!skip.cat) {
+    if (activeQaCat === '仅看新增 15 题' && !item.isNew) return false;
+    if (activeQaCat !== '全部' && activeQaCat !== '仅看新增 15 题' && item.cat !== activeQaCat) return false;
+  }
+  if (!skip.diff && fcDiff !== '全部' && item.difficulty !== fcDiff) return false;
+  if (fcWrongOnly && !fcState.wrongIds.includes(item.id)) return false;
+  if (kw && !qaPlainText(item).includes(kw)) return false;
+  return true;
+}
+
+function qaPool() {
+  const kw = qaKeyword();
+  return (DECK.qas || []).filter(item => qaMatch(item, kw));
+}
+
+function fcEnsureCurrent(pool) {
+  if (!pool.length) return -1;
+  let idx = pool.findIndex(x => x.id === fcCurId);
+  if (idx === -1) {
+    idx = 0;
+    fcCurId = pool[0].id;
+    fcRevealed = false;
+  }
+  return idx;
+}
+
+function qaTagsHTML(item) {
+  const newTag = item.isNew
+    ? '<span class="qa-badge qa-badge-new">新增</span>'
+    : '<span class="qa-badge qa-badge-orig">原有精选</span>';
+  const catTag = item.cat ? `<span class="qa-badge qa-badge-cat">${item.cat}</span>` : '';
+  const diffTag = item.difficulty ? `<span class="qa-badge ${QA_DIFF_CLASS[item.difficulty] || ''}">${item.difficulty}</span>` : '';
+  const slideBtns = (item.slides || []).map(n =>
+    `<button class="qa-slide-jump" onclick="jumpToSlideNum(${n}, event)" title="切回顺稿台第 ${n} 页 PPT 指图作答">跳到 P${n}</button>`
+  ).join('');
+  return newTag + catTag + diffTag + slideBtns;
+}
+
+function qaStatusBadge(id) {
+  const st = fcStatus(id);
+  const label = st === 'mastered' ? '✓ 已掌握' : (st === 'wrong' ? '⚠ 待复习' : '未标记');
+  return `<span class="qa-badge qa-status-${st}">${label}</span>`;
+}
+
+function fcEmptyHTML() {
+  let icon = '🔍';
+  let title = '没有符合当前筛选条件的题目';
+  let desc = '请调整搜索关键词、分类或难度筛选，或一键重置全部筛选条件。';
+  if (fcWrongOnly && !fcState.wrongIds.length) {
+    icon = '📭';
+    title = '尚未标记任何“不会”的题目';
+    desc = '「只练不会」已开启。在闪卡上按 W 或点击「✗ 标记不会」，即可把题目加入待复习题池。';
+  } else if (fcWrongOnly) {
+    icon = '✅';
+    title = '当前筛选范围内没有待复习题目';
+    desc = '待复习题目不在当前分类、难度或搜索范围内，可重置筛选后继续练习。';
+  }
+  return `
+    <div class="fc-empty">
+      <div class="fc-empty-icon">${icon}</div>
+      <div class="fc-empty-title">${title}</div>
+      <div class="fc-empty-desc">${desc}</div>
+      <button class="fc-btn fc-btn-primary" onclick="fcResetFilters()">↺ 重置筛选</button>
+    </div>`;
+}
+
+function renderFcCard(pool, idx) {
+  const view = document.getElementById('fcCardView');
+  if (!view) return;
+  if (!pool.length) {
+    view.innerHTML = fcEmptyHTML();
+    fcLastRenderedId = null;
+    return;
+  }
+  const item = pool[idx];
+  const n = pool.length;
+  const st = fcStatus(item.id);
+  const pct = Math.round(((idx + 1) / n) * 100);
+  const qBody = escapeHtmlStr(String(item.q).replace(/^Q\d+[：:]\s*/, ''));
+  const sameCard = fcLastRenderedId === item.id;
+  fcLastRenderedId = item.id;
+  view.innerHTML = `
+    <article class="fc-card st-${st} ${fcRevealed ? 'revealed' : ''} ${sameCard ? 'fc-static' : ''}" data-id="${item.id}">
+      <div class="fc-progress" title="题池进度 ${pct}%"><span style="width:${pct}%"></span></div>
+      <div class="fc-meta">
+        ${qaTagsHTML(item)}
+        ${qaStatusBadge(item.id)}
+        <span class="fc-idx">第 ${idx + 1} / ${n} 题</span>
+      </div>
+      <div class="fc-front" onclick="onFcFrontClick(event)" aria-expanded="${fcRevealed}">
+        <div class="fc-qnum">Q${item.id}</div>
+        <h3 class="fc-q">${qBody}</h3>
+        <div class="fc-tap-hint">
+          <span class="when-closed">👆 点击卡片或按 Space / Enter 翻看答案</span>
+          <span class="when-open">👆 点击问题区或按 Space / Enter 收起答案</span>
+        </div>
+      </div>
+      <div class="fc-back-wrap">
+        <div class="fc-back">
+          <div class="fc-back-inner">
+            <section class="fc-core">
+              <div class="fc-sec-label">🎯 一句话先答（开口先给结论）</div>
+              <p>${escapeHtmlStr(item.core || '')}</p>
+            </section>
+            <section class="fc-detail">
+              <div class="fc-sec-label">💬 具体怎么展开讲</div>
+              <div class="fc-detail-body">${item.a}</div>
+            </section>
+          </div>
+        </div>
+      </div>
+      <div class="fc-actions">
+        <button id="fcPrevBtn" class="fc-btn" onclick="fcStep(-1)">← 上一题</button>
+        <button id="fcRevealBtn" class="fc-btn fc-btn-primary" onclick="fcToggleReveal()">${fcRevealed ? '隐藏答案' : '显示答案'}</button>
+        <button id="fcNextBtn" class="fc-btn" onclick="fcStep(1)">下一题 →</button>
+        <span class="fc-sep"></span>
+        <button id="fcMasterBtn" class="fc-btn fc-btn-ok ${st === 'mastered' ? 'on' : ''}" onclick="fcMark('mastered')">✓ 已掌握 (K)</button>
+        <button id="fcWrongBtn" class="fc-btn fc-btn-warn ${st === 'wrong' ? 'on' : ''}" onclick="fcMark('wrong')">✗ 标记不会 (W)</button>
+        <button id="fcCopyBtn" class="fc-btn" onclick="fcCopyCore(event)">📋 复制核心句</button>
+      </div>
+      <div class="fc-kbd-hint">⌨️ Space / Enter / ↓ 翻面 · ← → 切题 · R 随机 · K 已掌握 · W 标记不会 · Esc 返回顺稿</div>
+      <div class="fc-swipe-hint">← 在卡片上左右滑动切换上一题 / 下一题 →</div>
+    </article>`;
+}
+
+function renderQaList(pool) {
+  const listEl = document.getElementById('qaDedicatedList');
+  if (!listEl) return;
+  const openIds = new Set(Array.from(listEl.querySelectorAll('.qa-item.open')).map(el => parseInt(el.dataset.id, 10)));
+  if (!pool.length) {
+    listEl.innerHTML = fcEmptyHTML();
+    return;
+  }
+  listEl.innerHTML = pool.map(item => {
+    const st = fcStatus(item.id);
+    return `
+      <div class="qa-item st-${st} ${openIds.has(item.id) ? 'open' : ''}" data-id="${item.id}" onclick="onQaItemClick(event, this)">
+        <div class="qa-meta-row">${qaTagsHTML(item)}${qaStatusBadge(item.id)}</div>
+        <div class="qa-q">
+          <span>${escapeHtmlStr(item.q)}</span>
+          <span class="qa-chevron"></span>
+        </div>
+        <div class="qa-a">
+          <section class="fc-core">
+            <div class="fc-sec-label">🎯 一句话先答</div>
+            <p>${escapeHtmlStr(item.core || '')}</p>
+          </section>
+          <section class="fc-detail">
+            <div class="fc-sec-label">💬 具体怎么展开讲</div>
+            <div class="fc-detail-body">${item.a}</div>
+          </section>
+          <div class="qa-item-actions">
+            <button class="fc-btn fc-btn-ok ${st === 'mastered' ? 'on' : ''}" onclick="fcMark('mastered', ${item.id}, event)">✓ 已掌握</button>
+            <button class="fc-btn fc-btn-warn ${st === 'wrong' ? 'on' : ''}" onclick="fcMark('wrong', ${item.id}, event)">✗ 标记不会</button>
+            <button class="fc-btn" onclick="fcOpenCard(${item.id}, event)">🃏 用闪卡练这题</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function renderQaPane() {
+  const qas = DECK.qas || [];
+  const total = qas.length;
+  const kw = qaKeyword();
+  const isList = fcState.qaView === 'list';
+  const pane = document.getElementById('qaPane');
+  if (!pane) return;
+  pane.classList.toggle('qa-view-list', isList);
+  document.getElementById('qaViewCardBtn').classList.toggle('active', !isList);
+  document.getElementById('qaViewListBtn').classList.toggle('active', isList);
+  document.getElementById('qaViewCardBtn').setAttribute('aria-selected', String(!isList));
+  document.getElementById('qaViewListBtn').setAttribute('aria-selected', String(isList));
+
+  const catsWrap = document.getElementById('qaCatsWrap');
+  if (catsWrap) {
+    catsWrap.innerHTML = QA_CATS.map(c => {
+      const cnt = qas.filter(x => {
+        if (c === '仅看新增 15 题' && !x.isNew) return false;
+        if (c !== '全部' && c !== '仅看新增 15 题' && x.cat !== c) return false;
+        return qaMatch(x, kw, { cat: true });
+      }).length;
+      return `<button class="qa-cat-btn ${activeQaCat === c ? 'active' : ''}" onclick="setQaCat('${c}')"><span>${c}</span><span class="qa-cat-cnt">${cnt}</span></button>`;
+    }).join('');
+  }
+
+  const sel = document.getElementById('fcDiffSelect');
+  if (sel) {
+    const base = qas.filter(x => qaMatch(x, kw, { diff: true }));
+    const opts = [['全部', `全部难度 (${base.length})`]].concat(
+      QA_DIFFS.map(d => [d, `${d} (${base.filter(x => x.difficulty === d).length})`])
+    );
+    sel.innerHTML = opts.map(([v, t]) => `<option value="${v}">${t}</option>`).join('');
+    sel.value = fcDiff;
+  }
+
+  const wrongBtn = document.getElementById('fcWrongOnlyBtn');
+  if (wrongBtn) {
+    wrongBtn.classList.toggle('on', fcWrongOnly);
+    wrongBtn.textContent = `${fcWrongOnly ? '✓ ' : ''}只练不会 (${fcState.wrongIds.length})`;
+    wrongBtn.setAttribute('aria-pressed', String(fcWrongOnly));
+  }
+
+  const pool = qas.filter(x => qaMatch(x, kw));
+  const idx = fcEnsureCurrent(pool);
+  document.getElementById('fcMasteredPill').textContent = `✓ 已掌握 ${fcState.masteredIds.length}`;
+  document.getElementById('fcWrongPill').textContent = `⚠ 待复习 ${fcState.wrongIds.length}`;
+  document.getElementById('fcPosPill').textContent = isList
+    ? `显示 ${pool.length} / ${total} 题`
+    : `第 ${idx + 1} / ${pool.length} 题`;
+  document.getElementById('qaCountBadge').textContent = `题池 ${pool.length} / ${total}`;
+
+  if (isList) renderQaList(pool);
+  else renderFcCard(pool, idx);
+  fcSave();
+}
+
+function renderDedicatedQAs() { renderQaPane(); }
+
+function setQaView(v) {
+  fcState.qaView = v === 'list' ? 'list' : 'card';
+  fcLastRenderedId = null;
+  renderQaPane();
+}
+
+function openQaFlashcards() {
+  fcState.qaView = 'card';
+  setMode('qa');
+}
+
+function setQaCat(cat) {
+  activeQaCat = cat;
+  renderQaPane();
+}
+
+function onQaFilterChange() {
+  const sel = document.getElementById('fcDiffSelect');
+  if (sel) fcDiff = sel.value;
+  renderQaPane();
+}
+
+function toggleWrongOnly() {
+  fcWrongOnly = !fcWrongOnly;
+  renderQaPane();
+}
+
+function fcResetFilters() {
+  activeQaCat = '全部';
+  fcDiff = '全部';
+  fcWrongOnly = false;
+  const input = document.getElementById('qaSearchInput');
+  if (input) input.value = '';
+  renderQaPane();
+}
+
+function fcToggleReveal(force) {
+  const card = document.querySelector('#fcCardView .fc-card');
+  if (!card) return;
+  fcRevealed = typeof force === 'boolean' ? force : !fcRevealed;
+  card.classList.toggle('revealed', fcRevealed);
+  const front = card.querySelector('.fc-front');
+  if (front) front.setAttribute('aria-expanded', String(fcRevealed));
+  const btn = document.getElementById('fcRevealBtn');
+  if (btn) btn.textContent = fcRevealed ? '隐藏答案' : '显示答案';
+}
+
+function onFcFrontClick(e) {
+  if (e.target.closest('button, a, input, select, textarea')) return;
+  const selTxt = window.getSelection ? String(window.getSelection()) : '';
+  if (selTxt.trim().length > 0) return;
+  fcToggleReveal();
+}
+
+function fcStep(delta) {
+  const pool = qaPool();
+  if (!pool.length) return;
+  const idx = Math.max(0, pool.findIndex(x => x.id === fcCurId));
+  fcCurId = pool[(idx + delta + pool.length) % pool.length].id;
+  fcRevealed = false;
+  renderQaPane();
+}
+
+function fcRandom() {
+  const pool = qaPool();
+  if (!pool.length) return;
+  const cands = pool.length > 1 ? pool.filter(x => x.id !== fcCurId) : pool;
+  fcCurId = cands[Math.floor(Math.random() * cands.length)].id;
+  fcRevealed = false;
+  fcState.qaView = 'card';
+  renderQaPane();
+}
+
+function fcOpenCard(id, e) {
+  if (e) e.stopPropagation();
+  fcCurId = id;
+  fcRevealed = false;
+  fcState.qaView = 'card';
+  fcLastRenderedId = null;
+  renderQaPane();
+  const pane = document.getElementById('qaPane');
+  if (pane) pane.scrollIntoView({ block: 'start' });
+}
+
+function fcMark(kind, id, e) {
+  if (e) e.stopPropagation();
+  const targetId = id != null ? id : fcCurId;
+  const before = qaPool();
+  if (id == null && !before.some(x => x.id === targetId)) return;
+  const oldIdx = before.findIndex(x => x.id === fcCurId);
+  const own = kind === 'mastered' ? fcState.masteredIds : fcState.wrongIds;
+  const other = kind === 'mastered' ? fcState.wrongIds : fcState.masteredIds;
+  const pos = own.indexOf(targetId);
+  if (pos !== -1) {
+    own.splice(pos, 1);
+  } else {
+    own.push(targetId);
+    const op = other.indexOf(targetId);
+    if (op !== -1) other.splice(op, 1);
+  }
+  const after = qaPool();
+  if (after.length && !after.some(x => x.id === fcCurId)) {
+    fcCurId = after[Math.min(Math.max(oldIdx, 0), after.length - 1)].id;
+    fcRevealed = false;
+  }
+  renderQaPane();
+}
+
+function fcResetMemory() {
+  const btn = document.getElementById('fcResetBtn');
+  if (!btn) return;
+  if (!fcResetArmTimer) {
+    btn.classList.add('confirm');
+    btn.textContent = '再次点击确认清除';
+    fcResetArmTimer = setTimeout(() => {
+      fcResetArmTimer = null;
+      btn.classList.remove('confirm');
+      btn.textContent = '↺ 清除记忆';
+    }, 3000);
+    return;
+  }
+  clearTimeout(fcResetArmTimer);
+  fcResetArmTimer = null;
+  fcState.masteredIds = [];
+  fcState.wrongIds = [];
+  fcWrongOnly = false;
+  fcRevealed = false;
+  btn.classList.remove('confirm');
+  btn.textContent = '已清除 ✓';
+  setTimeout(() => { btn.textContent = '↺ 清除记忆'; }, 1400);
+  renderQaPane();
+}
+
+function fcCopyText(text) {
+  const fallback = () => new Promise((resolve, reject) => {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      ok ? resolve() : reject(new Error('copy failed'));
+    } catch (err) { reject(err); }
+  });
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text).catch(fallback);
+  }
+  return fallback();
+}
+
+function fcCopyCore(e) {
+  if (e) e.stopPropagation();
+  const item = (DECK.qas || []).find(x => x.id === fcCurId);
+  if (!item || !item.core) return;
+  const setLabel = (txt, ok) => {
+    const btn = document.getElementById('fcCopyBtn');
+    if (!btn) return;
+    btn.textContent = txt;
+    btn.classList.toggle('copied', !!ok);
+  };
+  fcCopyText(item.core)
+    .then(() => setLabel('已复制 ✓', true))
+    .catch(() => setLabel('复制失败，请手动选中', false));
+  clearTimeout(fcCopyTimer);
+  fcCopyTimer = setTimeout(() => setLabel('📋 复制核心句', false), 1600);
+}
+
+function onQaItemClick(e, el) {
+  if (e.target.closest('button, a, input, select, textarea')) return;
+  if (e.target.closest('.qa-a')) return;
+  el.classList.toggle('open');
+}
+
+function toggleAllQAs(open) {
+  document.querySelectorAll('#qaDedicatedList .qa-item').forEach(el => el.classList.toggle('open', open));
+}
+
+// qa 模式专用键盘处理（由全局 keydown 在 mode === 'qa' 时调用；INPUT/TEXTAREA/SELECT 已在外层排除）
+function handleQaKey(e) {
+  if (e.key === 'Escape') { e.preventDefault(); setMode('guide'); return; }
+  if (e.ctrlKey || e.metaKey || e.altKey || e.isComposing) return;
+  const k = e.key;
+  // 列表速查视图保留原生键盘行为（Enter / Space 可激活聚焦按钮）；闪卡视图下快捷键专用于闪卡操作
+  if (fcState.qaView !== 'card') return;
+  if (k === ' ' || k === 'Spacebar' || k === 'Enter') { e.preventDefault(); fcToggleReveal(); }
+  else if (k === 'ArrowDown') { if (!fcRevealed) { e.preventDefault(); fcToggleReveal(true); } }
+  else if (k === 'ArrowRight') { e.preventDefault(); fcStep(1); }
+  else if (k === 'ArrowLeft') { e.preventDefault(); fcStep(-1); }
+  else if (k === 'r' || k === 'R') { e.preventDefault(); fcRandom(); }
+  else if (k === 'k' || k === 'K') { e.preventDefault(); fcMark('mastered'); }
+  else if (k === 'w' || k === 'W') { e.preventDefault(); fcMark('wrong'); }
+}
+
+// 手机端：卡片区左右滑动切题（阈值 > 50px 且横向位移大于纵向，不干扰上下滚动）
+(function bindFcSwipe() {
+  const el = document.getElementById('fcCardView');
+  if (!el) return;
+  let sx = null;
+  let sy = null;
+  el.addEventListener('touchstart', e => {
+    if (e.touches.length !== 1) { sx = null; return; }
+    sx = e.touches[0].clientX;
+    sy = e.touches[0].clientY;
+  }, { passive: true });
+  el.addEventListener('touchend', e => {
+    if (sx === null) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - sx;
+    const dy = t.clientY - sy;
+    sx = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) fcStep(dx < 0 ? 1 : -1);
+  }, { passive: true });
+})();
+
+const _origSetMode = setMode;
+setMode = function(m) {
+  const prevMode = mode;
+  mode = m;
+  document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.mode === m));
+  document.body.classList.toggle('view-story', m === 'story');
+  document.body.classList.toggle('view-qa', m === 'qa');
+  syncReciteMask();
+  if (m === 'qa') {
+    renderQaPane();
+    if (prevMode !== 'qa') window.scrollTo(0, 0);
+  }
+};
+
+const _origRender = render;
+render = function() {
+  _origRender();
+  const blk = STEPS[curStep].block;
+  document.getElementById('scriptBody').innerHTML = formatScriptWithOwnTake(blk.script, blk.ownTake || '');
+  document.getElementById('explainBody').innerHTML = blk.explain ? `<strong>📌 核心机理要点：</strong>${blk.explain}` : '';
+  const ownBtn = document.getElementById('ownBtn');
+  if (ownBtn) {
+    ownBtn.style.display = blk.ownTake ? 'inline-block' : 'none';
+  }
+};
+
+const _origStoryTab = document.getElementById('storyTabBtn');
+if (_origStoryTab) _origStoryTab.textContent = '🗺️ 全篇疏通';
+renderQaPane();
+render();
+
+</script>
+</body>
+</html>
